@@ -6,7 +6,7 @@ import { AboutSection } from '@/components/About'
 import { MenuSection } from '@/components/Menu'
 import { SignatureSection } from '@/components/Signature'
 import { PairingsSection } from '@/components/Pairings'
-import { ContactSection } from '@/components/Contact'
+// import { ContactSection } from '@/components/Contact'
 
 export default function HarleysPatisserie() {
   return (
