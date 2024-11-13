@@ -24,11 +24,11 @@ export default function Home4() {
 
   const menuItems = [
     { name: 'Medovik Cakes', image: '/photos/danishmedovik.jpg' },
-    { name: 'Macarons', image: '/photos/macaroons.jpg' },
-    { name: 'Butter Cookies', image: '/photos/cookies.jpg' },
-    { name: 'Assorted Bakes', image: '/photos/assorted.jpg' },
+    { name: 'Macarons', image: '/photos/macaroons.JPG' },
+    { name: 'Butter Cookies', image: '/photos/cookies.JPG' },
+    { name: 'Assorted Bakes', image: '/photos/assorted.JPG' },
     { name: 'Cheesecakes', image: '/photos/cheesecakes.jpg' },
-    { name: 'Macarons', image: '/photos/macaroons1.jpg' },
+    { name: 'Macarons', image: '/photos/macaroons1.JPG' },
   ]
 
   return (
