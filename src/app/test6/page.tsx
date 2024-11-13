@@ -45,7 +45,7 @@ export default function Home4() {
             quality={100}
             priority
           />
-          
+          {/* test comment */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
           <div className={`relative z-10 text-center px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
             <div className="relative inline-block mb-8">
