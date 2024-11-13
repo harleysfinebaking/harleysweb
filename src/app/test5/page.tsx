@@ -38,7 +38,7 @@ export default function Home4() {
       <main>
       <section className="relative h-screen flex items-center justify-center">
           <Image 
-            src="/photos/DSC06994.jpg" 
+            src="/photos/hero.jpg" 
             alt="Harley's Patisserie" 
             layout="fill"
             objectFit="cover"
