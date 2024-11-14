@@ -4,7 +4,7 @@ import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-[#CBEBF2] py-12 font-inter">
+    <footer className="bg-[#CBEBF2] py-12 font-['Trebuchet_MS',_sans-serif]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center md:flex-row md:justify-between">
           <div className="mb-8 md:mb-0">

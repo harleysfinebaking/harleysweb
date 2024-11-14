@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Header3 } from '@/components/Header3'
+import { Header6 } from '@/components/Header6'
 import { Footer } from '@/components/Footer'
 import { Button } from "@/components/ui/button"
 
@@ -33,7 +33,7 @@ export default function Home4() {
 
   return (
     <div className="min-h-screen bg-[#FEFEFA] font-inter">
-      <Header3 isScrolled={isScrolled} />
+      <Header6 isScrolled={isScrolled} />
 
       <main>
       <section className="relative h-screen flex items-center justify-center">
@@ -48,21 +48,21 @@ export default function Home4() {
           
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
           <div className={`relative z-10 text-center px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
-            {/* <div className="relative inline-block mb-8">
+            <div className="relative inline-block mb-8">
               <div 
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black rounded-[50%] w-[370px] h-[260px] shadow-lg" 
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/50 backdrop-blur-md rounded-[50%] w-[370px] h-[260px] shadow-lg" 
                 style={{ borderRadius: '50% / 50%' }}
               ></div>
               <div className="relative z-10">
                 <Image 
-                  src="/logocircle/logosnew/logonew-white-tran1.png" 
+                  src="/logo.png" 
                   alt="Harley's" 
-                  width={380}
-                  height={220}
+                  width={220}
+                  height={120}
                   className="w-auto h-auto"
                 />
               </div>
-            </div> */}
+            </div>
             {/* <h1 className="text-5xl md:text-7xl font-light mb-4 text-white font-mulish">Indulge in Elegance</h1>
             <p className="text-xl md:text-2xl mb-8 text-white font-mulish">Experience the refined "Kaffee und Kuchen" tradition at Harley's</p>
             <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#F5D1D8] text-lg px-8 py-3">Order Now</Button> */}
