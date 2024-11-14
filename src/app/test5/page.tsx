@@ -74,23 +74,31 @@ export default function Home4() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-light mb-8 text-center font-mulish text-pink-950">Who We Are</h2>
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-          <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
+        <div className="w-full md:w-1/2 md:pl-8 px-4 md:px-0">
+            <p className="text-2xl mb-4 pt-8 px-8 md:px-16 text-center text-pink-900 font-mulish font-light">
+            India&apos;s ultimate luxury destination for cakes, coffee, and
+
+confections. Known for world-class menu, mouth-watering flavours, Victorian
+
+elegance, and award-winning quality, Harley&apos;s is where
+indulgence meets innovation. Proudly crafted in India,
+
+poised to captivate the world.
+            </p>
+            {/* <p className="text-2xl text-center text-pink-900 font-mulish font-light">
+              Our signature Medovik has become a nationwide favorite, with monthly sales exceeding 10,000 kilograms. Join us in reliving the tradition of coffee drinking, where friends and family gather to enjoy coffee, cake, and conversation.
+            </p> */}
+          </div>
+          <div className="w-full md:w-1/2 flex justify-center my-8 px-8 md:mb-0">
             <Image 
-              src="/photos/bgremoved/macarons-removebg-preview.png" 
+              src="/photos/building.jpg" 
               alt="Harley's Delicacies" 
-              width={400} 
+              width={500} 
               height={300} 
-              className="max-w-full h-auto"
+              className="max-w-full h-auto rounded-lg shadow-lg px"
             />
           </div>
-          <div className="w-full md:w-1/2 md:pl-8 px-4 md:px-0">
-            <p className="text-lg mb-4 text-center text-pink-900 font-mulish font-light">
-              Harley&apos;s is more than just a bakery – it&apos;s a destination. We are pioneers in introducing authentic Medovik cakes to India, bringing the delightful tradition of &quot;Kaffee und Kuchen&quot; (Coffee and Cake) to the subcontinent.
-            </p>
-            <p className="text-lg text-center text-pink-900 font-mulish font-light">
-              Our signature Medovik has become a nationwide favorite, with monthly sales exceeding 10,000 kilograms. Join us in reliving the tradition of coffee drinking, where friends and family gather to enjoy coffee, cake, and conversation.
-            </p>
-          </div>
+          
         </div>
       </div>
     </section>
