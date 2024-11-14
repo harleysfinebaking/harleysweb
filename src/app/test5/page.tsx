@@ -75,19 +75,24 @@ export default function Home4() {
         <h2 className="text-3xl font-light mb-8 text-center font-mulish text-pink-950">Who We Are</h2>
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
         <div className="w-full md:w-1/2 md:pl-8 px-4 md:px-0">
-            <p className="text-2xl mb-4 pt-8 px-8 md:px-16 text-center text-pink-900 font-mulish font-light">
-            India&apos;s ultimate luxury destination for cakes, coffee, and
+            <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-pink-900 font-mulish font-light">
+            India&apos;s ultimate luxury <br/> destination  for cakes, coffee, and
 
 confections. Known for world-class menu, mouth-watering flavours, Victorian
 
-elegance, and award-winning quality, Harley&apos;s is where
-indulgence meets innovation. Proudly crafted in India,
-
-poised to captivate the world.
+elegance, and award-winning quality.  
             </p>
             {/* <p className="text-2xl text-center text-pink-900 font-mulish font-light">
               Our signature Medovik has become a nationwide favorite, with monthly sales exceeding 10,000 kilograms. Join us in reliving the tradition of coffee drinking, where friends and family gather to enjoy coffee, cake, and conversation.
             </p> */}
+            <p className="text-xl mb-4 px-8 md:px-16 text-center text-pink-900 font-mulish font-light">
+            Harley&apos;s is where
+            indulgence<br/> meets innovation.
+</p>
+            <p className="text-xl mb-4 px-8 md:px-16 text-center text-pink-900 font-mulish font-light">
+              Proudly crafted in India,<br/>
+
+poised to captivate the world.</p>
           </div>
           <div className="w-full md:w-1/2 flex justify-center my-8 px-8 md:mb-0">
             <Image 
