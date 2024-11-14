@@ -71,19 +71,29 @@ export default function Home4() {
 
 
         <section id="about" className="py-20 bg-[#f5d1d8]">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-light mb-8 text-center font-mulish  text-pink-950">Who We Are</h2>
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="md:w-1/2 ml-24 mb-8 md:mb-0">
-                <Image src="/photos/bgremoved/macarons-removebg-preview.png" alt="Harley's Interior" width={400} height={300} className="" />
-              </div>
-              <div className="md:w-1/2 md:pl-8 mr-24">
-                <p className="text-lg mb-4 text-center text-pink-900 font-mulish font-light">Harley's is more than just a bakery – it's a destination. We are pioneers in introducing authentic Medovik cakes to India, bringing the delightful tradition of "Kaffee und Kuchen" (Coffee and Cake) to the subcontinent.</p>
-                <p className="text-lg text-center text-pink-900 font-mulish font-light">Our signature Medovik has become a nationwide favorite, with monthly sales exceeding 10,000 kilograms. Join us in reliving the tradition of coffee drinking, where friends and family gather to enjoy coffee, cake, and conversation.</p>
-              </div>
-            </div>
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-light mb-8 text-center font-mulish text-pink-950">Who We Are</h2>
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
+          <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
+            <Image 
+              src="/photos/bgremoved/macarons-removebg-preview.png" 
+              alt="Harley's Delicacies" 
+              width={400} 
+              height={300} 
+              className="max-w-full h-auto"
+            />
           </div>
-        </section>
+          <div className="w-full md:w-1/2 md:pl-8 px-4 md:px-0">
+            <p className="text-lg mb-4 text-center text-pink-900 font-mulish font-light">
+              Harley&apos;s is more than just a bakery – it&apos;s a destination. We are pioneers in introducing authentic Medovik cakes to India, bringing the delightful tradition of &quot;Kaffee und Kuchen&quot; (Coffee and Cake) to the subcontinent.
+            </p>
+            <p className="text-lg text-center text-pink-900 font-mulish font-light">
+              Our signature Medovik has become a nationwide favorite, with monthly sales exceeding 10,000 kilograms. Join us in reliving the tradition of coffee drinking, where friends and family gather to enjoy coffee, cake, and conversation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
         <section id="menu" className="py-24 bg-gradient-to-b from-[#f5d1d8] to-[#CBEBF2]">
           <div className="container mx-auto px-4">
