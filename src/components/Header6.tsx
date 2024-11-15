@@ -36,6 +36,7 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
           showMarquee ? 'max-h-8 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}
       >
+        
         <Marquee text="Welcome to Harley's Fine Baking - Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!" />
       </div>
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
@@ -43,7 +44,7 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
           <div className="flex justify-between items-center md:hidden">
             <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
               <Image 
-                src={isScrolled ? "/logo-scrolled.png" : "/logo-initial.png"} 
+                src={isScrolled ? "/textlogo/textlogo.png" : "/logo.png"} 
                 alt="Harley's" 
                 width={200} 
                 height={200} 
@@ -61,15 +62,15 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
             </div>
             <Link href="/" className={`mx-6 relative ${isScrolled ? 'h-12' : 'h-16'}`}>
               <Image 
-                src="/logo-initial.png" 
-                alt="Harley's Initial" 
+                src="/logo.png" 
+                alt="Harley's Logo" 
                 width={200} 
                 height={200} 
                 className={`w-40 h-auto absolute top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100 translate-y-0'}`}
               />
               <Image 
-                src="/logo-scrolled.png" 
-                alt="Harley's Scrolled" 
+                src="/textlogo/textlogo.png" 
+                alt="Harley's Logo" 
                 width={200} 
                 height={200} 
                 className={`w-32 h-auto absolute top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}

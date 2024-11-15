@@ -104,7 +104,7 @@ export default function Home4() {
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Harley's Ivory Club</h2>
             <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="md:w-1/2 ml-32 mb-8 md:mb-0">
+              <div className="md:w-1/2 md:ml-32 mb-8 md:mb-0">
                 <Image 
                   src="/logo.png" 
                   alt="Harley's Ivory Club" 
