@@ -99,7 +99,7 @@ export default function Home4() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2">
             <Image 
-              src="/photos/belgianmedovik.jpg" 
+              src="/photos/belgianmedovik.JPG" 
               alt="Harley's Signature Medovik Cake" 
               width={600} 
               height={600}

@@ -73,7 +73,7 @@ export default function Categories() {
       title: "Artisan Desserts",
       items: [
         { name: "Medoviks", imagePath: "/photos/danishmedovik.jpg" },
-        { name: "Macarons", imagePath: "/photos/macaroons.jpg" },
+        { name: "Macarons", imagePath: "/photos/macaroons.JPG" },
         { name: "Cheesecakes", imagePath: "/photos/cheesecakes.jpg" },
         { name: "Tres Leches", imagePath: "/photos/croissant.jpg" }
       ],
@@ -91,7 +91,7 @@ export default function Categories() {
       title: "Gifting Special",
       items: [
         { name: "Celebration Cakes", imagePath: "/photos/cake.jpg" },
-        { name: "Assortments", imagePath: "/photos/assorted.jpg" },
+        { name: "Assortments", imagePath: "/photos/assorted.JPG" },
         { name: "Combinations", imagePath: "/photos/combination.jpg" },
         { name: "Customized Cake", imagePath: "/photos/customcake.jpg" }
       ],
