@@ -38,7 +38,7 @@ export function Header5({ isScrolled }: { isScrolled: boolean }) {
       >
         <Marquee text="Welcome to Harley's Fine Baking - Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!" />
       </div>
-      <div className={`transition-all duration-300 ${isScrolled ? 'brick-pattern' : 'bg-transparent'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'brick-pattern opacity-90' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden">
             <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
@@ -54,7 +54,9 @@ export function Header5({ isScrolled }: { isScrolled: boolean }) {
               <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-transparent'}`}>Menu</Link>
             </div>
             <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-20'}`}>
-              <Image src="/logocircle/logosnew/logonew-black-tran.png" alt="Harley's" width={200} height={200} className="w-40 h-auto" />
+              <Image 
+              src={isScrolled ? "/textlogo/textlogo.png" : "/logo.png"} 
+              alt="Harley's" width={200} height={200} className="w-40 h-auto" />
             </Link>
             <div className="flex space-x-6 items-center">
               <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-transparent'}`}>Locations</Link>

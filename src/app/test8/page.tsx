@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Header6 } from '@/components/Header6'
+import { Header7 } from '@/components/Header7'
 import { Footer } from '@/components/Footer'
 import { Button } from "@/components/ui/button"
+import Categories from "@/components/Categories"
 
 export default function Home4() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -33,7 +34,7 @@ export default function Home4() {
 
   return (
     <div className="min-h-screen bg-[#FEFEFA] font-['Trebuchet_MS',_sans-serif]">
-      <Header6 isScrolled={isScrolled} />
+      <Header7 isScrolled={isScrolled} />
 
       <main>
       <section className="relative h-screen flex items-center justify-center">
@@ -50,7 +51,7 @@ export default function Home4() {
           <div className={`relative z-10 text-center px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
             <div className="relative inline-block mb-8">
               <div 
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/50 backdrop-blur-md rounded-[50%] w-[370px] h-[260px] shadow-lg" 
+                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#f5d1d8]/15 backdrop-blur-md rounded-[50%] w-[370px] h-[260px] shadow-lg" 
                 style={{ borderRadius: '50% / 50%' }}
               ></div>
               <div className="relative z-10">
@@ -64,10 +65,13 @@ export default function Home4() {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-light mb-4 text-white"></h1>
-            <p className="text-xl md:text-2xl mb-8 text-white"></p>
+            <p className="text-xl md:text-5xl mb-8 text-white font-imperial bg-[#CBEBF2]/20 p-8 rounded-lg">Where every bite tells a delicious story & <br/> every sip resonates to perfection</p>
+            
             <Button className="bg-[#f5d1d8] text-pink-950 hover:bg-pink-100 text-lg px-8 py-3 rounded-sm">
               Order Now
             </Button>
+            <Button className="bg-[#CBEBF2] ml-8 text-pink-950 hover:bg-pink-100 text-lg px-8 py-3 rounded-sm">
+Explore Menu           </Button>
           </div>
         </section>
 
@@ -78,14 +82,13 @@ export default function Home4() {
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <div className="w-full md:w-1/2 md:pl-8 px-4 md:px-0">
                 <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-pink-900 font-light">
-                  India&apos;s ultimate luxury <br/> destination  for cakes, coffee, and confections. Known for world-class menu, mouth-watering flavours, Victorian elegance, and award-winning quality.  
+                At Harley’s, we believe in creating masterpieces with every bake and every sip of our specially brewed coffee.  
                 </p>
                 <p className="text-xl mb-4 px-8 md:px-16 text-center text-pink-900 font-light">
-                  Harley&apos;s is where indulgence<br/> meets innovation.
+                We are more than just a bakery—we are a destination for celebration, relaxation, and indulgence. Established in 2021, Harley’s has quickly become the most desired brand for Cakes & Desserts and a go-to destination for Specialty Coffee lovers. Whether it's a cozy morning with a perfect Americano or a grand celebration featuring our signature Medovik cake, Harley’s is your companion for life’s sweetest moments.
+
                 </p>
-                <p className="text-xl mb-4 px-8 md:px-16 text-center text-pink-900 font-light">
-                  Proudly crafted in India,<br/> poised to captivate the world.
-                </p>
+              
               </div>
               <div className="w-full md:w-1/2 flex justify-center my-8 px-8 md:mb-0">
                 <Image 
@@ -100,17 +103,62 @@ export default function Home4() {
           </div>
         </section>
 
+        <section className="py-24 bg-[#FEFEFA] text-center">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="md:w-1/2">
+            <Image 
+              src="/photos/belgianmedovik.jpg" 
+              alt="Harley's Signature Medovik Cake" 
+              width={600} 
+              height={600}
+              className="rounded-lg shadow-xl"
+            />
+          </div>
+          <div className="md:w-1/2 space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl text-pink-800 opacity-80 font-light">Medovik Cake</h2>
+              <p className="text-xl text-pink-800 italic font-light">&quot;A Taste of Royalty in Every Bite&quot;</p>
+            </div>
+            
+            <div className="space-y-4 text-[#4A4A4A]">
+              <p className="leading-relaxed">
+                Discover the charm of our Medovik Cake, the &quot;Queen Cake&quot; of Empress Elizabeth Alexeievna. Made with pure honey and premium ingredients, it's a timeless masterpiece balancing indulgence with nourishment.
+              </p>
+              <p className="leading-relaxed">
+                As India's largest Medovik producer, we sell over 10,000 kg monthly, redefining dessert as both luxurious and healthy.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="text-lg font-semibold text-pink-800">Harley&apos;s Signature Medovik Features:</h4>
+              <p>Natural ingredients with authentic honey flavor</p>
+              <p>Perfect balance of taste and nutrition</p>
+              <p>Available in various sizes for all occasions</p>
+              
+            </div>
+
+            <Button className="bg-[#f5d1d8] hover:bg-[#b34760] text-[#b34760] hover:text-white px-8 py-3 rounded-sm text-lg">
+              Order Now
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
         <section id="ivory-lounge" className="py-24 bg-[#FEFEFA]">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Harley's Ivory Club</h2>
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 md:ml-32 mb-8 md:mb-0">
                 <Image 
-                  src="/logo.png" 
+                  src="/photos/crown.png" 
                   alt="Harley's Ivory Club" 
                   width={300} 
                   height={300} 
-                  className="rounded-lg shadow-lg"
+                  className="rounded-lg "
                 />
               </div>
               <div className="md:w-1/2 md:pl-8 text-center">
@@ -169,29 +217,46 @@ export default function Home4() {
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 mb-8 md:mb-0 md:ml-24">
                 <Image 
-                  src="/photos/coffee.jpg" 
+                  src="/photos/koffeekuchen.png" 
                   alt="Kaffee und Kuchen" 
-                  width={300} 
-                  height={275} 
+                  width={400} 
+                  height={400} 
                   className="rounded-lg shadow-lg"
                 />
               </div>
               <div className="md:w-1/2 md:pl-8 md:mr-24 text-center">
-                <p className="text-lg mb-4 text-pink-900 font-light px-8">
-                  &quot;Kaffee und Kuchen&quot; is a cherished <br/>German tradition that we&apos;ve brought to India. It&apos;s a delightful afternoon break, typically enjoyed between 3 and 5 pm, where friends and family gather to savor a cup of coffee and a slice of cake.
+                <p className="text-lg mb-4 text-pink-950 font-light px-8">
+                Harley’s is pioneering a unique coffee experience
+inspired by the European tradition of “Kaffee und
+Kuchen”—a ritual akin to India’s beloved “Chai
+Biscuit.” Harley’s is redefining India’s coffee culture
+
+with the concept of pairing—the tradition of
+enjoying coffee with a perfectly matched cake.
                 </p>
-                <p className="text-lg mb-4 text-pink-900 font-light px-8">
-                  At Harley&apos;s, we&apos;ve embraced this tradition, offering a perfect setting for you to relax, indulge in our exquisite cakes and pastries, and enjoy rich, aromatic coffee. It&apos;s more than just a snack - it&apos;s a social ritual that brings people together.
-                </p>
-                <p className="text-lg text-pink-900 font-light px-8">
-                  Experience the warmth of &quot;Kaffee und Kuchen&quot; at Harley&apos;s - where every bite and sip is a celebration of life&apos;s sweet moments.
+                <p className="text-2xl font-bold text-pink-950 py-1 px-8">
+        Koffee und Kuchen
+      </p>
+      <div className="w-24 h-0.5 bg-pink-950 mx-auto"></div>
+      <p className="text-2xl font-bold text-pink-950 py-1 px-8">
+        Coffee and Cake
+      </p>
+                <p className="text-lg text-pink-950 font-light px-8 pt-2">
+                We elevate the experience by serving specialty
+
+coffee alongside premium cakes with
+
+complementary flavors. This unique pairing creates
+a memorable, multi-sensory experience for our
+customers, celebrating the joy of savoring coffee
+and dessert together, exclusively crafted at Harley’s.
                 </p>
               </div>
             </div>
           </div>
         </section>
-
-        <section id="menu" className="py-24 bg-gradient-to-b from-[#f5d1d8] to-[#CBEBF2]">
+<Categories/>
+        {/* <section id="menu" className="py-24 bg-gradient-to-b from-[#f5d1d8] to-[#CBEBF2]">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-thin mb-12 text-pink-950 text-center">Our Delightful Menu</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -212,7 +277,7 @@ export default function Home4() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />

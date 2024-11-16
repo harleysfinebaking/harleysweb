@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Mulish, Open_Sans, Outfit, Poppins, Inter, Alumni_Sans_Pinstripe, Quicksand, Montserrat_Alternates, Montserrat } from 'next/font/google';
+import { Lato, Mulish, Open_Sans, Outfit, Poppins, Inter, Alumni_Sans_Pinstripe, Quicksand, Montserrat_Alternates, Montserrat, Imperial_Script } from 'next/font/google';
 import "./globals.css";
 
 const lato = Lato({
@@ -64,6 +64,13 @@ const montserratalt = Montserrat_Alternates({
   weight: ['400'],
   style: ['normal'],
   variable: '--font-montserratalt',
+});
+
+const imperial = Imperial_Script({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal'],
+  variable: '--font-imperial',
 });
 
 export const metadata: Metadata = {
@@ -145,7 +152,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.variable} ${montserrat.variable} ${mulish.variable} ${openSans.variable} ${outfit.variable} ${poppins.variable} ${inter.variable} ${alumni.variable} ${quicksand.variable} ${montserratalt.variable}  font-sans antialiased`}
+        className={`${imperial.variable} ${lato.variable} ${montserrat.variable} ${mulish.variable} ${openSans.variable} ${outfit.variable} ${poppins.variable} ${inter.variable} ${alumni.variable} ${quicksand.variable} ${montserratalt.variable}  font-sans antialiased`}
       >
         {children}
       </body>

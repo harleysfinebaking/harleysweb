@@ -53,6 +53,7 @@ module.exports = {
             quicksand: ['var(--font-quicksand)', 'sans-serif'],
             montserratalt: ['var(--font-montserratalt)', 'sans-serif'],
             montserrat: ['var(--font-montserrat)', 'sans-serif'],
+            imperial: ['var(--font-imperial)', 'sans-serif'],
           },
         animation: {
           marquee: 'marquee 25s linear infinite',

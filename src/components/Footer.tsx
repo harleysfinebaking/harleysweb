@@ -9,11 +9,15 @@ export function Footer() {
         <div className="flex flex-col items-center md:flex-row md:justify-between">
           <div className="mb-8 md:mb-0">
             <Image src="/logo.png" alt="Harley's Fine Baking" width={120} height={120} className="w-24 h-auto" />
+            <div className='text-xs leading-relaxed py-2'>
+            {/* <p>Harley’s Corporate, Survey No:55/E,</p>
+              <p>Nanakramguda Rd, Hyderabad, Telangana 500032.</p> */}
+              </div>
           </div>
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              {['About', 'Menu', 'Contact', 'Privacy Policy', 'Terms of Service'].map((link) => (
+              {['About', 'Menu', 'Contact', 'Locations','Privacy Policy', 'Terms of Service'].map((link) => (
                 <Link key={link} href="#" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                   {link}
                 </Link>
@@ -33,11 +37,12 @@ export function Footer() {
             </div>
             
             <div className="flex flex-col items-center md:items-end text-sm text-[#4A4A4A]">
+              
               <Link href="mailto:care@harleys.in" className="hover:text-[#d45770] transition-colors">
-                care@harleys.in
+                care@harleys.com
               </Link>
               <Link href="tel:8083098888" className="hover:text-[#d45770] transition-colors">
-                +91 8083098888
+                +91 80830 98888
               </Link>
             </div>
           </div>

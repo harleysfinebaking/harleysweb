@@ -36,10 +36,9 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
           showMarquee ? 'max-h-8 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}
       >
-        
         <Marquee text="Welcome to Harley's Fine Baking - Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!" />
       </div>
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md' : 'bg-transparent'}`}>
         <div className={`container mx-auto px-4 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
           <div className="flex justify-between items-center md:hidden">
             <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
@@ -57,8 +56,8 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
           </div>
           <nav className="hidden md:flex justify-between items-center">
             <div className="flex space-x-6 items-center">
-              <Link href="#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
-              <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
+              <Link href="#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-white'}`}>About</Link>
+              <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-white'}`}>Menu</Link>
             </div>
             <Link href="/" className={`mx-6 relative ${isScrolled ? 'h-12' : 'h-16'}`}>
               <Image 
@@ -70,15 +69,15 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
               />
               <Image 
                 src="/textlogo/textlogo.png" 
-                alt="Harley's Logo" 
+                alt="Harley's Text Logo" 
                 width={200} 
                 height={200} 
                 className={`w-32 h-auto absolute top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
               />
             </Link>
             <div className="flex space-x-6 items-center">
-              <Link href="#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
-              <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Contact</Link>
+              <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-white'}`}>Locations</Link>
+              <Link href="#contact" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-white'}`}>Contact</Link>
             </div>
           </nav>
         </div>
@@ -88,8 +87,8 @@ export function Header6({ isScrolled }: { isScrolled: boolean }) {
           <nav className="flex flex-col items-center space-y-4 py-4 bg-[#FEFEFA]">
             <Link href="#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
             <Link href="#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
-            <Link href="#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
-            <Link href="#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link href="#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
+            <Link href="#contact" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           </nav>
         </div>
       )}

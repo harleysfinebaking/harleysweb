@@ -53,8 +53,12 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
               <Link href="#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
               <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
             </div>
-            <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-20'}`}>
-              <Image src="/logo.png" alt="Harley's" width={200} height={200} className="w-40 h-auto" />
+            <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-100 -translate-y-0'}`}>
+              <Image 
+              src={isScrolled ? "/textlogo/textlogo.png":"/logo.png" }
+              
+              
+              alt="Harley's" width={200} height={200} className="w-40 h-auto" />
             </Link>
             <div className="flex space-x-6 items-center">
               <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
