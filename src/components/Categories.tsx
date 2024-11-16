@@ -100,7 +100,7 @@ export default function Categories() {
     {
       title: "Bakery & Confectionery",
       items: [
-        { name: "Cookies", imagePath: "/photos/cookies.jpg" },
+        { name: "Cookies", imagePath: "/photos/cookies.JPG" },
         { name: "Burgers & Sandwiches", imagePath: "/photos/croissant.jpg" }
       ],
       columns: "grid-cols-1 md:grid-cols-2 h-64"
