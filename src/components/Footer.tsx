@@ -17,7 +17,7 @@ export function Footer() {
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              {['About', 'Menu', 'Contact', 'Locations','Privacy Policy', 'Terms of Service'].map((link) => (
+              {['About', 'Menu', 'Locations','Foundation','Privacy Policy', 'Terms of Service'].map((link) => (
                 <Link key={link} href="#" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                   {link}
                 </Link>

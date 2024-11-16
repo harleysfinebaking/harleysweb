@@ -52,6 +52,7 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
             <div className="flex space-x-6 items-center">
               <Link href="#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
               <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
+              <Link href="#order" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</Link>
             </div>
             <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-100 -translate-y-0'}`}>
               <Image 
@@ -61,8 +62,9 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
               alt="Harley's" width={200} height={200} className="w-40 h-auto" />
             </Link>
             <div className="flex space-x-6 items-center">
-              <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
-              <Link href="#contact" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Contact</Link>
+            <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
+              <Link href="#foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
+              <Link href="#blog" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
           </nav>
         </div>
