@@ -6,12 +6,20 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
-function Marquee({ text }: { text: string }) {
+function Marquee({ texts }: { texts: string[] }) {
   return (
     <div className="bg-[#F5D1D8] overflow-hidden py-1">
       <div className="animate-marquee whitespace-nowrap">
-        <span className="text-[#4A4A4A] text-sm font-mulish mx-4">{text}</span>
-        <span className="text-[#4A4A4A] text-sm font-mulish mx-4">{text}</span>
+        {texts.map((text, index) => (
+          <span key={index} className="text-[#4A4A4A] text-sm mx-4 inline-block">
+            {text}
+          </span>
+        ))}
+        {texts.map((text, index) => (
+          <span key={index + texts.length} className="text-[#4A4A4A] text-sm mx-4 inline-block">
+            {text}
+          </span>
+        ))}
       </div>
     </div>
   )
@@ -32,10 +40,10 @@ function OrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         <h2 className="text-xl font-bold mb-4">Choose your delivery partner</h2>
         <div className="flex justify-around items-center">
           <a href="https://www.swiggy.com/city/hyderabad/harleys-fine-baking-hitech-city-nanakramguda-rest376101" target="_blank" rel="noopener noreferrer" className="w-32 h-32 flex items-center justify-center">
-            <Image src="/photos/swiggy1.png" alt="Swiggy" width={110} height={140} className='rounded-md object-contain' />
+            <Image src="/photos/swiggy.png" alt="Swiggy" width={100} height={100} className='rounded-md object-contain' />
           </a>
           <a href="https://www.zomato.com/hyderabad/harleys-fine-baking-3-gachibowli/order" target="_blank" rel="noopener noreferrer" className="w-32 h-32 flex items-center justify-center">
-            <Image src="/photos/zomato1.png" alt="Zomato" width={90} height={90} className='rounded-md object-contain' />
+            <Image src="/photos/zomato.png" alt="Zomato" width={100} height={100} className='rounded-md object-contain' />
           </a>
         </div>
         <Button onClick={onClose} className="mt-4 w-full">Close</Button>
@@ -64,7 +72,13 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
           showMarquee ? 'max-h-8 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}
       >
-        <Marquee text="Welcome to Harley's Fine Baking - Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!" />
+        <Marquee texts={[
+          "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
+          "Grand Opening: Harley’s Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
+          "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
+
+          "Harley’s – Celebrate Every Moment!"
+        ]} />
       </div>
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">

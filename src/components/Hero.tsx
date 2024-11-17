@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import Link from 'next/link'
 
 const carouselItems = [
   {
@@ -86,12 +87,14 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
             <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#F5D1D8] text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                <Link href={''}>
+                <Button className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300">
                   Order Now
                 </Button>
-                <Button className="bg-[#F5D1D8] text-[#4A4A4A] hover:bg-[#CBEBF2] hover:text-[#4A4A4A] text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                </Link>
+                {/* <Button className="bg-[#F5D1D8] text-[#4A4A4A] hover:bg-[#CBEBF2] hover:text-[#4A4A4A] text-lg px-8 py-3 rounded-md transition-colors duration-300">
                   Explore Menu
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
