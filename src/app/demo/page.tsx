@@ -6,6 +6,7 @@ import { Header3 } from '@/components/Header3'
 import { Footer } from '@/components/Footer'
 import { Button } from "@/components/ui/button"
 import Categories from '@/components/Categories'
+import {Locations} from '@/components/Locations'
 import HeroSection from '@/components/Hero'
 
 export default function Home4() {
@@ -59,8 +60,11 @@ indulgence meets innovation. Proudly crafted in India,
 poised to captivate the world. 
 
                 </p>
+                
+                  
               
               </div>
+              
               <div className="w-full md:w-1/2 flex justify-center my-4 px-4 md:mb-0">
                 <Image 
                   src="/photos/jubilee.jpeg" 
@@ -212,7 +216,9 @@ and dessert together, exclusively crafted at Harley’s.
             </div>
           </div>
         </section>
+
        <Categories/>
+<Locations/>
       </main>
 
       <Footer />
