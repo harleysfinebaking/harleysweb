@@ -6,6 +6,7 @@ import { Header3 } from '@/components/Header3'
 import { Footer } from '@/components/Footer'
 import { Button } from "@/components/ui/button"
 import Categories from '@/components/Categories'
+import HeroSection from '@/components/Hero'
 
 export default function Home4() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -38,33 +39,7 @@ export default function Home4() {
 
       <main>
      
-      <section className="relative h-screen flex items-center justify-center">
-      <Image 
-        src="/photos/hero.jpg" 
-        alt="Harley's Patisserie" 
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-        priority
-      />
-      
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
-      <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
-        {/* <div className="text-center">
-          <h1 className="text-5xl md:text-7xl font-light mb-4 text-white font-mulish">Indulge in Elegance</h1>
-          <p className="text-xl md:text-2xl mb-8 text-white font-mulish">Experience the refined "Kaffee und Kuchen" tradition at Harley's</p>
-        </div> */}
-        
-        <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-          <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#F5D1D8] text-lg px-8 py-3 rounded-md">
-            Order Now
-          </Button>
-          <Button className="bg-[#F5D1D8] text-[#4A4A4A] hover:bg-[#CBEBF2] hover:text-[#4A4A4A] text-lg px-8 py-3 rounded-md">
-            Explore Menu
-          </Button>
-        </div>
-      </div>
-    </section>
+    <HeroSection/>
 
 
         <section id="about" className="py-20 bg-[#f5d1d8]">

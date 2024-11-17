@@ -38,11 +38,17 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
       >
         <Marquee text="Welcome to Harley's Fine Baking - Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!" />
       </div>
-      <div className={`transition-all duration-300 ${isScrolled ? ' bg-white/20 backdrop-blur-xl' : 'bg-transparent '}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden">
             <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
-              <Image src="/logo.png" alt="Harley's" width={200} height={200} className="w-24 h-auto" />
+              <Image 
+                src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
+                alt="Harley's" 
+                width={isScrolled ? 100 : 200} 
+                height={isScrolled ? 50 : 200} 
+                className="w-24 h-auto" 
+              />
             </Link>
             <Button className="md:hidden" variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X /> : <Menu />}
@@ -54,15 +60,25 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
               <Link href="#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
               <Link href="#order" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</Link>
             </div>
-            <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-100 -translate-y-0'}`}>
-              <Image 
-              src={isScrolled ? "/textlogo/smalllogo.png":"/logo.png" }
-              
-              
-              alt="Harley's" width={200} height={200} className="w-40 h-auto" />
-            </Link>
+            <div className="relative flex items-center justify-center">
+              {!isScrolled && (
+                <div 
+                  className="absolute bg-[#f5d1d8]/15 backdrop-blur-md rounded-[50%] w-[200px] h-[130px] shadow-lg" 
+                  style={{ borderRadius: '50% / 50%' }}
+                ></div>
+              )}
+              <div className="relative z-10">
+                <Image 
+                  src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
+                  alt="Harley's" 
+                  width={isScrolled ? 100 : 120}
+                  height={isScrolled ? 50 : 120}
+                  className="w-auto h-auto"
+                />
+              </div>
+            </div>
             <div className="flex space-x-6 items-center">
-            <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
+              <Link href="#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
               <Link href="#foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
               <Link href="#blog" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
@@ -77,7 +93,6 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
             <Link href="#order" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Order</Link>
             <Link href="#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
             <Link href="#foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
-        
             <Link href="#blog" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
           </nav>
         </div>

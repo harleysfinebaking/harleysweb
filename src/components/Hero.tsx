@@ -1,14 +1,127 @@
-import React from 'react'
-import { Button } from "@/components/ui/button"
+'use client'
 
-export function HeroSection() {
-  return (
-    <section className="py-20 bg-[url('/photos/DSC00574.jpg?height=600&width=1200')] bg-cover bg-center font-mulish">
-      <div className="container mx-auto text-center">
-        <h2 className="text-5xl font-light mb-4 text-white shadow-text ">Indulge in Elegance</h2>
-        <p className="text-xl mb-8 text-white shadow-text">Experience the refined "Kaffee und Kuchen" tradition at Harley's</p>
-        <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#F5D1D8]">Order Now</Button>
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { Button } from "@/components/ui/button"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+const carouselItems = [
+  {
+    image: "/photos/hero1.jpg",
+    title: "Indulge in Elegance",
+    subtitle: "Experience the refined \"Kaffee und Kuchen\" tradition at Harley's"
+  },
+  {
+    image: "/photos/hero2.jpg",
+    title: "Artisanal Delights",
+    subtitle: "Discover our handcrafted pastries and cakes"
+  },
+  {
+    image: "/photos/hero3.jpg",
+    title: "A Taste of Tradition",
+    subtitle: "Savor the flavors of authentic European baking"
+  }
+]
+
+export default function HeroSection() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    fade: true,
+    cssEase: "cubic-bezier(0.7, 0, 0.3, 1)",
+    appendDots: (dots: React.ReactNode) => (
+      <div style={{ position: 'absolute', bottom: '40px', right: '40px', textAlign: 'right' }}>
+        <ul style={{ margin: "0px", padding: "0px" }}> {dots} </ul>
       </div>
+    ),
+    customPaging: (i: number) => (
+      <div
+        style={{
+          width: "12px",
+          height: "12px",
+          border: "2px solid white",
+          borderRadius: "50%",
+          backgroundColor: "transparent",
+          transition: "all 0.3s ease",
+          display: "inline-block",
+          margin: "0 4px",
+        }}
+      />
+    ),
+    dotsClass: "slick-dots slick-thumb custom-dot",
+  }
+
+  return (
+    <section className="relative h-screen overflow-hidden">
+      <Slider {...settings}>
+        {carouselItems.map((item, index) => (
+          <div key={index} className="relative h-screen flex items-center justify-center">
+            <Image 
+              src={item.image}
+              alt={`Harley's Patisserie - ${item.title}`}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              priority={index === 0}
+            />
+            
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
+            <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
+              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+                <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#F5D1D8] text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                  Order Now
+                </Button>
+                <Button className="bg-[#F5D1D8] text-[#4A4A4A] hover:bg-[#CBEBF2] hover:text-[#4A4A4A] text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                  Explore Menu
+                </Button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+      <style jsx global>{`
+        .custom-dot {
+          text-align: right;
+        }
+        .custom-dot li {
+          display: inline-block;
+          margin: 0 4px;
+        }
+        .custom-dot li button:before {
+          font-size: 0;
+          line-height: 0;
+          display: block;
+          width: 12px;
+          height: 12px;
+          padding: 0;
+          cursor: pointer;
+          color: transparent;
+          border: 0;
+          outline: none;
+          background: transparent;
+        }
+        .custom-dot li.slick-active button {
+          background-color: white;
+        }
+      `}</style>
     </section>
   )
 }
