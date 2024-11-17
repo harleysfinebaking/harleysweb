@@ -44,14 +44,19 @@ export default function Home4() {
 
         <section id="about" className="py-12 bg-[#f5d1d8]">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl text-center text-[#221F1F] ">Who We Are</h2>
+            
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0">
+              <h2 className="text-3xl text-center text-[#221F1F] ">Who We Are</h2>
+              <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
                 <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light">
-                At Harley’s, we believe in creating masterpieces with every bake and every sip of our specially brewed coffee.  
+                The ultimate luxury destination <br/> for gourmet cakes, speciality coffee, and premium confectionery.
                 </p>
                 <p className="text-xl mb-4 px-8 md:px-16 text-center text-[#221F1F] font-light">
-                We are more than just a bakery—we are a destination for celebration, relaxation, and indulgence. Established in 2021, Harley’s has quickly become the most desired brand for Cakes & Desserts and a go-to destination for Specialty Coffee lovers. Whether it's a cozy morning with a perfect Americano or a grand celebration featuring our signature Medovik cake, Harley’s is your companion for life’s sweetest moments.
+                 Harley’s is where
+indulgence meets innovation. Proudly crafted in India,
+
+poised to captivate the world. 
 
                 </p>
               
@@ -71,7 +76,7 @@ export default function Home4() {
 
         <section className="py-12 bg-[#CBEBF2] text-center">
       <div className="container mx-auto px-4">
-      <h2 className="text-3xl mb-8 text-center text-[#221F1F]">Medovik Cake</h2>
+      
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2">
             <Image 
@@ -83,6 +88,8 @@ export default function Home4() {
             />
           </div>
           <div className="md:w-1/2 space-y-6">
+          <h2 className="text-3xl text-center text-[#221F1F]">Medovik Cake</h2>
+          <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
             <div className="space-y-4">
             
               <p className="text-xl text-[#221F1F] italic font-light">&quot;A Taste of Royalty in Every Bite&quot;</p>
@@ -90,18 +97,33 @@ export default function Home4() {
             
             <div className="space-y-4 text-[#221F1F]">
               <p className="leading-relaxed">
-                Discover the charm of our Medovik Cake, the &quot;Queen Cake&quot; of Empress Elizabeth Alexeievna. Made with pure honey and premium ingredients, it's a timeless masterpiece balancing indulgence with nourishment.
+              Empress Elizabeth Alexeievna adored the Medovik
+
+Cake, known as the “Queen Cake” for its rich honey
+
+layers and nourishing ingredients.
               </p>
               <p className="leading-relaxed">
-                As India's largest Medovik producer, we sell over 10,000 kg monthly, redefining dessert as both luxurious and healthy.
+              Harley’s brings this legendary dessert to
+
+India, where it leads the market in premium European
+
+and Russian Desserts.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-lg font-semibold text-[#221F1F]">Harley&apos;s Signature Medovik Features:</h4>
-              <p>Natural ingredients with authentic honey flavor</p>
-              <p>Perfect balance of taste and nutrition</p>
-              <p>Available in various sizes for all occasions</p>
+              {/* <h4 className="text-lg font-semibold text-[#221F1F]">Harley&apos;s Signature Medovik Features:</h4> */}
+              <p className='font-semibold bg-[#f5d1d8] p-4 italic rounded-md'> On December 6, 2024, Harley’s will honor this royal
+
+legacy by attempting a Guinness World Record with
+
+the largest Medovik cake, celebrating its heritage in
+
+grand style and setting a new standard in Indian
+
+confectionery.</p>
+              
               
             </div>
 
