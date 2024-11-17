@@ -37,44 +37,62 @@ const FadeInElement = ({ children, delay = 0 }) => {
   )
 }
 
-const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroundColor }: CategorySectionProps) => (
-  <div className={`py-12 ${backgroundColor}`}>
-    <div className="container mx-auto px-4">
-      <FadeInElement>
-        <h2 className="text-4xl font-thin mb-8 text-pink-950  opacity-60 text-center">{title}</h2>
-      </FadeInElement>
-      <div className={`grid ${columns} gap-6`}>
-        {items.map((item, index) => (
-          <FadeInElement key={index} delay={index * 0.1}>
-            <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.imagePath}
-                  alt={item.name}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-transform duration-300 hover:scale-105"
-                />
+const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroundColor }: CategorySectionProps) => {
+  const isContainAndBlur = title === "Exotic Coffee" || title === "Bakery & Confectionery";
+
+  return (
+    <div className={`py-12 ${backgroundColor}`}>
+      <div className="container mx-auto px-4">
+        <FadeInElement>
+          <h2 className="text-4xl font-thin mb-8 text-[#221F1F] opacity-70 text-center">{title}</h2>
+        </FadeInElement>
+        <div className={`grid ${columns} gap-6`}>
+          {items.map((item, index) => (
+            <FadeInElement key={index} delay={index * 0.1}>
+              <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
+                <div className={`relative ${isContainAndBlur ? "aspect-[22/9]" : "aspect-[4/3]"} overflow-hidden`}>
+                  {isContainAndBlur && (
+                    <div className="absolute inset-0 z-0">
+                      <Image
+                        src={item.imagePath}
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                        className="scale-110 blur-lg"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  )}
+                  <div className={`absolute inset-0 ${isContainAndBlur ? 'z-10' : ''} flex items-center justify-center`}>
+                    <Image
+                      src={item.imagePath}
+                      alt={item.name}
+                      layout="fill"
+                      objectFit={isContainAndBlur ? "contain" : "cover"}
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-base font-semibold text-gray-600">{item.name}</h3>
+                </div>
               </div>
-              <div className="p-4 text-center">
-                <h3 className="text-base text-gray-600">{item.name}</h3>
-              </div>
-            </div>
-          </FadeInElement>
-        ))}
+            </FadeInElement>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default function Categories() {
   const categories = [
     {
       title: "Artisan Desserts",
       items: [
-        { name: "Russian Medovik", imagePath: "/photos/categories/medovik.jpg", price: "$15.00" },
+        { name: "Medoviks", imagePath: "/photos/belgianmedovik.jpg", price: "$15.00" },
         { name: "Macarons", imagePath: "/photos/categories/macarons.jpg", price: "$15.00" },
-        { name: "Cheesecakes", imagePath: "/photos/cheesecakes.jpg", price: "$15.00" },
+        { name: "Cheesecakes", imagePath: "/photos/categories/blueberry-cheesecake.jpg", price: "$15.00" },
         { name: "Tres Leches", imagePath: "/photos/categories/tresleches.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
@@ -83,19 +101,19 @@ export default function Categories() {
     {
       title: "Exotic Coffee",
       items: [
-        { name: "Classic Hot Coffee", imagePath: "/photos/koffeekuchen.png", price: "$15.00" },
-        { name: "Signature Cold Coffee", imagePath: "/photos/coldcoffee.jpeg", price: "$15.00" }
+        { name: "Classic Hot Coffee", imagePath: "/photos/categories/italian-cappuccino.jpg", price: "$15.00" },
+        { name: "Signature Cold Coffee", imagePath: "/photos/categories/icedcoffee.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2",
       cardBackgroundColor: "bg-[#F5D1D8]"
     },
     {
-      title: "Gifting Special",
+      title: "Special Occasions",
       items: [
         { name: "Celebration Cakes", imagePath: "/photos/categories/celebration-russianmedovik.jpg", price: "$15.00" },
-        { name: "Assortments", imagePath: "/photos/categories/assorted.jpg", price: "$15.00" },
+        { name: "Assortments", imagePath: "/photos/categories/assortedmedovik.jpg", price: "$15.00" },
         { name: "Combinations", imagePath: "/photos/combination.jpg", price: "$15.00" },
-        { name: "Customized Cake", imagePath: "/photos/categories/customcake.jpg", price: "$15.00" }
+        { name: "Customized Cakes", imagePath: "/photos/categories/customcake.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
       cardBackgroundColor: "bg-[#CBEBF2]"

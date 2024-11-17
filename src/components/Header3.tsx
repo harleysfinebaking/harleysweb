@@ -47,7 +47,7 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
                 alt="Harley's" 
                 width={isScrolled ? 100 : 200} 
                 height={isScrolled ? 50 : 200} 
-                className="w-24 h-auto" 
+                className={isScrolled? "w-24 h-auto py-4" : "w-24 h-auto" }  
               />
             </Link>
             <Button className="md:hidden" variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
