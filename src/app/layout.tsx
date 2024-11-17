@@ -75,10 +75,10 @@ const imperial = Imperial_Script({
 
 export const metadata: Metadata = {
   title: {
-    default: "Harley's Fine Baking",
+    default: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
     template: "%s | Harley's Fine Baking"
   },
-  description: "Explore the new world of fine baking at Harley's. Indulge in our signature Medovik cakes and experience the 'Kaffee und Kuchen' tradition!",
+  description: "Harley’s is pioneering a unique coffee experience inspired by the European tradition of “Kaffee und Kuchen”—a ritual akin to India’s beloved “Chai Biscuit.” Harley’s is redefining India’s coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.",
   keywords: ["bakery", "fine baking", "Medovik", "cakes", "Kaffee und Kuchen", "artisan", "European delicacies"],
   authors: [{ name: "Harley's Fine Baking" }],
   creator: "Harley's Fine Baking",
@@ -91,14 +91,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Harley's Fine Baking",
     description: "Indulge in elegance with Harley's signature Medovik cakes and European delicacies.",
-    url: "https://www.harleysbaking.com",
+    url: "https://www.harleys.com",
     siteName: "Harley's Fine Baking",
     images: [
       {
-        url: "https://www.harleysbaking.com/og-image.jpg",
+        url: "https://www.harleys.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Harley's Fine Baking - Artisan European Delicacies",
+        alt: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
       },
     ],
     locale: "en_US",
@@ -107,9 +107,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harley's Fine Baking",
-    description: "Experience the refined 'Kaffee und Kuchen' tradition at Harley's",
-    images: ["https://www.harleysbaking.com/twitter-image.jpg"],
-    creator: "@HarleysBaking",
+    description: "Harley’s is pioneering a unique coffee experience inspired by the European tradition of “Kaffee und Kuchen”—a ritual akin to India’s beloved “Chai Biscuit.” Harley’s is redefining India’s coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.",
+    images: ["https://www.harleys.com/twitter-image.jpg"],
+    creator: "@HarleysFineBaking",
   },
   robots: {
     index: true,

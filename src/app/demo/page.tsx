@@ -69,12 +69,12 @@ export default function Home4() {
           </div>
         </section>
 
-        <section className="py-24 bg-[#FEFEFA] text-center">
+        <section className="py-24 bg-[#CBEBF2] text-center">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2">
             <Image 
-              src="/photos/belgianmedovik.JPG" 
+              src="/photos/categories/medovik.jpg" 
               alt="Harley's Signature Medovik Cake" 
               width={600} 
               height={600}
@@ -104,7 +104,7 @@ export default function Home4() {
               
             </div>
 
-            <Button className="bg-[#f5d1d8] hover:bg-[#b34760] text-[#b34760] hover:text-white px-8 py-3 rounded-sm text-lg">
+            <Button className="bg-[#f5d1d8] hover:bg-[#FEFEFA] text-[#b34760] hover:text-[#b34760] px-8 py-3 hover:shadow-md rounded-sm text-lg">
               Order Now
             </Button>
           </div>
@@ -114,34 +114,7 @@ export default function Home4() {
 
 {/* test */}
 
-        <section id="ivory-lounge" className="py-24 bg-[#FEFEFA]">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Harley's Ivory Club</h2>
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="md:w-1/2 md:ml-32 mb-8 md:mb-0">
-                <Image 
-                  src="/photos/crown.png" 
-                  alt="Harley's Ivory Club" 
-                  width={300} 
-                  height={300} 
-                  className="rounded-lg "
-                />
-              </div>
-              <div className="md:w-1/2 md:pl-8 text-center">
-                <h3 className="text-2xl font-semibold mb-4 text-pink-900">Treat Yourself & Earn Rewards!</h3>
-                <p className="text-lg mb-4 text-pink-900 font-light">
-                  Every sip and every bite counts! Earn 10% Harley's Crowns with every purchase, redeemable for future treats at all our outlets.
-                </p>
-                <p className="text-lg mb-6 text-pink-900 font-light">
-                  Join our exclusive Ivory Club and indulge in a world of premium benefits, special events, and exquisite flavors.
-                </p>
-                <Button className="bg-[#CBEBF2] text-pink-950 hover:bg-pink-100 rounded-sm">
-                  Learn More About Ivory Club
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+      
 
         
         <section id="koffee-and-kuchen" className="py-24 bg-[#f5d1d8]">
@@ -184,6 +157,34 @@ a memorable, multi-sensory experience for our
 customers, celebrating the joy of savoring coffee
 and dessert together, exclusively crafted at Harley’s.
                 </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="ivory-lounge" className="py-24 bg-[#FEFEFA]">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Harley's Ivory Club</h2>
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="md:w-1/2 md:ml-32 mb-8 md:mb-0">
+                <Image 
+                  src="/photos/crown.png" 
+                  alt="Harley's Ivory Club" 
+                  width={300} 
+                  height={300} 
+                  className="rounded-lg "
+                />
+              </div>
+              <div className="md:w-1/2 md:pl-8 text-center">
+                <h3 className="text-2xl font-semibold mb-4 text-pink-900">Treat Yourself & Earn Rewards!</h3>
+                <p className="text-lg mb-4 text-pink-900 font-light">
+                  Every sip and every bite counts! Earn 10% Harley's Crowns with every purchase, redeemable for future treats at all our outlets.
+                </p>
+                <p className="text-lg mb-6 text-pink-900 font-light">
+                  Join our exclusive Ivory Club and indulge in a world of premium benefits, special events, and exquisite flavors.
+                </p>
+                <Button className="bg-[#CBEBF2] text-pink-950 hover:bg-[#f5d1d8] rounded-sm">
+                  Learn More About Ivory Club
+                </Button>
               </div>
             </div>
           </div>

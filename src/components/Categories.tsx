@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer'
 interface CategoryItem {
   name: string;
   imagePath: string;
+  price: string;
 }
 
 interface CategorySectionProps {
@@ -15,6 +16,7 @@ interface CategorySectionProps {
   items: CategoryItem[];
   columns: string;
   backgroundColor: string;
+  cardBackgroundColor: string;
 }
 
 const FadeInElement = ({ children, delay = 0 }) => {
@@ -35,30 +37,28 @@ const FadeInElement = ({ children, delay = 0 }) => {
   )
 }
 
-const CategorySection = ({ title, items, columns, backgroundColor }: CategorySectionProps) => (
-  <div className={`py-16 ${backgroundColor}`}>
+const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroundColor }: CategorySectionProps) => (
+  <div className={`py-12 ${backgroundColor}`}>
     <div className="container mx-auto px-4">
       <FadeInElement>
-        <h2 className="text-4xl font-thin mb-12 text-pink-950 text-center">{title}</h2>
+        <h2 className="text-4xl font-thin mb-8 text-pink-950 text-center">{title}</h2>
       </FadeInElement>
-      <div className={`grid ${columns} gap-8`}>
+      <div className={`grid ${columns} gap-6`}>
         {items.map((item, index) => (
           <FadeInElement key={index} delay={index * 0.1}>
-            <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
-              <Image
-                src={item.imagePath}
-                alt={item.name}
-                width={400}
-                height={300}
-                className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-50"></div>
-              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <h3 className="text-xl font-semibold text-white text-center transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">{item.name}</h3>
+            <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={item.imagePath}
+                  alt={item.name}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-transform duration-300 hover:scale-105"
+                />
               </div>
-              <Button className="absolute top-4 right-4 bg-[#f5d1d8] hover:bg-[#CBEBF2] text-pink-800 px-4 py-2 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                Explore
-              </Button>
+              <div className="p-4 text-center">
+                <h3 className="text-base text-gray-600">{item.name}</h3>
+              </div>
             </div>
           </FadeInElement>
         ))}
@@ -72,50 +72,55 @@ export default function Categories() {
     {
       title: "Artisan Desserts",
       items: [
-        { name: "Medoviks", imagePath: "/photos/danishmedovik.jpg" },
-        { name: "Macarons", imagePath: "/photos/macaroons.JPG" },
-        { name: "Cheesecakes", imagePath: "/photos/cheesecakes.jpg" },
-        { name: "Tres Leches", imagePath: "/photos/croissant.jpg" }
+        { name: "Russian Medovik", imagePath: "/photos/categories/medovik.jpg", price: "$15.00" },
+        { name: "Macarons", imagePath: "/photos/categories/macarons.jpg", price: "$15.00" },
+        { name: "Cheesecakes", imagePath: "/photos/cheesecakes.jpg", price: "$15.00" },
+        { name: "Tres Leches", imagePath: "/photos/categories/tresleches.jpg", price: "$15.00" }
       ],
-      columns: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+      columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+      cardBackgroundColor: "bg-[#CBEBF2]"
     },
     {
       title: "Exotic Coffee",
       items: [
-        { name: "Classic Hot", imagePath: "/photos/koffeekuchen.png" },
-        { name: "Signature Cold", imagePath: "/photos/coldcoffee.jpeg" }
+        { name: "Classic Hot Coffee", imagePath: "/photos/koffeekuchen.png", price: "$15.00" },
+        { name: "Signature Cold Coffee", imagePath: "/photos/coldcoffee.jpeg", price: "$15.00" }
       ],
-      columns: "grid-cols-1 md:grid-cols-2 h-64"
+      columns: "grid-cols-1 sm:grid-cols-2",
+      cardBackgroundColor: "bg-[#F5D1D8]"
     },
     {
       title: "Gifting Special",
       items: [
-        { name: "Celebration Cakes", imagePath: "/photos/cake.jpg" },
-        { name: "Assortments", imagePath: "/photos/assorted.JPG" },
-        { name: "Combinations", imagePath: "/photos/combination.jpg" },
-        { name: "Customized Cake", imagePath: "/photos/customcake.jpg" }
+        { name: "Celebration Cakes", imagePath: "/photos/categories/celebration-russianmedovik.jpg", price: "$15.00" },
+        { name: "Assortments", imagePath: "/photos/categories/assorted.jpg", price: "$15.00" },
+        { name: "Combinations", imagePath: "/photos/combination.jpg", price: "$15.00" },
+        { name: "Customized Cake", imagePath: "/photos/categories/customcake.jpg", price: "$15.00" }
       ],
-      columns: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+      columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+      cardBackgroundColor: "bg-[#CBEBF2]"
     },
     {
       title: "Bakery & Confectionery",
       items: [
-        { name: "Cookies", imagePath: "/photos/cookies.JPG" },
-        { name: "Burgers & Sandwiches", imagePath: "/photos/croissant.jpg" }
+        { name: "Cookies", imagePath: "/photos/categories/cookies.JPG", price: "$15.00" },
+        { name: "Burgers & Sandwiches", imagePath: "/photos/categories/croissantburger.jpg", price: "$15.00" }
       ],
-      columns: "grid-cols-1 md:grid-cols-2 h-64"
+      columns: "grid-cols-1 sm:grid-cols-2",
+      cardBackgroundColor: "bg-[#F5D1D8]"
     }
   ];
 
   return (
-    <section className="bg-gradient-to-b from-[#f5d1d8] to-[#CBEBF2]">
+    <section className="bg-[#CBEBF2]">
       {categories.map((category, index) => (
         <FadeInElement key={index} delay={index * 0.2}>
           <CategorySection
             title={category.title}
             items={category.items}
             columns={category.columns}
-            backgroundColor={index % 2 === 0 ? "bg-[#CBEBF2]/50" : "bg-[#f5d1d8]/50"}
+            backgroundColor={index % 2 === 0 ? "bg-[#CBEBF2]/50" : "bg-[#F5D1D8]/50"}
+            cardBackgroundColor={category.cardBackgroundColor}
           />
         </FadeInElement>
       ))}
