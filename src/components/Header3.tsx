@@ -56,7 +56,7 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
             </div>
             <Link href="/" className={`mx-6 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-100 -translate-y-0'}`}>
               <Image 
-              src={isScrolled ? "/textlogo/textlogo.png":"/logo.png" }
+              src={isScrolled ? "/textlogo/smalllogo.png":"/logo.png" }
               
               
               alt="Harley's" width={200} height={200} className="w-40 h-auto" />
@@ -74,7 +74,7 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
           <nav className="flex flex-col items-center space-y-4 py-4 bg-[#FEFEFA]">
             <Link href="#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
             <Link href="#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
-            <Link href="#order" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
+            <Link href="#order" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Order</Link>
             <Link href="#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
             <Link href="#foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
         
