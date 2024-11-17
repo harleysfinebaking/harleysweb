@@ -53,10 +53,10 @@ export function Footer() {
             alt="Harley's is Happiness" 
             width={70} 
             height={40} 
-            className="  mx-auto h-auto w-auto"
+            className=" bg-[#f5d1d8] p-4 mx-auto h-auto w-auto"
           />
         </div>
-        <div className="mt-1 text-center text-sm text-[#4A4A4A]">
+        <div className="mt-1  text-center text-sm text-[#4A4A4A]">
           <p>&copy; {new Date().getFullYear()} Harley's Fine Baking. All rights reserved.</p>
         </div>
       </div>

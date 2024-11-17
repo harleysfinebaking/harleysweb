@@ -44,7 +44,7 @@ export default function Home4() {
 
         <section id="about" className="py-12 bg-[#f5d1d8]">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-extrabold mb-8 text-center text-[#221F1F] ">Who We Are</h2>
+            <h2 className="text-3xl text-center text-[#221F1F] ">Who We Are</h2>
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0">
                 <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light">
@@ -71,7 +71,7 @@ export default function Home4() {
 
         <section className="py-12 bg-[#CBEBF2] text-center">
       <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-extrabold mb-8 text-center text-[#221F1F]">Medovik Cake</h2>
+      <h2 className="text-3xl mb-8 text-center text-[#221F1F]">Medovik Cake</h2>
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2">
             <Image 

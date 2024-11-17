@@ -84,13 +84,13 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     </div>
   )
 }
-
+// test
 export default function Categories() {
   const categories = [
     {
       title: "Artisan Desserts",
       items: [
-        { name: "Medoviks", imagePath: "/photos/belgianmedovik.jpg", price: "$15.00" },
+        { name: "Medoviks", imagePath: "/photos/belgianmedovik.JPG", price: "$15.00" },
         { name: "Macarons", imagePath: "/photos/categories/macarons.jpg", price: "$15.00" },
         { name: "Cheesecakes", imagePath: "/photos/categories/blueberry-cheesecake.jpg", price: "$15.00" },
         { name: "Tres Leches", imagePath: "/photos/categories/tresleches.jpg", price: "$15.00" }
