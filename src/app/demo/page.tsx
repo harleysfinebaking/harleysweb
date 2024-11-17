@@ -83,8 +83,8 @@ export default function Home4() {
           </div>
           <div className="md:w-1/2 space-y-6">
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl text-pink-800 opacity-80 font-light">Medovik Cake</h2>
-              <p className="text-xl text-pink-800 italic font-light">&quot;A Taste of Royalty in Every Bite&quot;</p>
+            <h2 className="text-3xl font-extrabold mb-8 text-center text-pink-800 opacity-60">Medovik Cake</h2>
+              <p className="text-xl text-pink-800 opacity-60 italic font-light">&quot;A Taste of Royalty in Every Bite&quot;</p>
             </div>
             
             <div className="space-y-4 text-[#4A4A4A]">
@@ -97,7 +97,7 @@ export default function Home4() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-lg font-semibold text-pink-800">Harley&apos;s Signature Medovik Features:</h4>
+              <h4 className="text-lg font-semibold text-pink-800 opacity-60">Harley&apos;s Signature Medovik Features:</h4>
               <p>Natural ingredients with authentic honey flavor</p>
               <p>Perfect balance of taste and nutrition</p>
               <p>Available in various sizes for all occasions</p>
@@ -119,7 +119,7 @@ export default function Home4() {
         
         <section id="koffee-and-kuchen" className="py-24 bg-[#f5d1d8]">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Kaffee und Kuchen</h2>
+            <h2 className="text-4xl font-light mb-12 text-center text-pink-950 opacity-60">Kaffee und Kuchen</h2>
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 mb-8 md:mb-0 md:ml-24">
                 <Image 
@@ -130,8 +130,8 @@ export default function Home4() {
                   className="rounded-lg shadow-lg"
                 />
               </div>
-              <div className="md:w-1/2 md:pl-8 md:mr-24 text-center">
-                <p className="text-lg mb-4 text-pink-950 font-light px-8">
+              <div className="md:w-1/2 md:pl-8 md:mr-24 opacity-60 text-center">
+                <p className="text-lg mb-4 text-pink-950 opacity font-light px-8">
                 Harley’s is pioneering a unique coffee experience
 inspired by the European tradition of “Kaffee und
 Kuchen”—a ritual akin to India’s beloved “Chai
@@ -163,7 +163,7 @@ and dessert together, exclusively crafted at Harley’s.
         </section>
         <section id="ivory-lounge" className="py-24 bg-[#FEFEFA]">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-light mb-12 text-center text-pink-950">Harley's Ivory Club</h2>
+            <h2 className="text-4xl font-light mb-12 text-center text-pink-950 opacity-60">Harley's Ivory Club</h2>
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 md:ml-32 mb-8 md:mb-0">
                 <Image 
@@ -175,11 +175,11 @@ and dessert together, exclusively crafted at Harley’s.
                 />
               </div>
               <div className="md:w-1/2 md:pl-8 text-center">
-                <h3 className="text-2xl font-semibold mb-4 text-pink-900">Treat Yourself & Earn Rewards!</h3>
-                <p className="text-lg mb-4 text-pink-900 font-light">
+                <h3 className="text-2xl font-semibold mb-4 text-pink-900 opacity-60">Treat Yourself & Earn Rewards!</h3>
+                <p className="text-lg mb-4 text-pink-900 font-light  opacity-60">
                   Every sip and every bite counts! Earn 10% Harley's Crowns with every purchase, redeemable for future treats at all our outlets.
                 </p>
-                <p className="text-lg mb-6 text-pink-900 font-light">
+                <p className="text-lg mb-6 text-pink-900 font-light  opacity-60">
                   Join our exclusive Ivory Club and indulge in a world of premium benefits, special events, and exquisite flavors.
                 </p>
                 <Button className="bg-[#CBEBF2] text-pink-950 hover:bg-[#f5d1d8] rounded-sm">

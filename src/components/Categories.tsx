@@ -41,7 +41,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
   <div className={`py-12 ${backgroundColor}`}>
     <div className="container mx-auto px-4">
       <FadeInElement>
-        <h2 className="text-4xl font-thin mb-8 text-pink-950 text-center">{title}</h2>
+        <h2 className="text-4xl font-thin mb-8 text-pink-950  opacity-60 text-center">{title}</h2>
       </FadeInElement>
       <div className={`grid ${columns} gap-6`}>
         {items.map((item, index) => (
@@ -103,7 +103,7 @@ export default function Categories() {
     {
       title: "Bakery & Confectionery",
       items: [
-        { name: "Cookies", imagePath: "/photos/categories/cookies.JPG", price: "$15.00" },
+        { name: "Cookies", imagePath: "/photos/categories/cookies.jpg", price: "$15.00" },
         { name: "Burgers & Sandwiches", imagePath: "/photos/categories/croissantburger.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2",
@@ -119,7 +119,7 @@ export default function Categories() {
             title={category.title}
             items={category.items}
             columns={category.columns}
-            backgroundColor={index % 2 === 0 ? "bg-[#CBEBF2]/50" : "bg-[#F5D1D8]/50"}
+            backgroundColor={index % 2 === 0 ? "bg-[#CBEBF2]" : "bg-[#F5D1D8]"}
             cardBackgroundColor={category.cardBackgroundColor}
           />
         </FadeInElement>
