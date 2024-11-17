@@ -74,7 +74,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
                   </div>
                 </div>
                 <div className="p-4 text-center">
-                  <h3 className="text-base font-semibold text-gray-600">{item.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-600">{item.name}</h3>
                 </div>
               </div>
             </FadeInElement>

@@ -25,13 +25,13 @@ export function Footer() {
             </nav>
             
             <div className="flex items-center gap-4">
-              <Link href="target:https://www.facebook.com/harleysfinebaking" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="https://www.facebook.com/harleysfinebaking" target="_blank" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 <Facebook className="h-5 w-5" />
               </Link>
-              <Link href="https://www.facebook.com/harleysfinebaking" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="https://www.facebook.com/harleysfinebaking" target="_blank" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link href="https://www.linkedin.com/company/harleys" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="https://www.linkedin.com/company/harleys"  target="_blank" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </div>

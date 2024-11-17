@@ -43,40 +43,37 @@ export default function Home4() {
     <HeroSection/>
 
 
-        <section id="about" className="py-12 bg-[#f5d1d8]">
-          <div className="container mx-auto px-4">
-            
-            <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
-              <div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0">
-              <h2 className="text-3xl text-center text-[#221F1F] ">Who We Are</h2>
-              <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
-                <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light">
-                The ultimate luxury destination <br/> for gourmet cakes, speciality coffee, and premium confectionery.
-                </p>
-                <p className="text-xl mb-4 px-8 md:px-16 text-center text-[#221F1F] font-light">
-                 Harley’s is where
-indulgence meets innovation. Proudly crafted in India,
-
-poised to captivate the world. 
-
-                </p>
-                
-                  
-              
-              </div>
-              
-              <div className="w-full md:w-1/2 flex justify-center my-4 px-4 md:mb-0">
-                <Image 
-                  src="/photos/jubilee.jpeg" 
-                  alt="Harley's Delicacies" 
-                  width={1000} 
-                  height={1000} 
-                  className="max-w-full h-full rounded-lg shadow-lg px"
-                />
-              </div>
+    <section id="about" className="py-12 bg-[#f5d1d8]">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
+          <div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0">
+            <h2 className="text-3xl text-center text-[#221F1F]">Who We Are</h2>
+            <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
+            <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light">
+              The ultimate luxury destination <br/> for gourmet cakes, speciality coffee, and premium confectionery.
+            </p>
+            <p className="text-xl mb-4 px-8 md:px-16 text-center text-[#221F1F] font-light">
+              Harley's is where indulgence meets innovation. Proudly crafted in India, poised to captivate the world. 
+            </p>
+            <div className="flex justify-center mt-6">
+              <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#FEFEFA]">
+                Know More
+              </Button>
             </div>
           </div>
-        </section>
+          
+          <div className="w-full md:w-1/2 flex justify-center my-4 px-4 md:mb-0">
+            <Image 
+              src="/photos/jubilee.jpeg" 
+              alt="Harley's Delicacies" 
+              width={1000} 
+              height={1000} 
+              className="max-w-full h-full rounded-lg shadow-lg px"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
         <section className="py-12 bg-[#CBEBF2] text-center">
       <div className="container mx-auto px-4">
