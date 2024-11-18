@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import Link from 'next/link'
+import { OrderModal } from './OrderModal'
 
 const carouselItems = [
   {
@@ -28,6 +28,7 @@ const carouselItems = [
 
 export default function HeroSection() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,19 +88,20 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
             <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Link href={''}>
-                <Button className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                <button onClick={() => setIsOrderModalOpen(true)} className="hidden md:block bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300">
                   Order Now
-                </Button>
-                </Link>
-                {/* <Button className="bg-[#F5D1D8] text-[#4A4A4A] hover:bg-[#CBEBF2] hover:text-[#4A4A4A] text-lg px-8 py-3 rounded-md transition-colors duration-300">
-                  Explore Menu
-                </Button> */}
+                </button>
               </div>
             </div>
           </div>
         ))}
       </Slider>
+      <div className="md:hidden fixed bottom-4 left-0 right-0 z-50 flex justify-center">
+        <button onClick={() => setIsOrderModalOpen(true)} className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300 fixed-button">
+          Order Now
+        </button>
+      </div>
+      <OrderModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
       <style jsx global>{`
         .custom-dot {
           text-align: right;
@@ -123,6 +125,9 @@ export default function HeroSection() {
         }
         .custom-dot li.slick-active button {
           background-color: white;
+        }
+        .fixed-button {
+          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
       `}</style>
     </section>

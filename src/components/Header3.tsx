@@ -5,48 +5,28 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { OrderModal } from './OrderModal'
 
 function Marquee({ texts }: { texts: string[] }) {
   return (
     <div className="bg-[#F5D1D8] overflow-hidden py-1">
       <div className="animate-marquee whitespace-nowrap">
         {texts.map((text, index) => (
-          <span key={index} className="text-[#4A4A4A] text-sm mx-4 inline-block">
-            {text}
-          </span>
+          <React.Fragment key={index}>
+            <span className="text-[#4A4A4A] text-sm mx-4 inline-block">
+              {text}
+            </span>
+            {index < texts.length - 1 && <span className="text-[#4A4A4A] opacity-40 text-sm">|</span>}
+          </React.Fragment>
         ))}
         {texts.map((text, index) => (
-          <span key={index + texts.length} className="text-[#4A4A4A] text-sm mx-4 inline-block">
-            {text}
-          </span>
+          <React.Fragment key={index + texts.length}>
+            <span className="text-[#4A4A4A] text-sm mx-4 inline-block">
+              {text}
+            </span>
+            {index < texts.length - 1 && <span className="text-[#4A4A4A] opacity-40 text-sm">|</span>}
+          </React.Fragment>
         ))}
-      </div>
-    </div>
-  )
-}
-
-function OrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  if (!isOpen) return null;
-
-  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" onClick={handleOutsideClick}>
-      <div className="bg-white p-6 rounded-lg">
-        <h2 className="text-xl font-bold mb-4">Choose your delivery partner</h2>
-        <div className="flex justify-around items-center">
-          <a href="https://www.swiggy.com/city/hyderabad/harleys-fine-baking-hitech-city-nanakramguda-rest376101" target="_blank" rel="noopener noreferrer" className="w-32 h-32 flex items-center justify-center">
-            <Image src="/photos/swiggy.png" alt="Swiggy" width={100} height={100} className='rounded-md object-contain' />
-          </a>
-          <a href="https://www.zomato.com/hyderabad/harleys-fine-baking-3-gachibowli/order" target="_blank" rel="noopener noreferrer" className="w-32 h-32 flex items-center justify-center">
-            <Image src="/photos/zomato.png" alt="Zomato" width={100} height={100} className='rounded-md object-contain' />
-          </a>
-        </div>
-        <Button onClick={onClose} className="mt-4 w-full">Close</Button>
       </div>
     </div>
   )
@@ -74,10 +54,9 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
       >
         <Marquee texts={[
           "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
-          "Grand Opening: Harley’s Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
+          "Grand Opening: Harley's Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
           "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
-
-          "Harley’s – Celebrate Every Moment!"
+          "Harley's – Celebrate Every Moment!"
         ]} />
       </div>
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
