@@ -3,27 +3,29 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 
 export function OrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  if (!isOpen) return null;
-
   useEffect(() => {
-    const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
+    if (isOpen) {
+      const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      };
 
-    document.addEventListener('keydown', handleEscapeKey);
+      document.addEventListener('keydown', handleEscapeKey);
 
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-    };
-  }, [onClose]);
+      return () => {
+        document.removeEventListener('keydown', handleEscapeKey);
+      };
+    }
+  }, [isOpen, onClose]);
 
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" onClick={handleOutsideClick}>
@@ -40,5 +42,5 @@ export function OrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =
         <Button onClick={onClose} className="mt-4 w-full">Close</Button>
       </div>
     </div>
-  )
+  );
 }
