@@ -17,13 +17,13 @@ export function Footer() {
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              <Link href="#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/demo#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 About
               </Link>
-              <Link href="#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/demo#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Menu
               </Link>
-              <Link href="#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/demo#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Locations
               </Link>
               <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
