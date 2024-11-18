@@ -1,32 +1,50 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 
 export function Footer() {
+  const router = useRouter()
+
+  const scrollToSection = (sectionId: string) => {
+    router.push('/home')
+    setTimeout(() => {
+      const section = document.getElementById(sectionId)
+      if (section) {
+        const yOffset = -80
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }, 100)
+  }
+
   return (
     <footer className="bg-[#CBEBF2] pt-12 pb-4 font-['Trebuchet_MS',_sans-serif]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center md:flex-row md:justify-between">
           <div className="mb-8 md:mb-0">
-          <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
-            <Image src="/logo.png" alt="Harley's Fine Baking" width={120} height={120} className="w-24 h-auto" /></Link>
+            <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
+              <Image src="/logo.png" alt="Harley's Fine Baking" width={120} height={120} className="w-24 h-auto" />
+            </Link>
             <div className='text-xs leading-relaxed py-2'>
-            {/* <p>Harley's Corporate, Survey No:55/E,</p>
+              {/* <p>Harley's Corporate, Survey No:55/E,</p>
               <p>Nanakramguda Rd, Hyderabad, Telangana 500032.</p> */}
-              </div>
+            </div>
           </div>
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              <Link href="/home#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <button onClick={() => scrollToSection('about')} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 About
-              </Link>
-              <Link href="/home#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('menu')} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Menu
-              </Link>
-              <Link href="/home#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              </button>
+              <button onClick={() => scrollToSection('locations')} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Locations
-              </Link>
+              </button>
               <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Foundation
               </Link>
@@ -48,7 +66,6 @@ export function Footer() {
             </div>
             
             <div className="flex flex-col items-center md:items-end text-sm text-[#4A4A4A]">
-              
               <Link href="mailto:care@harleys.in" className="hover:text-[#d45770] transition-colors">
                 care@harleys.com
               </Link>

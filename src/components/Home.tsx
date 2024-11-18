@@ -166,7 +166,7 @@ Biscuit.” Harley’s is redefining India’s coffee culture
 with the concept of pairing—the tradition of
 enjoying coffee with a perfectly matched cake.
                 </p>
-                <div className='bg-[#FEFEFA]/20 p-2 mx-20 rounded-md '>
+                <div className='bg-[#FEFEFA]/20 p-2 mx-8 md:mx-20 rounded-md '>
                 <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
         Koffee und Kuchen
       </p>

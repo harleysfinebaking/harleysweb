@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { OrderModal } from './OrderModal'
@@ -36,6 +37,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showMarquee, setShowMarquee] = useState(true)
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     if (isScrolled) {
@@ -44,6 +46,18 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       setShowMarquee(true)
     }
   }, [isScrolled])
+
+  const scrollToSection = (sectionId: string) => {
+    router.push('/home')
+    setTimeout(() => {
+      const section = document.getElementById(sectionId)
+      if (section) {
+        const yOffset = -80
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
+    }, 100)
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -77,8 +91,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </div>
           <nav className="hidden md:flex justify-between items-center">
             <div className="flex space-x-6 items-center">
-              <Link href="/home#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
-              <Link href="/home#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
+              <button onClick={() => scrollToSection('about')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</button>
+              <button onClick={() => scrollToSection('menu')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</button>
               <button onClick={() => setIsOrderModalOpen(true)} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</button>
             </div>
             <div className="relative flex items-center justify-center">
@@ -101,7 +115,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               </div>
             </div>
             <div className="flex space-x-6 items-center">
-              <Link href="/home#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
+              <button onClick={() => scrollToSection('locations')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</button>
               <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
               <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
@@ -111,10 +125,10 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       {isMenuOpen && (
         <div className="md:hidden">
           <nav className="flex flex-col items-center space-y-4 py-4 bg-[#FEFEFA]">
-            <Link href="/home#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
-            <Link href="/home#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
+            <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">About</button>
+            <button onClick={() => { scrollToSection('menu'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Menu</button>
             <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Order Now</button>
-            <Link href="/home#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
+            <button onClick={() => { scrollToSection('locations'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Locations</button>
             <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
             <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
           </nav>
