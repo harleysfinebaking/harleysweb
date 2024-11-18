@@ -34,6 +34,19 @@ function Marquee({ texts }: { texts: string[] }) {
   )
 }
 
+const menuItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  })
+}
+
 export function Header({ isScrolled }: { isScrolled: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showMarquee, setShowMarquee] = useState(true)
@@ -60,6 +73,15 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
     }, 100)
   }
 
+  const menuItems = [
+    { label: 'About', action: () => scrollToSection('about') },
+    { label: 'Menu', action: () => scrollToSection('menu') },
+    { label: 'Locations', action: () => scrollToSection('locations') },
+    { label: 'Foundation', href: '/foundation' },
+    { label: 'Blog', href: '/coming-soon' },
+    { label: 'Order Now', action: () => setIsOrderModalOpen(true) },
+  ]
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div 
@@ -76,7 +98,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       </div>
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#CBEBF2]/30 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
-          <div className="flex justify-between items-center md:hidden">
+          <div className="flex justify-between items-center md:hidden z-10">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image 
                 src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
@@ -86,25 +108,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 className={isScrolled? "w-24 h-auto py-4" : "w-24 h-auto" }  
               />
             </Link>
-            <Button 
-              className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center" 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <motion.div
-                animate={isMenuOpen ? "open" : "closed"}
-                variants={{
-                  open: { rotate: 180 },
-                  closed: { rotate: 0 }
-                }}
-                transition={{ duration: 0.2 }}
-                className="w-8 h-8 flex items-center justify-center"
-              >
-                {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-              </motion.div>
-            </Button>
           </div>
+          
           <nav className="hidden md:flex justify-between items-center">
             <div className="flex space-x-6 items-center">
               <button onClick={() => scrollToSection('about')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</button>
@@ -138,6 +143,24 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </nav>
         </div>
       </div>
+      <Button 
+        className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center fixed top-2 right-4" 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <motion.div
+          animate={isMenuOpen ? "open" : "closed"}
+          variants={{
+            open: { rotate: 180 },
+            closed: { rotate: 0 }
+          }}
+          transition={{ duration: 0.2 }}
+          className="w-8 h-8 flex items-center justify-center"
+        >
+          {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+        </motion.div>
+      </Button>
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -147,13 +170,36 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
             exit={{ x: "100%" }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
           >
-            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-20">
-              <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">About</button>
-              <button onClick={() => { scrollToSection('menu'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Menu</button>
-              <button onClick={() => { scrollToSection('locations'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Locations</button>
-              <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
-              <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-              <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Order Now</button>
+            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-8">
+              {menuItems.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  custom={index}
+                  variants={menuItemVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        item.action()
+                        setIsMenuOpen(false)
+                      }}
+                      className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl"
+                    >
+                      {item.label}
+                    </button>
+                  )}
+                </motion.div>
+              ))}
             </nav>
           </motion.div>
         )}
