@@ -130,7 +130,7 @@ export default function Categories() {
   ];
 
   return (
-    <section className="bg-[#CBEBF2]">
+    <section id="menu" className="bg-[#CBEBF2]">
       {categories.map((category, index) => (
         <FadeInElement key={index} delay={index * 0.2}>
           <CategorySection

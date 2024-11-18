@@ -17,11 +17,21 @@ export function Footer() {
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              {['About', 'Menu', 'Locations','Foundation'].map((link) => (
-                <Link key={link} href="#" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
-                  {link}
-                </Link>
-              ))}
+              <Link href="#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+                About
+              </Link>
+              <Link href="#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+                Menu
+              </Link>
+              <Link href="#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+                Locations
+              </Link>
+              <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+                Foundation
+              </Link>
+              <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+                Blog
+              </Link>
             </nav>
             
             <div className="flex items-center gap-4">
