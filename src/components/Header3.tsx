@@ -59,10 +59,10 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
           "Harley's – Celebrate Every Moment!"
         ]} />
       </div>
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-white/20 backdrop-blur-xl' : 'bg-transparent'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#CBEBF2]/30 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden">
-            <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
+            <Link href="/demo" className="text-2xl font-bold text-[#4A4A4A]">
               <Image 
                 src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
                 alt="Harley's" 
@@ -84,11 +84,12 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
             <div className="relative flex items-center justify-center">
               {!isScrolled && (
                 <div 
-                  className="absolute bg-[#f5d1d8]/15 backdrop-blur-md rounded-[50%] w-[200px] h-[130px] shadow-lg" 
+                  className="absolute bg-[#CBEBF2]/30 backdrop-blur-md rounded-[50%] w-[200px] h-[130px] shadow-lg" 
                   style={{ borderRadius: '50% / 50%' }}
                 ></div>
               )}
               <div className="relative z-10">
+              <Link href="/demo" className="text-2xl font-bold text-[#4A4A4A]">
                 <Image 
                   src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
                   alt="Harley's" 
@@ -96,11 +97,12 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
                   height={isScrolled ? 50 : 120}
                   className="w-auto h-auto"
                 />
+                </Link>
               </div>
             </div>
             <div className="flex space-x-6 items-center">
               <Link href="/demo#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
-              <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
+              <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
               <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
           </nav>
@@ -113,7 +115,7 @@ export function Header3({ isScrolled }: { isScrolled: boolean }) {
             <Link href="/demo#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
             <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Order Now</button>
             <Link href="/demo#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
-            <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
+            <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
             <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
           </nav>
         </div>
