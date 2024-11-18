@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { OrderModal } from './OrderModal'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Marquee({ texts }: { texts: string[] }) {
   return (
@@ -85,8 +86,23 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 className={isScrolled? "w-24 h-auto py-4" : "w-24 h-auto" }  
               />
             </Link>
-            <Button className="md:hidden" variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
+            <Button 
+              className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center" 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <motion.div
+                animate={isMenuOpen ? "open" : "closed"}
+                variants={{
+                  open: { rotate: 180 },
+                  closed: { rotate: 0 }
+                }}
+                transition={{ duration: 0.2 }}
+                className="w-8 h-8 flex items-center justify-center"
+              >
+                {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+              </motion.div>
             </Button>
           </div>
           <nav className="hidden md:flex justify-between items-center">
@@ -122,18 +138,26 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </nav>
         </div>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <nav className="flex flex-col items-center space-y-4 py-4 bg-[#FEFEFA]">
-            <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">About</button>
-            <button onClick={() => { scrollToSection('menu'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Menu</button>
-            <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Order Now</button>
-            <button onClick={() => { scrollToSection('locations'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Locations</button>
-            <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
-            <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="md:hidden fixed top-0 right-0 w-1/2 h-full bg-white/30 backdrop-blur-md"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
+          >
+            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-20">
+              <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">About</button>
+              <button onClick={() => { scrollToSection('menu'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Menu</button>
+              <button onClick={() => { scrollToSection('locations'); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Locations</button>
+              <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
+              <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+              <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl">Order Now</button>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <OrderModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
     </header>
   )
