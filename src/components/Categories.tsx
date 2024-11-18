@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import DecoratedTitle from '@/components/DecoratedTitle'
 
 interface CategoryItem {
   name: string;
@@ -44,7 +45,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     <div className={`py-12 ${backgroundColor}`}>
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <h2 className="text-4xl font-thin mb-8 text-[#221F1F] opacity-70 text-center">{title}</h2>
+          <DecoratedTitle title={title} className="mb-8" />
         </FadeInElement>
         <div className={`grid ${columns} gap-6`}>
           {items.map((item, index) => (
@@ -84,7 +85,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     </div>
   )
 }
-// test
+
 export default function Categories() {
   const categories = [
     {
@@ -96,7 +97,7 @@ export default function Categories() {
         { name: "Tres Leches", imagePath: "/photos/categories/tresleches.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-      cardBackgroundColor: "bg-[#CBEBF2]"
+      cardBackgroundColor: "bg-white/30"
     },
     {
       title: "Exotic Coffee",
@@ -105,7 +106,7 @@ export default function Categories() {
         { name: "Signature Cold Coffee", imagePath: "/photos/categories/icedcoffee.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2",
-      cardBackgroundColor: "bg-[#F5D1D8]"
+      cardBackgroundColor: "bg-white/30"
     },
     {
       title: "Special Occasions",
@@ -116,7 +117,7 @@ export default function Categories() {
         { name: "Customized Cakes", imagePath: "/photos/categories/customcake.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-      cardBackgroundColor: "bg-[#CBEBF2]"
+      cardBackgroundColor: "bg-white/30"
     },
     {
       title: "Bakery & Confectionery",
@@ -125,7 +126,7 @@ export default function Categories() {
         { name: "Burgers & Sandwiches", imagePath: "/photos/categories/croissantburger.jpg", price: "$15.00" }
       ],
       columns: "grid-cols-1 sm:grid-cols-2",
-      cardBackgroundColor: "bg-[#F5D1D8]"
+      cardBackgroundColor: "bg-white/30"
     }
   ];
 

@@ -88,7 +88,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
             <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <button onClick={() => setIsOrderModalOpen(true)} className="hidden md:block bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300">
+                <button onClick={() => setIsOrderModalOpen(true)} className="hidden md:block bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-6 py-2 rounded-md transition-colors duration-300">
                   Order Now
                 </button>
               </div>
@@ -96,8 +96,8 @@ export default function HeroSection() {
           </div>
         ))}
       </Slider>
-      <div className="md:hidden fixed bottom-4 left-0 right-0 z-50 flex justify-center">
-        <button onClick={() => setIsOrderModalOpen(true)} className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-8 py-3 rounded-md transition-colors duration-300 fixed-button">
+      <div className="md:hidden fixed bottom-12 left-0 right-0 z-50 flex justify-center">
+        <button onClick={() => setIsOrderModalOpen(true)} className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-6 py-2 rounded-md transition-colors duration-300 fixed-button">
           Order Now
         </button>
       </div>

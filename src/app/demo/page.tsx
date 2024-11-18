@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import Categories from '@/components/Categories'
 import {Locations} from '@/components/Locations'
 import HeroSection from '@/components/Hero'
+import DecoratedTitle from '@/components/DecoratedTitle'
 
 export default function Home4() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -47,8 +48,9 @@ export default function Home4() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
           <div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0">
-            <h2 className="text-3xl text-center text-[#221F1F]">Who We Are</h2>
-            <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
+          <DecoratedTitle title="Who We Are" />
+
+            
             <p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light">
               The ultimate luxury destination <br/> for gourmet cakes, speciality coffee, and premium confectionery.
             </p>
@@ -56,7 +58,7 @@ export default function Home4() {
               Harley's is where indulgence meets innovation. Proudly crafted in India, poised to captivate the world. 
             </p>
             <div className="flex justify-center mt-6">
-              <Button className="bg-[#CBEBF2] text-[#4A4A4A] hover:bg-[#FEFEFA]">
+              <Button className="bg-white/40 backdrop-blur-md text-[#4A4A4A] hover:bg-[#CBEBF2]/50 hover:backdrop-blur-2xl">
                 Know More
               </Button>
             </div>
@@ -88,12 +90,12 @@ export default function Home4() {
               className="rounded-lg shadow-xl"
             />
           </div>
-          <div className="md:w-1/2 space-y-6">
-          <h2 className="text-3xl text-center text-[#221F1F]">Medovik Cake</h2>
-          <div className="w-24 h-0.5 mt-1 bg-[#221F1F] opacity-70 mx-auto"></div>
-            <div className="space-y-4">
+          <div className="md:w-1/2 space-y-8">
+          <DecoratedTitle title="Medovik Cake" />
+          
+            <div className="">
             
-              <p className="text-xl text-[#221F1F] italic font-light">&quot;A Taste of Royalty in Every Bite&quot;</p>
+              <p className="text-xl text-[#221F1F] italic font-light ">&quot;A Taste of Royalty in Every Bite&quot;</p>
             </div>
             
             <div className="space-y-4 text-[#221F1F]">
@@ -115,7 +117,7 @@ and Russian Desserts.
 
             <div className="space-y-3">
               {/* <h4 className="text-lg font-semibold text-[#221F1F]">Harley&apos;s Signature Medovik Features:</h4> */}
-              <p className='font-semibold bg-[#f5d1d8] p-4 italic rounded-md'> On December 6, 2024, Harley’s will honor this royal
+              <p className='font-semibold bg-white/30 backdrop-blur-md p-4 italic rounded-md'> On December 6, 2024, Harley’s will honor this royal
 
 legacy by attempting a Guinness World Record with
 
@@ -143,7 +145,7 @@ confectionery.</p>
         
         <section id="koffee-and-kuchen" className="py-12 bg-[#f5d1d8]">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-light mb-12 text-center text-[#221F1F] opacity-70 ">Kaffee und Kuchen</h2>
+          <DecoratedTitle title="Koffee und Kuchen" />
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 mb-8 md:mb-0 md:ml-24">
                 <Image 
@@ -164,6 +166,7 @@ Biscuit.” Harley’s is redefining India’s coffee culture
 with the concept of pairing—the tradition of
 enjoying coffee with a perfectly matched cake.
                 </p>
+                <div className='bg-[#FEFEFA]/20 p-2 mx-20 rounded-md '>
                 <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
         Koffee und Kuchen
       </p>
@@ -171,6 +174,7 @@ enjoying coffee with a perfectly matched cake.
       <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
         Coffee and Cake
       </p>
+      </div>
                 <p className="text-lg text-[#221F1F] opacity-70 font-light sm:px-4 md:px-0 pt-2 ">
                 We elevate the experience by serving specialty
 
@@ -187,7 +191,8 @@ and dessert together, exclusively crafted at Harley’s.
         </section>
         <section id="ivory-lounge" className="py-12 bg-[#FEFEFA]">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-light mb-12 text-center text-[#221F1F] opacity-70 ">Harley's Ivory Club</h2>
+          <DecoratedTitle title="Harley's Ivory Club" />
+            
             <div className="flex flex-col md:flex-row items-center justify-between mx-12">
               <div className="md:w-1/2 sm:w-1/4 md:ml-32 mb-8 md:mb-0">
                 <Image 
