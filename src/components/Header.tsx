@@ -62,7 +62,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#CBEBF2]/30 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden">
-            <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
+            <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image 
                 src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
                 alt="Harley's" 
@@ -77,8 +77,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </div>
           <nav className="hidden md:flex justify-between items-center">
             <div className="flex space-x-6 items-center">
-              <Link href="/#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
-              <Link href="/#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
+              <Link href="/home#about" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</Link>
+              <Link href="/home#menu" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</Link>
               <button onClick={() => setIsOrderModalOpen(true)} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</button>
             </div>
             <div className="relative flex items-center justify-center">
@@ -89,7 +89,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 ></div>
               )}
               <div className="relative z-10">
-              <Link href="/" className="text-2xl font-bold text-[#4A4A4A]">
+              <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
                 <Image 
                   src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
                   alt="Harley's" 
@@ -101,7 +101,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               </div>
             </div>
             <div className="flex space-x-6 items-center">
-              <Link href="/#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
+              <Link href="/home#locations" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</Link>
               <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
               <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
@@ -111,10 +111,10 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       {isMenuOpen && (
         <div className="md:hidden">
           <nav className="flex flex-col items-center space-y-4 py-4 bg-[#FEFEFA]">
-            <Link href="/#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
-            <Link href="/#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
+            <Link href="/home#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
+            <Link href="/home#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Menu</Link>
             <button onClick={() => { setIsOrderModalOpen(true); setIsMenuOpen(false); }} className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">Order Now</button>
-            <Link href="/#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
+            <Link href="/home#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Locations</Link>
             <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Foundation</Link>
             <Link href="/coming-soon" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
           </nav>

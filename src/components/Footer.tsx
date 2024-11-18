@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center md:flex-row md:justify-between">
           <div className="mb-8 md:mb-0">
-          <Link href="/demo" className="text-2xl font-bold text-[#4A4A4A]">
+          <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
             <Image src="/logo.png" alt="Harley's Fine Baking" width={120} height={120} className="w-24 h-auto" /></Link>
             <div className='text-xs leading-relaxed py-2'>
             {/* <p>Harley's Corporate, Survey No:55/E,</p>
@@ -18,13 +18,13 @@ export function Footer() {
           
           <div className="flex flex-col items-center md:items-end space-y-4">
             <nav className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-              <Link href="/demo#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/home#about" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 About
               </Link>
-              <Link href="/demo#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/home#menu" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Menu
               </Link>
-              <Link href="/demo#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
+              <Link href="/home#locations" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
                 Locations
               </Link>
               <Link href="/foundation" className="text-[#4A4A4A] hover:text-[#d45770] transition-colors">
