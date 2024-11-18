@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Header3 } from '@/components/Header3'
+import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 
 export default function ComingSoon() {
@@ -22,7 +22,7 @@ export default function ComingSoon() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#FEFEFA] font-['Trebuchet_MS',_sans-serif]">
-      <Header3 isScrolled={isScrolled} />
+      <Header isScrolled={isScrolled} />
 
       <main className="flex-grow flex items-center justify-center bg-[#CBEBF2]">
         <section className="w-full py-12">

@@ -1,26 +1,29 @@
-import React from 'react'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-// import { HeroSection } from '@/components/Hero'
-import { AboutSection } from '@/components/About'
-import { MenuSection } from '@/components/Menu'
-import { SignatureSection } from '@/components/Signature'
-import { PairingsSection } from '@/components/Pairings'
-// import { ContactSection } from '@/components/Contact'
+'use client'
 
-export default function HarleysPatisserie() {
+import React, { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import LoadingPage from '@/components/LoadingPage'
+import Home from '@/components/Home'  // Assuming this is your main content component
+
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)  // Adjust this value to control how long the loading page is shown
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <div className="bg-[#FEFEFA] min-h-screen font-serif">
-      <Header />
-      <main className="pt-[180px] font-mulish font-extralight"> {/* Adjust based on your header height */}
-        {/* <HeroSection /> */}
-        <AboutSection />
-        <MenuSection />
-        <SignatureSection />
-        <PairingsSection />
-        {/* <ContactSection /> */}
-      </main>
-      <Footer />
-    </div>
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <LoadingPage key="loading" />
+      ) : (
+        <Home key="main" />
+      )}
+    </AnimatePresence>
   )
 }

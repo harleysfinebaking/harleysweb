@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Header7 } from '@/components/Header7'
+import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Clock } from 'lucide-react'
@@ -91,7 +91,7 @@ export default function Locations() {
 
   return (
     <div className="min-h-screen bg-[#FEFEFA] font-['Trebuchet_MS',_sans-serif]">
-      <Header7 isScrolled={isScrolled} />
+      <Header isScrolled={isScrolled} />
 
       <main>
         <section className="relative h-[50vh] flex items-center justify-center">

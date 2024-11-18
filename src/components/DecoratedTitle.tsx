@@ -51,7 +51,7 @@ export default function DecoratedTitle({ title, className = '' }: DecoratedTitle
         initial={{ opacity: 0, scaleX: 0 }}
         animate={inView ? { opacity: 1, scaleX: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-24 h-0.5 mt-2 bg-[#221F1F] opacity-70"
+        className="w-24 h-[1px] mt-2 bg-[#221F1F] opacity-70"
       />
     </div>
   )

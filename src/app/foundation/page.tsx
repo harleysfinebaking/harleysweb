@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Header3 } from "@/components/Header3"
+import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 
 export default function FoundationPage() {
@@ -23,7 +23,7 @@ export default function FoundationPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#e8f4f8] to-[#FEFEFA] font-['Trebuchet_MS',_sans-serif] ">
-      <Header3 isScrolled={isScrolled} />
+      <Header isScrolled={isScrolled} />
 
       <main className="pt-40 px-48 py-24">
         <section className="py-20">
