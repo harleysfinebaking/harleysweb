@@ -68,7 +68,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
                       src={item.imagePath}
                       alt={item.name}
                       layout="fill"
-                      objectFit={isContainAndBlur ? "contain" : "cover"}
+                      objectFit={isContainAndBlur ? "cover" : "cover"}
                       className="transition-transform duration-300 hover:scale-105"
                     />
                   </div>
