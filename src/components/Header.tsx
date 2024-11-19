@@ -115,7 +115,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
         </div>
       </div>
       <Button 
-        className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center fixed top-2 right-4" 
+        className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center fixed top-16 right-4" 
         variant="ghost" 
         size="icon" 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -141,7 +141,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
             exit={{ x: "100%" }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
           >
-            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-8">
+            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-16">
               {menuItems.map((item, index) => (
                 <motion.div
                   key={item.label}
