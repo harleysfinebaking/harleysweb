@@ -8,31 +8,7 @@ import { Menu, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { OrderModal } from './OrderModal'
 import { motion, AnimatePresence } from 'framer-motion'
-
-function Marquee({ texts }: { texts: string[] }) {
-  return (
-    <div className="bg-[#F5D1D8] overflow-hidden py-1">
-      <div className="animate-marquee whitespace-nowrap">
-        {texts.map((text, index) => (
-          <React.Fragment key={index}>
-            <span className="text-[#4A4A4A] text-sm mx-4 inline-block">
-              {text}
-            </span>
-            {index < texts.length - 1 && <span className="text-[#4A4A4A] opacity-40 text-sm">|</span>}
-          </React.Fragment>
-        ))}
-        {texts.map((text, index) => (
-          <React.Fragment key={index + texts.length}>
-            <span className="text-[#4A4A4A] text-sm mx-4 inline-block">
-              {text}
-            </span>
-            {index < texts.length - 1 && <span className="text-[#4A4A4A] opacity-40 text-sm">|</span>}
-          </React.Fragment>
-        ))}
-      </div>
-    </div>
-  )
-}
+import { Marquee } from './Marquee'
 
 const menuItemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -54,11 +30,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
   const router = useRouter()
 
   useEffect(() => {
-    if (isScrolled) {
-      setShowMarquee(false)
-    } else {
-      setShowMarquee(true)
-    }
+    setShowMarquee(!isScrolled)
   }, [isScrolled])
 
   const scrollToSection = (sectionId: string) => {
@@ -82,20 +54,19 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
     { label: 'Order Now', action: () => setIsOrderModalOpen(true) },
   ]
 
+  const marqueeTexts = [
+    "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
+    "HARLEY'S",
+    "Grand Opening: Harley's Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
+    "Fine Baking",
+    "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
+    "HARLEY'S",
+    "Harley's – Celebrate Every Moment!"
+  ]
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div 
-        className={`transition-all duration-300 ease-in-out ${
-          showMarquee ? 'max-h-8 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}
-      >
-        <Marquee texts={[
-          "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
-          "Grand Opening: Harley's Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
-          "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
-          "Harley's – Celebrate Every Moment!"
-        ]} />
-      </div>
+      <Marquee texts={marqueeTexts} showMarquee={showMarquee} />
       <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#CBEBF2]/30 backdrop-blur-xl' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden z-10">
