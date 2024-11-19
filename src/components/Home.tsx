@@ -171,12 +171,12 @@ export default function Home() {
                 <motion.p className="text-lg mb-4 text-[#221F1F] opacity-70 font-light sm:px-4 md:px-0" variants={fadeInUp}>
                   Harley's is pioneering a unique coffee experience inspired by the European tradition of "Kaffee und Kuchen"—a ritual akin to India's beloved "Chai Biscuit." Harley's is redefining India's coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.
                 </motion.p>
-                <motion.div className='bg-[#FEFEFA]/20 p-2 mx-8 md:mx-0 rounded-md' variants={fadeInUp}>
-                  <p className="text-2xl font-bold sm:text-lg text-[#221F1F] opacity-70 py-1 px-8">
+                <motion.div className='bg-[#FEFEFA]/20 p-2 mx-12 md:mx-8 rounded-md' variants={fadeInUp}>
+                  <p className="text-lg md:text-lg lg:text-2xl font-bold  text-[#221F1F] opacity-70 py-1 px-8">
                   Kaffee und Kuchen
                   </p>
                   <div className="w-24 h-0.5 bg-[#221F1F] opacity-70 mx-auto"></div>
-                  <p className="text-2xl sm:text-lg font-bold text-[#221F1F] opacity-70 py-1 px-8">
+                  <p className="text-lg md:text-lg lg:text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
                     Coffee and Cake
                   </p>
                 </motion.div>
