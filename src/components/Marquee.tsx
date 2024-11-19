@@ -28,7 +28,7 @@ export function Marquee({ texts, showMarquee }: MarqueeProps) {
   useEffect(() => {
     if (contentWidth > 0) {
       controls.start({
-        x: [-contentWidth, 0],
+        x: [0, -contentWidth],
         transition: {
           x: {
             repeat: Infinity,
@@ -70,6 +70,7 @@ export function Marquee({ texts, showMarquee }: MarqueeProps) {
           ref={containerRef}
           className="inline-flex whitespace-nowrap items-center h-6"
           animate={controls}
+          initial={{ x: 0 }}
         >
           {[...texts, "Fine Baking", ...texts, "Fine Baking"].map((text, index) => (
             <React.Fragment key={index}>

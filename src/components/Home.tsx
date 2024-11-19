@@ -154,7 +154,7 @@ export default function Home() {
         >
           <div className="container mx-auto px-4">
             <motion.div variants={fadeInUp}>
-              <DecoratedTitle title="Koffee und Kuchen" />
+              <DecoratedTitle title="Kaffee und Kuchen" />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between">
               <motion.div className="md:w-1/2 mb-8 md:mb-0 md:ml-24" variants={fadeInUp}>
@@ -172,7 +172,7 @@ export default function Home() {
                 </motion.p>
                 <motion.div className='bg-[#FEFEFA]/20 p-2 mx-8 md:mx-20 rounded-md' variants={fadeInUp}>
                   <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
-                    Koffee und Kuchen
+                  Kaffee und Kuchen
                   </p>
                   <div className="w-24 h-0.5 bg-[#221F1F] opacity-70 mx-auto"></div>
                   <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
