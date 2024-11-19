@@ -144,6 +144,7 @@ export default function Home() {
           </div>
         </motion.section>
 
+
         <motion.section 
           id="koffee-and-kuchen" 
           className="py-12 bg-[#f5d1d8]"
@@ -156,8 +157,8 @@ export default function Home() {
             <motion.div variants={fadeInUp}>
               <DecoratedTitle title="Kaffee und Kuchen" />
             </motion.div>
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <motion.div className="md:w-1/2 mb-8 md:mb-0 md:ml-24" variants={fadeInUp}>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
+              <motion.div className="md:w-1/2 mb-8 md:mb-0 " variants={fadeInUp}>
                 <Image 
                   src="/photos/koffeekuchen.png" 
                   alt="Kaffee und Kuchen" 
@@ -166,11 +167,11 @@ export default function Home() {
                   className="rounded-lg shadow-lg"
                 />
               </motion.div>
-              <div className="md:w-1/2 md:pl-8 md:mr-24 text-center">
+              <div className="md:w-1/2 text-center sm:my-0 md:my-8">
                 <motion.p className="text-lg mb-4 text-[#221F1F] opacity-70 font-light sm:px-4 md:px-0" variants={fadeInUp}>
                   Harley's is pioneering a unique coffee experience inspired by the European tradition of "Kaffee und Kuchen"—a ritual akin to India's beloved "Chai Biscuit." Harley's is redefining India's coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.
                 </motion.p>
-                <motion.div className='bg-[#FEFEFA]/20 p-2 mx-8 md:mx-20 rounded-md' variants={fadeInUp}>
+                <motion.div className='bg-[#FEFEFA]/20 p-2 mx-8 md:mx-0 rounded-md' variants={fadeInUp}>
                   <p className="text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
                   Kaffee und Kuchen
                   </p>
@@ -195,11 +196,11 @@ export default function Home() {
           viewport={{ once: false, amount: 0.4 }}
           variants={stagger}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 gap-8">
             <motion.div variants={fadeInUp}>
               <DecoratedTitle title="Harley's Ivory Club" />
             </motion.div>
-            <div className="flex flex-col md:flex-row items-center justify-between mx-12">
+            <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0 md:gap-16 my-8">
               <motion.div className="md:w-1/2 sm:w-1/4 md:ml-32 mb-8 md:mb-0" variants={fadeInUp}>
                 <Image 
                   src="/photos/crown.png" 
@@ -209,7 +210,7 @@ export default function Home() {
                   className="rounded-lg "
                 />
               </motion.div>
-              <div className="md:w-1/2 text-center md:mx-24">
+              <div className="md:w-1/2 text-center ">
                 <motion.h3 className="text-2xl font-semibold mb-4 text-[#221F1F] opacity-70" variants={fadeInUp}>
                   Treat Yourself & Earn Rewards!
                 </motion.h3>
