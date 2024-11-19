@@ -115,7 +115,14 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
         </div>
       </div>
       <Button 
-        className="md:hidden z-50 w-12 h-12 bg-pink-100/10 hover:bg-blue-100/30 flex items-center justify-center fixed top-16 right-4" 
+        className={`
+          md:hidden z-50 w-12 h-12 
+          bg-pink-100/10 hover:bg-blue-100/30 
+          flex items-center justify-center 
+          fixed right-4 
+          transition-all duration-300 ease-in-out
+          ${isScrolled ? 'top-4' : 'top-16'}
+        `}
         variant="ghost" 
         size="icon" 
         onClick={() => setIsMenuOpen(!isMenuOpen)}
