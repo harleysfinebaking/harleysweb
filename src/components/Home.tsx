@@ -60,10 +60,7 @@ export default function Home() {
       <main>
         
         <HeroSection />
-        <noscript>
-          <h1>Who We Are</h1>
-          <h2>Medovik Cake</h2>
-        </noscript>
+        
 
         <motion.section 
           id="about" 
@@ -76,7 +73,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <motion.div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0" variants={fadeInUp}>
-              <h1 className="sr-only">Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h1>
+              <h1 className='visually-hidden'>Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h1>
 
               <DecoratedTitle title="Who We Are" headingLevel="h1" />
                 <motion.p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light" variants={fadeInUp}>
@@ -126,7 +123,7 @@ export default function Home() {
               <div className="md:w-1/2 space-y-8">
                 <motion.div variants={fadeInUp}>
 
-                <h2 className="sr-only">Harley's Fine Baking - Medovik Cake</h2>
+                <h2 className="visually-hidden">Harley's Fine Baking - Medovik Cake</h2>
                   <DecoratedTitle title="Medovik Cake" headingLevel='h2'/>
                 </motion.div>
                 
@@ -164,7 +161,7 @@ export default function Home() {
         >
           <div className="container mx-auto px-4">
             <motion.div variants={fadeInUp}>
-            <h2 className="sr-only">Harley's Fine Baking - Kaffee und Kuchen</h2>
+            <h2 className="visually-hidden">Harley's Fine Baking - Kaffee und Kuchen</h2>
               <DecoratedTitle title="Kaffee und Kuchen" headingLevel='h2'/>
 
             </motion.div>
