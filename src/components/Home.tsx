@@ -71,7 +71,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <motion.div className="w-full md:w-1/2 md:pl-8 px-0 md:px-0" variants={fadeInUp}>
-                <DecoratedTitle title="Who We Are" />
+              <DecoratedTitle title="Who We Are" headingLevel="h1" />
                 <motion.p className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light" variants={fadeInUp}>
                   The ultimate luxury destination <br/> for gourmet cakes, speciality coffee, and premium confectionery.
                 </motion.p>
@@ -118,7 +118,7 @@ export default function Home() {
               </motion.div>
               <div className="md:w-1/2 space-y-8">
                 <motion.div variants={fadeInUp}>
-                  <DecoratedTitle title="Medovik Cake" />
+                  <DecoratedTitle title="Medovik Cake" headingLevel='h2'/>
                 </motion.div>
                 
                 <motion.div variants={fadeInUp}>
@@ -155,7 +155,7 @@ export default function Home() {
         >
           <div className="container mx-auto px-4">
             <motion.div variants={fadeInUp}>
-              <DecoratedTitle title="Kaffee und Kuchen" />
+              <DecoratedTitle title="Kaffee und Kuchen" headingLevel='h2'/>
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
               <motion.div className="md:w-1/2 mb-8 md:mb-0 " variants={fadeInUp}>
@@ -198,7 +198,7 @@ export default function Home() {
         >
           <div className="container mx-auto px-4 gap-8">
             <motion.div variants={fadeInUp}>
-              <DecoratedTitle title="Harley's Ivory Club" />
+              <DecoratedTitle title="Harley's Ivory Club" headingLevel='h2'/>
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0 md:gap-16 my-8">
               <motion.div className="md:w-1/2 sm:w-1/4 md:ml-32 mb-8 md:mb-0" variants={fadeInUp}>

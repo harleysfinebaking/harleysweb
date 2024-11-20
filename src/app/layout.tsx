@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     siteName: "Harley's Fine Baking",
     images: [
       {
-        url: "https://www.harleys.com/og-image.jpg",
+        url: "/photos/hero1.jpg",
         width: 1200,
         height: 630,
         alt: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Harley's Fine Baking",
     description: "Harley’s is pioneering a unique coffee experience inspired by the European tradition of “Kaffee und Kuchen”—a ritual akin to India’s beloved “Chai Biscuit.” Harley’s is redefining India’s coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.",
-    images: ["https://www.harleys.com/twitter-image.jpg"],
+    images: ["/photos/hero1.jpg"],
     creator: "@HarleysFineBaking",
   },
   robots: {
@@ -142,6 +142,9 @@ export const metadata: Metadata = {
     yandex: "yandex-verification-code",
     // bing: "bing-verification-code",
   },
+  alternates: {
+    canonical: "https://www.harleys.com",
+  },
 };
 
 export default function RootLayout({
@@ -151,6 +154,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="canonical" href="https://www.harleys.com" />
+      </head>
       <body
         className={`${imperial.variable} ${lato.variable} ${montserrat.variable} ${mulish.variable} ${openSans.variable} ${outfit.variable} ${poppins.variable} ${inter.variable} ${alumni.variable} ${quicksand.variable} ${montserratalt.variable}  font-sans antialiased`}
       >

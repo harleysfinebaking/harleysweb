@@ -8,13 +8,16 @@ import { useInView } from 'react-intersection-observer'
 interface DecoratedTitleProps {
   title: string
   className?: string
+  headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
-export default function DecoratedTitle({ title, className = '' }: DecoratedTitleProps) {
+export default function DecoratedTitle({ title, className = '', headingLevel = 'h2' }: DecoratedTitleProps) {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
   })
+
+  const HeadingTag = headingLevel as keyof JSX.IntrinsicElements
 
   return (
     <div ref={ref} className={`flex flex-col items-center justify-center mb-4 ${className}`}>
@@ -32,7 +35,7 @@ export default function DecoratedTitle({ title, className = '' }: DecoratedTitle
             objectFit="contain"
           />
         </motion.div>
-        <h2 className="text-3xl text-center text-[#221F1F]">{title}</h2>
+        <HeadingTag className="text-3xl text-center text-[#221F1F]">{title}</HeadingTag>
         <motion.div
           initial={{ opacity: 0, clipPath: 'inset(0 0 0 100%)' }}
           animate={inView ? { opacity: 1, clipPath: 'inset(0 0 0 0%)' } : {}}

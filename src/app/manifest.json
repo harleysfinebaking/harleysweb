@@ -1,0 +1,19 @@
+{
+    "name": "Harley's Fine Baking",
+    "short_name": "Harley's",
+    "icons": [
+      {
+        "src": "/icon.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      },
+      {
+        "src": "/apple-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ],
+    "theme_color": "#FEFEFA",
+    "background_color": "#FEFEFA",
+    "display": "standalone"
+  }
