@@ -59,6 +59,10 @@ export default function Home() {
 
       <main>
         <HeroSection />
+        <noscript>
+          <h1>Who We Are</h1>
+          <h2>Medovik Cake</h2>
+        </noscript>
 
         <motion.section 
           id="about" 
