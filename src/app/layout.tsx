@@ -79,7 +79,12 @@ export const metadata: Metadata = {
     default: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
     template: "%s | Harley's Fine Baking"
   },
-  description: "Harley’s brings Europe's “Kaffee und Kuchen” to India pairing specialty coffee with matched cakes. It's redefining coffee culture, elevating the “Chai Biscuit” tradition  ",
+
+  
+
+
+
+  description: "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
   keywords: ["Harley's","Harley","bakery", "fine baking", "Medovik", "cakes", "Kaffee und Kuchen", "artisan", "European delicacies"],
   authors: [{ name: "Harley's Fine Baking" }],
   creator: "Harley's Fine Baking",
@@ -108,7 +113,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harley's Fine Baking",
-    description: "Harley’s brings Europe's “Kaffee und Kuchen” to India pairing specialty coffee with matched cakes. It's redefining coffee culture, elevating the “Chai Biscuit” tradition  ",
+    description: "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
     images: ["/photos/hero1.jpg"],
     creator: "@HarleysFineBaking",
   },
