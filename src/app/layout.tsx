@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato, Mulish, Open_Sans, Outfit, Poppins, Inter, Alumni_Sans_Pinstripe, Quicksand, Montserrat_Alternates, Montserrat, Imperial_Script } from 'next/font/google';
+import Script from 'next/script';
 import "./globals.css";
 
 const lato = Lato({
@@ -154,10 +155,69 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Harley's Fine Baking",
+    "image": [
+      "https://www.harleys.com/photos/hero1.jpg",
+      "https://www.harleys.com/photos/categories/medovik.jpg"
+    ],
+    "@id": "https://www.harleys.com",
+    "url": "https://www.harleys.com",
+    "telephone": "+918083098888",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Survey No:55/E, 1st Floor, Nanakramguda Rd, below Medics Healthcare",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500032",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 17.4198006,
+      "longitude": 78.3541973
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
+    ],
+    "menu": "https://www.harleys.com/#menu",
+    "servesCuisine": [
+      "European",
+      "Bakery",
+      "Coffee"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/harleysfinebaking",
+      "https://www.facebook.com/harleysfinebaking"
+    ]
+  };
+
   return (
     <html lang="en">
       <head>
         <link rel="canonical" href="https://www.harleys.com" />
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
       </head>
       <body
         className={`${imperial.variable} ${lato.variable} ${montserrat.variable} ${mulish.variable} ${openSans.variable} ${outfit.variable} ${poppins.variable} ${inter.variable} ${alumni.variable} ${quicksand.variable} ${montserratalt.variable}  font-sans antialiased`}
