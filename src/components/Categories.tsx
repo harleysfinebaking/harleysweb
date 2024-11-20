@@ -56,7 +56,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
                     <div className="absolute inset-0 z-0">
                       <Image
                         src={item.imagePath}
-                        alt=""
+                        alt={item.name}
                         layout="fill"
                         objectFit="cover"
                         className="scale-110 blur-lg"

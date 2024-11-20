@@ -88,7 +88,7 @@ export default function Home() {
               <motion.div className="w-full md:w-1/2 flex justify-center my-4 px-4 md:mb-0" variants={fadeInUp}>
                 <Image 
                   src="/photos/jubilee.jpeg" 
-                  alt="Harley's Delicacies" 
+                  alt="About Harley's" 
                   width={1000} 
                   height={1000} 
                   className="max-w-full h-full rounded-lg shadow-lg px"

@@ -27,7 +27,7 @@ export default function DecoratedTitle({ title, className = '' }: DecoratedTitle
         >
           <Image
             src="/photos/ribbon/left-ribbon.png"
-            alt=""
+            alt="left ribbon"
             layout="fill"
             objectFit="contain"
           />
@@ -41,7 +41,7 @@ export default function DecoratedTitle({ title, className = '' }: DecoratedTitle
         >
           <Image
             src="/photos/ribbon/right-ribbon.png"
-            alt=""
+            alt="right ribbon"
             layout="fill"
             objectFit="contain"
           />

@@ -34,7 +34,7 @@ export default function LogoAnimation() {
       >
         <Image
           src="/photos/layers/crown.png"
-          alt=""
+          alt="crown"
           layout="fill"
           objectFit="contain"
         />
@@ -50,7 +50,7 @@ export default function LogoAnimation() {
         >
           <Image
             src="/photos/layers/left-ribbon.png"
-            alt=""
+            alt="left ribbon"
             layout="fill"
             objectFit="contain"
           />
@@ -74,7 +74,7 @@ export default function LogoAnimation() {
         >
           <Image
             src="/photos/layers/right-ribbon.png"
-            alt=""
+            alt="right ribbon"
             layout="fill"
             objectFit="contain"
           />
@@ -105,7 +105,7 @@ export default function LogoAnimation() {
       >
         <Image
           src="/photos/layers/line.png"
-          alt=""
+          alt="underline"
           layout="fill"
           objectFit="contain"
         />

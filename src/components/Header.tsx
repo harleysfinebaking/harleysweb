@@ -73,7 +73,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image 
                 src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
-                alt="Harley's" 
+                alt="Harley's Logo" 
                 width={isScrolled ? 100 : 200} 
                 height={isScrolled ? 50 : 200} 
                 className={isScrolled? "w-24 h-auto py-4" : "w-24 h-auto" }  
@@ -98,7 +98,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
                 <Image 
                   src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
-                  alt="Harley's" 
+                  alt="Harley's Logo" 
                   width={isScrolled ? 100 : 120}
                   height={isScrolled ? 50 : 120}
                   className="w-auto h-auto"
