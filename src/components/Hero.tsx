@@ -175,6 +175,10 @@ export default function HeroSection() {
           </div>
         ))}
       </Slider>
+      <noscript>
+          <h1>Harley's Fine Baking</h1>
+          
+        </noscript>
       <div className="md:hidden fixed bottom-12 left-0 right-0 z-50 flex justify-center">
         <button onClick={() => setIsOrderModalOpen(true)} className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-6 py-2 rounded-md transition-colors duration-300 fixed-button">
           Order Now
