@@ -83,9 +83,9 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           
           <nav className="hidden md:flex justify-between items-center">
             <div className="flex space-x-6 items-center">
-              <button onClick={() => scrollToSection('about')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</button>
-              <button onClick={() => scrollToSection('menu')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</button>
-              <button onClick={() => setIsOrderModalOpen(true)} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</button>
+            <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</a>
+            <a href="#menu" onClick={(e) => { e.preventDefault(); scrollToSection('menu'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</a>
+            <a href="#order" onClick={(e) => { e.preventDefault(); setIsOrderModalOpen(true); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</a>
             </div>
             <div className="relative flex items-center justify-center">
               {!isScrolled && (
@@ -107,7 +107,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               </div>
             </div>
             <div className="flex space-x-6 items-center">
-              <button onClick={() => scrollToSection('locations')} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</button>
+              
+    <a href="#locations" onClick={(e) => { e.preventDefault(); scrollToSection('locations'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</a>
               <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
               <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
             </div>
