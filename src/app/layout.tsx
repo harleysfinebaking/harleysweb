@@ -123,11 +123,14 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.json",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#FEFEFA" },
     { media: "(prefers-color-scheme: dark)", color: "#4A4A4A" },
@@ -138,9 +141,8 @@ export const metadata: Metadata = {
     maximumScale: 1,
   },
   verification: {
-    google: "google-site-verification-code",
-    yandex: "yandex-verification-code",
-    // bing: "bing-verification-code",
+    google: "YOUR_GOOGLE_VERIFICATION_CODE",
+    yandex: "YOUR_YANDEX_VERIFICATION_CODE",
   },
   alternates: {
     canonical: "https://www.harleys.com",
