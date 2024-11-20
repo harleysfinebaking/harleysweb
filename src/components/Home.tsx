@@ -122,6 +122,10 @@ export default function Home() {
               </motion.div>
               <div className="md:w-1/2 space-y-8">
                 <motion.div variants={fadeInUp}>
+
+                <noscript>
+          <h2>Medovik Cake</h2>
+        </noscript>
                   <DecoratedTitle title="Medovik Cake" headingLevel='h2'/>
                 </motion.div>
                 
@@ -159,7 +163,11 @@ export default function Home() {
         >
           <div className="container mx-auto px-4">
             <motion.div variants={fadeInUp}>
+            <noscript>
+          <h2>Kaffee und Kuchen</h2>
+        </noscript>
               <DecoratedTitle title="Kaffee und Kuchen" headingLevel='h2'/>
+
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
               <motion.div className="md:w-1/2 mb-8 md:mb-0 " variants={fadeInUp}>
@@ -202,6 +210,9 @@ export default function Home() {
         >
           <div className="container mx-auto px-4 gap-8">
             <motion.div variants={fadeInUp}>
+            <noscript>
+          <h2>Harley's Ivory Club</h2>
+        </noscript>
               <DecoratedTitle title="Harley's Ivory Club" headingLevel='h2'/>
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0 md:gap-16 my-8">

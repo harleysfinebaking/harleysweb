@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     template: "%s | Harley's Fine Baking"
   },
   description: "Harley’s is pioneering a unique coffee experience inspired by the European tradition of “Kaffee und Kuchen”—a ritual akin to India’s beloved “Chai Biscuit.” Harley’s is redefining India’s coffee culture with the concept of pairing—the tradition of enjoying coffee with a perfectly matched cake.",
-  keywords: ["bakery", "fine baking", "Medovik", "cakes", "Kaffee und Kuchen", "artisan", "European delicacies"],
+  keywords: ["Harley's","Harley","bakery", "fine baking", "Medovik", "cakes", "Kaffee und Kuchen", "artisan", "European delicacies"],
   authors: [{ name: "Harley's Fine Baking" }],
   creator: "Harley's Fine Baking",
   publisher: "Harley's Fine Baking",
