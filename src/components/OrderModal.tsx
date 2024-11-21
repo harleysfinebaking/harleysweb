@@ -30,7 +30,7 @@ export function OrderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center" onClick={handleOutsideClick}>
-      <div className="bg-white p-12 rounded-lg relative">
+      <div className="bg-white p-8 rounded-lg relative">
         <Button
           onClick={onClose}
           className="absolute top-2 right-2 p-1 h-auto w-auto bg-black/40 hover:bg-gray-800 text-white rounded-full"

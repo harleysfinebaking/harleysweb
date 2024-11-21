@@ -82,11 +82,11 @@ export default function Home() {
                 <motion.p className="text-xl mb-4 px-8 md:px-16 text-center text-[#221F1F] font-light" variants={fadeInUp}>
                   Harley's is where indulgence meets innovation. Proudly crafted in India, poised to captivate the world. 
                 </motion.p>
-                <motion.div className="flex justify-center mt-6" variants={fadeInUp}>
+                {/* <motion.div className="flex justify-center mt-6" variants={fadeInUp}>
                   <Button className="bg-white/40 backdrop-blur-md text-[#4A4A4A] hover:bg-[#CBEBF2]/50 hover:backdrop-blur-2xl">
                     Know More
                   </Button>
-                </motion.div>
+                </motion.div> */}
               </motion.div>
               
               <motion.div className="w-full md:w-1/2 flex justify-center my-4 px-4 md:mb-0" variants={fadeInUp}>

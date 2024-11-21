@@ -228,9 +228,9 @@ export default function RootLayout({
         className={`${imperial.variable} ${lato.variable} ${montserrat.variable} ${mulish.variable} ${openSans.variable} ${outfit.variable} ${poppins.variable} ${inter.variable} ${alumni.variable} ${quicksand.variable} ${montserratalt.variable}  font-sans antialiased`}
       >
         <h1 className='visually-hidden'>Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h1>
-
-        {children}
         <h2 className='visually-hidden'>Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h2>
+        {children}
+        
       </body>
     </html>
   );

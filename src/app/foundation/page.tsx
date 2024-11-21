@@ -106,7 +106,7 @@ export default function FoundationPage() {
               {/* Right Column - Image Grid */}
               <motion.div className="w-full lg:w-1/2 mt-8 lg:mt-0" variants={stagger}>
                 <div className="grid grid-cols-2 gap-2 md:gap-4">
-                  {[1, 2, 3, 4].map((num) => (
+                  {[ 2, 3, 4].map((num) => (
                     <motion.div key={num} variants={fadeInUp}>
                       <ImageWithSkeleton
                         src={`/photos/foundation/${num}.png`}
