@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
+import { Facebook, Instagram, Linkedin } from 'lucide-react'
 
 export function Footer() {
   const router = useRouter()

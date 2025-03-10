@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 
 export default function About() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -48,7 +48,7 @@ export default function About() {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <p className="text-xl mb-8 text-pink-900 font-light leading-relaxed">
-                India's ultimate luxury in cakes, coffee, and confections. Known for world-class flavors, Victorian elegance, and award-winning quality, Harley's is where indulgence meets innovation. Proudly crafted in India poised to captivate the world
+                India's ultimate luxury in cakes, coffee, and confections. Known for world-class flavors, Victorian elegance, and award-winning quality, Harley's is where indulgence meets innovation. Proudly crafted in India, poised to captivate the world.
               </p>
             </div>
           </div>

@@ -55,13 +55,16 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
   ]
 
   const marqueeTexts = [
-    "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
+    // "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
     "HARLEY'S",
-    "Grand Opening: Harley's Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
+    // "Grand Opening: Harley's Ivory Lounge in Kala Ghoda, Mumbai on 24th November 2024.",
+    // "Fine Baking",
+    // "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
+    // "HARLEY'S",
+    "Harley's – Celebrate Every Moment!",
     "Fine Baking",
-    "New Outlet: Second Ivory Lounge in Basavanagudi, Bangalore opened on 9th November 2024.",
-    "HARLEY'S",
-    "Harley's – Celebrate Every Moment!"
+    "We Did It! - Broke the “Guinness World Record!” : The legendary Russian Medovik Cake now stands immortalized in history, proudly representing Harley’s excellence and innovation."
+
   ]
 
   return (
@@ -81,38 +84,44 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
             </Link>
           </div>
           
-          <nav className="hidden md:flex justify-between items-center">
-            <div className="flex space-x-6 items-center">
-            <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</a>
-            <a href="#menu" onClick={(e) => { e.preventDefault(); scrollToSection('menu'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</a>
-            <a href="#order" onClick={(e) => { e.preventDefault(); setIsOrderModalOpen(true); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</a>
-            </div>
-            <div className="relative flex items-center justify-center">
-              {!isScrolled && (
-                <div 
-                  className="absolute bg-[#CBEBF2]/30 backdrop-blur-md rounded-[50%] w-[200px] h-[130px] shadow-lg" 
-                  style={{ borderRadius: '50% / 50%' }}
-                ></div>
-              )}
-              <div className="relative z-10">
-              <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
-                <Image 
-                  src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
-                  alt="Harley's Logo" 
-                  width={isScrolled ? 100 : 120}
-                  height={isScrolled ? 50 : 120}
-                  className="w-auto h-auto"
-                />
-                </Link>
-              </div>
-            </div>
-            <div className="flex space-x-6 items-center">
-              
-    <a href="#locations" onClick={(e) => { e.preventDefault(); scrollToSection('locations'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</a>
-              <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
-              <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
-            </div>
-          </nav>
+          <nav className={`hidden md:flex justify-between items-center relative ${isScrolled ? 'h-16' : 'h-32'} transition-all duration-300`}>
+        <div className={`flex space-x-6 items-center absolute left-0 transition-all duration-300 ${isScrolled ? 'top-1/2 -translate-y-1/2' : ''}`}>
+          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</a>
+          <a href="#menu" onClick={(e) => { e.preventDefault(); scrollToSection('menu'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</a>
+          <a href="#order" onClick={(e) => { e.preventDefault(); setIsOrderModalOpen(true); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</a>
+        </div>
+        <div className="flex-grow flex justify-center items-center">
+          <div className={`relative inline-block transition-all duration-300 ${isScrolled ? 'w-32 h-12' : 'w-[200px] h-[130px]'}`}>
+            {!isScrolled && (
+              <div 
+                className="absolute bg-[#CBEBF2]/30 backdrop-blur-md shadow-lg"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50%',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              ></div>
+            )}
+            <Link href="/home" className="relative z-10 inline-flex items-center justify-center w-full h-full">
+              <Image 
+                src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
+                alt="Harley's Logo" 
+                width={isScrolled ? 100 : 120}
+                height={isScrolled ? 50 : 120}
+                className="w-auto h-auto max-h-full"
+              />
+            </Link>
+          </div>
+        </div>
+        <div className={`flex space-x-6 items-center absolute right-0 transition-all duration-300 ${isScrolled ? 'top-1/2 -translate-y-1/2' : ''}`}>
+          <a href="#locations" onClick={(e) => { e.preventDefault(); scrollToSection('locations'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</a>
+          <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
+          <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
+        </div>
+      </nav>
         </div>
       </div>
       <Button 

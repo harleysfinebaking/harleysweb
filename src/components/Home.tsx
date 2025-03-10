@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import Categories from '@/components/Categories'
 import {Locations} from '@/components/Locations'
 import HeroSection from '@/components/Hero'

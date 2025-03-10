@@ -1,15 +1,19 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import DecoratedTitle from '@/components/DecoratedTitle'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 
 interface CategoryItem {
   name: string;
   imagePath: string;
   price: string;
+  skuId?: string;
 }
 
 interface CategorySectionProps {
@@ -18,6 +22,13 @@ interface CategorySectionProps {
   columns: string;
   backgroundColor: string;
   cardBackgroundColor: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  skuId: string;
+  category: string;
 }
 
 const FadeInElement = ({ children, delay = 0 }) => {
@@ -45,39 +56,41 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     <div className={`py-12 ${backgroundColor}`}>
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <DecoratedTitle title={title} headingLevel="h1" className="mb-8" />
+          <DecoratedTitle title={title} headingLevel="h2" className="mb-8" />
         </FadeInElement>
         <div className={`grid ${columns} gap-6`}>
           {items.map((item, index) => (
             <FadeInElement key={index} delay={index * 0.1}>
-              <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
-                <div className={`relative ${isContainAndBlur ? "aspect-[22/9]" : "aspect-[4/3]"} overflow-hidden`}>
-                  {isContainAndBlur && (
-                    <div className="absolute inset-0 z-0">
+              {/* <Link href={`/products?category=${encodeURIComponent(item.name)}`}> */}
+                <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
+                  <div className={`relative ${isContainAndBlur ? "aspect-[22/9]" : "aspect-[4/3]"} overflow-hidden`}>
+                    {isContainAndBlur && (
+                      <div className="absolute inset-0 z-0">
+                        <Image
+                          src={item.imagePath}
+                          alt={item.name}
+                          layout="fill"
+                          objectFit="cover"
+                          className="scale-110 blur-lg"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    )}
+                    <div className={`absolute inset-0 ${isContainAndBlur ? 'z-10' : ''} flex items-center justify-center`}>
                       <Image
                         src={item.imagePath}
                         alt={item.name}
                         layout="fill"
-                        objectFit="cover"
-                        className="scale-110 blur-lg"
-                        aria-hidden="true"
+                        objectFit={isContainAndBlur ? "cover" : "cover"}
+                        className="transition-transform duration-300 hover:scale-105"
                       />
                     </div>
-                  )}
-                  <div className={`absolute inset-0 ${isContainAndBlur ? 'z-10' : ''} flex items-center justify-center`}>
-                    <Image
-                      src={item.imagePath}
-                      alt={item.name}
-                      layout="fill"
-                      objectFit={isContainAndBlur ? "cover" : "cover"}
-                      className="transition-transform duration-300 hover:scale-105"
-                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <h3 className="text-xl font-semibold text-gray-600">{item.name}</h3>
                   </div>
                 </div>
-                <div className="p-4 text-center">
-                  <h3 className="text-xl font-semibold text-gray-600">{item.name}</h3>
-                </div>
-              </div>
+              
             </FadeInElement>
           ))}
         </div>
@@ -87,6 +100,21 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
 }
 
 export default function Categories() {
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const querySnapshot = await getDocs(collection(db, 'products'))
+      const productsData = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Product[]
+      setProducts(productsData)
+    }
+
+    fetchProducts()
+  }, [])
+
   const categories = [
     {
       title: "Artisan Desserts",
@@ -130,9 +158,18 @@ export default function Categories() {
     }
   ];
 
+  // Add skuId to category items if a matching product is found
+  const categoriesWithLinks = categories.map(category => ({
+    ...category,
+    items: category.items.map(item => {
+      const matchingProduct = products.find(p => p.name.toLowerCase() === item.name.toLowerCase())
+      return matchingProduct ? { ...item, skuId: matchingProduct.skuId } : item
+    })
+  }))
+
   return (
     <section id="menu" className="bg-[#CBEBF2]">
-      {categories.map((category, index) => (
+      {categoriesWithLinks.map((category, index) => (
         <FadeInElement key={index} delay={index * 0.2}>
           <CategorySection
             title={category.title}
@@ -146,3 +183,4 @@ export default function Categories() {
     </section>
   )
 }
+

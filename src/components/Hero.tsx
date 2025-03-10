@@ -2,19 +2,29 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { OrderModal } from './OrderModal'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const carouselItems = [
+  
   {
     video: "https://firebasestorage.googleapis.com/v0/b/homefront-479e7.appspot.com/o/video3.mp4?alt=media&token=fe4bb5cb-2511-4e8a-954c-f21b83ce8dfe",
     image: "/photos/hero1.jpg", // Fallback image for video
     title: "Indulge in Elegance",
     subtitle: "Experience the refined \"Kaffee und Kuchen\" tradition at Harley's"
   },
+  {
+    image:"https://firebasestorage.googleapis.com/v0/b/homefront-479e7.appspot.com/o/harleys%2FGWR%20Photo.jpg?alt=media&token=e741066b-57ef-4293-bfd9-025c8a67c6d0",
+    
+    title: "Guinness World Record",
+    subtitle: "Harley's broke the guinness world record for the largest Medovik cake"
+  },
+
+  
   {
     image: "/photos/hero2.jpg",
     title: "Artisanal Delights",
@@ -33,6 +43,7 @@ export default function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const sliderRef = useRef<Slider>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -40,16 +51,26 @@ export default function HeroSection() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const handleVideoEnd = () => {
-    setIsVideoPlaying(false)
-    if (sliderRef.current) {
-      sliderRef.current.slickNext()
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
     }
-  }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        sliderRef.current?.slickPrev()
+      } else if (e.key === 'ArrowRight') {
+        sliderRef.current?.slickNext()
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('keydown', handleKeyDown)
+    handleResize() // Initial check
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   const handleVideoCanPlay = () => {
     setIsVideoLoaded(true)
@@ -66,153 +87,154 @@ export default function HeroSection() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000, // Set to 5 seconds for non-video slides
+    autoplaySpeed: 5000,
     pauseOnHover: false,
     fade: true,
     cssEase: "cubic-bezier(0.7, 0, 0.3, 1)",
     beforeChange: (current: number, next: number) => {
       setActiveSlide(next)
-      if (next === 0) {
-        setIsVideoLoaded(false)
-        setIsVideoPlaying(false)
-        if (videoRef.current) {
-          videoRef.current.currentTime = 0
-          videoRef.current.load()
-        }
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
       }
+      setIsVideoLoaded(false)
+      setIsVideoPlaying(false)
     },
     afterChange: (current: number) => {
-      if (current === 0) {
-        if (videoRef.current) {
-          videoRef.current.play()
-          setIsVideoPlaying(true)
-        }
+      if (current === 1 && videoRef.current) {
+        videoRef.current.play().catch(error => {
+          console.error('Error playing video:', error)
+        })
+        setIsVideoPlaying(true)
+      } else {
+        setIsVideoPlaying(false)
       }
     },
     appendDots: (dots: React.ReactNode) => (
-      <div style={{ position: 'absolute', bottom: '40px', right: '40px', textAlign: 'right' }}>
-        <ul style={{ margin: "0px", padding: "0px" }}> {dots} </ul>
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center md:justify-end md:bottom-10 md:right-10">
+        <ul className="m-0 p-0"> {dots} </ul>
       </div>
     ),
     customPaging: (i: number) => (
       <div
-        style={{
-          width: "12px",
-          height: "12px",
-          border: "2px solid white",
-          borderRadius: "50%",
-          backgroundColor: activeSlide === i ? "white" : "transparent",
-          transition: "all 0.3s ease",
-          display: "inline-block",
-          margin: "0 4px",
-        }}
+        className={`w-3 h-3 mx-1 rounded-full border-2 border-white transition-all duration-300 ease-in-out ${
+          activeSlide === i ? 'bg-white' : 'bg-transparent'
+        }`}
       />
     ),
     dotsClass: "slick-dots slick-thumb custom-dot",
   }
 
   useEffect(() => {
-    if (sliderRef.current && videoRef.current) {
-      videoRef.current.load()
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (videoRef.current) {
+          videoRef.current.pause()
+        }
+      } else {
+        if (activeSlide === 1 && videoRef.current) {
+          videoRef.current.play().catch(error => {
+            console.error('Error playing video:', error)
+          })
+        }
+      }
     }
-  }, [])
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [activeSlide])
 
   useEffect(() => {
-    if (isVideoPlaying && sliderRef.current) {
-      sliderRef.current.slickPause()
-    } else if (!isVideoPlaying && sliderRef.current) {
-      sliderRef.current.slickPlay()
+    if (activeSlide === 1 && videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error('Error playing video:', error)
+      })
     }
-  }, [isVideoPlaying])
+  }, [activeSlide])
 
   return (
     <section className="relative h-screen overflow-hidden">
       <Slider ref={sliderRef} {...settings}>
-        {carouselItems.map((item, index) => (
-          <div key={index} className="relative h-screen flex items-center justify-center">
-            {item.video ? (
-              <>
-                <video
-                  ref={videoRef}
-                  muted
-                  playsInline
-                  onEnded={handleVideoEnd}
-                  onCanPlay={handleVideoCanPlay}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  <source src={item.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <Image 
-                  src={item.image}
-                  alt={`Harley's Patisserie - ${item.title}`}
-                  layout="fill"
-                  objectFit="cover"
-                  quality={100}
-                  priority={true}
-                  className={`transition-opacity duration-500 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
-                />
-              </>
-            ) : (
-              <Image 
-                src={item.image}
-                alt={`Harley's Patisserie - ${item.title}`}
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                priority={index === 1}
-              />
-            )}
-            
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
-            <div className={`relative z-10 flex flex-col items-center justify-between h-full py-16 px-4 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-20' : 'opacity-100'}`}>
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <button onClick={() => setIsOrderModalOpen(true)} className="hidden md:block bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-6 py-2 rounded-md transition-colors duration-300">
-                  Order Now
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
+  {carouselItems.map((item, index) => (
+    <div key={index} className="relative h-screen flex items-center justify-center">
+      {item.video ? (
+        <>
+          <video
+            ref={videoRef}
+            muted
+            playsInline
+            loop
+            onCanPlay={handleVideoCanPlay}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+              isVideoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <source src={item.video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <Image
+            src={item.image}
+            alt={`Harley's Patisserie - ${item.title}`}
+            fill
+            style={{ objectFit: 'cover' }}
+            quality={100}
+            priority={index === 0} // First item gets priority for optimized loading
+            className={`transition-opacity duration-500 ${
+              isVideoLoaded ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+        </>
+      ) : (
+        <Image
+          src={item.image} // No need to check for item.mobileImage anymore
+          alt={`Harley's Patisserie - ${item.title}`}
+          fill
+          style={{ objectFit: 'cover' }}
+          quality={100}
+          priority={index === 0}
+        />
+      )}
+    </div>
+  ))}
+</Slider>
+
+      <button 
+        onClick={() => sliderRef.current?.slickPrev()} 
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors duration-300"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6 text-white" />
+      </button>
+      <button 
+        onClick={() => sliderRef.current?.slickNext()} 
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 rounded-full p-2 transition-colors duration-300"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6 text-white" />
+      </button>
       <noscript>
-          <h1>Harley's Fine Baking</h1>
-          
-        </noscript>
+        <h1>Harley's Fine Baking</h1>
+      </noscript>
       <div className="md:hidden fixed bottom-12 left-0 right-0 z-50 flex justify-center">
         <button onClick={() => setIsOrderModalOpen(true)} className="bg-black hover:scale-105 text-white hover:bg-[#CBEBF2] hover:text-black text-lg px-6 py-2 rounded-md transition-colors duration-300 fixed-button">
           Order Now
         </button>
       </div>
       <OrderModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
-      <style jsx global>{`
-        .custom-dot {
-          text-align: right;
+      <style jsx>{`
+        :global(.slick-dots) {
+          bottom: 1rem;
         }
-        .custom-dot li {
-          display: inline-block;
-          margin: 0 4px;
-        }
-        .custom-dot li button:before {
-          font-size: 0;
-          line-height: 0;
-          display: block;
-          width: 12px;
-          height: 12px;
-          padding: 0;
-          cursor: pointer;
-          color: transparent;
-          border: 0;
-          outline: none;
-          background: transparent;
-        }
-        .custom-dot li.slick-active button {
-          background-color: white;
-        }
-        .fixed-button {
-          box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        @media (min-width: 768px) {
+          :global(.slick-dots) {
+            bottom: 2.5rem;
+          }
         }
       `}</style>
     </section>
   )
 }
+

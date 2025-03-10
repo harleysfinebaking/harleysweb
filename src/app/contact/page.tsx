@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 
 export default function Contact() {
   const [isScrolled, setIsScrolled] = useState(false)
