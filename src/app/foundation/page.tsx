@@ -6,7 +6,7 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { motion } from 'framer-motion'
 
-const fadeInUp = {
+export const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -15,7 +15,7 @@ const fadeInUp = {
   }
 }
 
-const stagger = {
+export const stagger = {
   visible: {
     transition: {
       staggerChildren: 0.1
@@ -23,11 +23,11 @@ const stagger = {
   }
 }
 
-const SkeletonLoader = () => (
+export const SkeletonLoader = () => (
   <div className="bg-gray-200 rounded-lg animate-pulse aspect-square"></div>
 )
 
-const ImageWithSkeleton = ({ src, alt }) => {
+export const ImageWithSkeleton = ({ src, alt }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   return (
