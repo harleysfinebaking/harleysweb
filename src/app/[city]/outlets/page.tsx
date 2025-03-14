@@ -6,12 +6,28 @@ import { FadeInElement } from "@/components/Locations";
 import { notFound } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp, stagger } from "@/app/foundation/page";
 import Outlet from "@/components/Outlets";
 
 interface Props {
   params: Promise<{ city: string }>;
 }
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const stagger = {
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 export default function OutletsPage({ params }: Props) {
   const { city } = use(params);
