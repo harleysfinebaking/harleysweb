@@ -1,17 +1,18 @@
-'use client'
+"use client";
 
-import React from 'react'
-import Image from 'next/image'
-// import { Button } from "@/components/ui/button"
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import DecoratedTitle from '@/components/DecoratedTitle'
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import DecoratedTitle from "@/components/DecoratedTitle";
+import Link from "next/link";
+import path from "path";
 
-const FadeInElement = ({ children, delay = 0 }) => {
+export const FadeInElement = ({ children, delay = 0 }) => {
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.1,
-  })
+  });
 
   return (
     <motion.div
@@ -22,43 +23,50 @@ const FadeInElement = ({ children, delay = 0 }) => {
     >
       {children}
     </motion.div>
-  )
-}
+  );
+};
 
 export function Locations() {
   const locations = [
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
-  ]
+  ];
 
   return (
-    <section id="locations" className="py-16 bg-gradient-to-b from-[#F5D1D8] to-[#CBEBF2]">
+    <section
+      id="locations"
+      className="py-16 bg-gradient-to-b from-[#F5D1D8] to-[#CBEBF2]"
+    >
       <div className="container mx-auto px-4">
         <FadeInElement>
           <DecoratedTitle title="Our Locations" className="mb-8" />
         </FadeInElement>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {locations.map((location, index) => (
-            <FadeInElement key={index} delay={index * 0.1}>
-              <div className="bg-white/30 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image 
-                    src={location.image} 
-                    alt={`${location.name} Location`} 
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition-transform duration-300 hover:scale-105"
-                  />
+            <Link key={`${index + 1}`} href={`/${location.name}/outlets`}>
+              <FadeInElement delay={index * 0.1}>
+                <div className="bg-white/30 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={location.image}
+                      alt={`${location.name} Location`}
+                      layout="fill"
+                      objectFit="cover"
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <h3 className="text-xl font-semibold text-gray-600">
+                      {location.name}
+                    </h3>
+                  </div>
                 </div>
-                <div className="p-4 text-center">
-                  <h3 className="text-xl font-semibold text-gray-600">{location.name}</h3>
-                </div>
-              </div>
-            </FadeInElement>
+              </FadeInElement>
+            </Link>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

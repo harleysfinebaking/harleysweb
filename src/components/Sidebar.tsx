@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, MapPinned } from "lucide-react";
+import { LayoutDashboard, MapPin, MapPinned } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,6 +13,11 @@ const sidebarItems = [
   {
     name: "Locations",
     href: "/admin/locations",
+    icon: <MapPin size={20} />,
+  },
+  {
+    name: "Outlets",
+    href: "/admin/outlets",
     icon: <MapPinned size={20} />,
   },
 ];
