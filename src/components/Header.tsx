@@ -46,13 +46,13 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
   }
 
   const menuItems = [
-    { label: 'About', action: () => scrollToSection('about') },
-    { label: 'Menu', action: () => scrollToSection('menu') },
-    { label: 'Locations', action: () => scrollToSection('locations') },
-    { label: 'Foundation', href: '/foundation' },
-    { label: 'Blog', href: '/coming-soon' },
-    { label: 'Order Now', action: () => setIsOrderModalOpen(true) },
-  ]
+    { label: "About", href: "/about" },
+    { label: "Menu", action: () => scrollToSection("menu") },
+    { label: "Locations", href: "/outlets" },
+    { label: "Foundation", href: "/foundation" },
+    { label: "Blog", href: "/coming-soon" },
+    { label: "Order Now", action: () => setIsOrderModalOpen(true) },
+  ];
 
   const marqueeTexts = [
     // "Guinness World Record Attempt: Largest Medovik Cake on 6th December 2024 at Maaya Luxury Convention, Hyderabad.",
@@ -63,95 +63,172 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
     // "HARLEY'S",
     "Harley's – Celebrate Every Moment!",
     "Fine Baking",
-    "We Did It! - Broke the “Guinness World Record!” : The legendary Russian Medovik Cake now stands immortalized in history, proudly representing Harley’s excellence and innovation."
-
-  ]
+    "We Did It! - Broke the “Guinness World Record!” : The legendary Russian Medovik Cake now stands immortalized in history, proudly representing Harley’s excellence and innovation.",
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <Marquee texts={marqueeTexts} showMarquee={showMarquee} />
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#CBEBF2]/30 backdrop-blur-xl' : 'bg-transparent'}`}>
+      <div
+        className={`transition-all duration-300 ${
+          isScrolled ? "bg-[#CBEBF2]/30 backdrop-blur-xl" : "bg-transparent"
+        }`}
+      >
         <div className="container mx-auto px-4 py-2 md:py-4">
           <div className="flex justify-between items-center md:hidden z-10">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
-              <Image 
-                src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"} 
-                alt="Harley's Logo" 
-                width={isScrolled ? 100 : 200} 
-                height={isScrolled ? 50 : 200} 
-                className={isScrolled? "w-24 h-auto py-4" : "w-24 h-auto" }  
-              />
-            </Link>
-          </div>
-          
-          <nav className={`hidden md:flex justify-between items-center relative ${isScrolled ? 'h-16' : 'h-32'} transition-all duration-300`}>
-        <div className={`flex space-x-6 items-center absolute left-0 transition-all duration-300 ${isScrolled ? 'top-1/2 -translate-y-1/2' : ''}`}>
-          <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>About</a>
-          <a href="#menu" onClick={(e) => { e.preventDefault(); scrollToSection('menu'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Menu</a>
-          <a href="#order" onClick={(e) => { e.preventDefault(); setIsOrderModalOpen(true); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Order Now</a>
-        </div>
-        <div className="flex-grow flex justify-center items-center">
-          <div className={`relative inline-block transition-all duration-300 ${isScrolled ? 'w-32 h-12' : 'w-[200px] h-[130px]'}`}>
-            {!isScrolled && (
-              <div 
-                className="absolute bg-[#CBEBF2]/30 backdrop-blur-md shadow-lg"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '50%',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                }}
-              ></div>
-            )}
-            <Link href="/home" className="relative z-10 inline-flex items-center justify-center w-full h-full">
-              <Image 
+              <Image
                 src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
-                alt="Harley's Logo" 
-                width={isScrolled ? 100 : 120}
-                height={isScrolled ? 50 : 120}
-                className="w-auto h-auto max-h-full"
+                alt="Harley's Logo"
+                width={isScrolled ? 100 : 200}
+                height={isScrolled ? 50 : 200}
+                className={isScrolled ? "w-24 h-auto py-4" : "w-24 h-auto"}
               />
             </Link>
           </div>
-        </div>
-        <div className={`flex space-x-6 items-center absolute right-0 transition-all duration-300 ${isScrolled ? 'top-1/2 -translate-y-1/2' : ''}`}>
-          <a href="#locations" onClick={(e) => { e.preventDefault(); scrollToSection('locations'); }} className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Locations</a>
-          <Link href="/foundation" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Foundation</Link>
-          <Link href="/coming-soon" className={`hover:text-[#d45770] transition-colors text-lg ${isScrolled ? 'text-[#4A4A4A]' : 'text-black'}`}>Blog</Link>
-        </div>
-      </nav>
+
+          <nav
+            className={`hidden md:flex justify-between items-center relative ${
+              isScrolled ? "h-16" : "h-32"
+            } transition-all duration-300`}
+          >
+            <div
+              className={`flex space-x-6 items-center absolute left-0 transition-all duration-300 ${
+                isScrolled ? "top-1/2 -translate-y-1/2" : ""
+              }`}
+            >
+              <Link
+                href="/about"
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+              >
+                About
+              </Link>
+              <a
+                href="#menu"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("menu");
+                }}
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+              >
+                Menu
+              </a>
+              <a
+                href="#order"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsOrderModalOpen(true);
+                }}
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+              >
+                Order Now
+              </a>
+            </div>
+            <div className="flex-grow flex justify-center items-center">
+              <div
+                className={`relative inline-block transition-all duration-300 ${
+                  isScrolled ? "w-32 h-12" : "w-[200px] h-[130px]"
+                }`}
+              >
+                {!isScrolled && (
+                  <div
+                    className="absolute bg-[#CBEBF2]/30 backdrop-blur-md shadow-lg"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  ></div>
+                )}
+                <Link
+                  href="/home"
+                  className="relative z-10 inline-flex items-center justify-center w-full h-full"
+                >
+                  <Image
+                    src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
+                    alt="Harley's Logo"
+                    width={isScrolled ? 100 : 120}
+                    height={isScrolled ? 50 : 120}
+                    className="w-auto h-auto max-h-full"
+                  />
+                </Link>
+              </div>
+            </div>
+            <div
+              className={`flex space-x-6 items-center absolute right-0 transition-all duration-300 ${
+                isScrolled ? "top-1/2 -translate-y-1/2" : ""
+              }`}
+            >
+              <Link
+                href="/outlets"
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+                onClick={() => sessionStorage.clear()}
+              >
+                Locations
+              </Link>
+              <Link
+                href="/foundation"
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+              >
+                Foundation
+              </Link>
+              <Link
+                href="/coming-soon"
+                className={`hover:text-[#d45770] transition-colors text-lg ${
+                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                }`}
+              >
+                Blog
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
-      <Button 
+      <Button
         className={`
           md:hidden z-50 w-12 h-12 
           bg-pink-100/10 hover:bg-blue-100/30 
           flex items-center justify-center 
           fixed right-4 
           transition-all duration-300 ease-in-out
-          ${isScrolled ? 'top-4' : 'top-16'}
+          ${isScrolled ? "top-4" : "top-16"}
         `}
-        variant="ghost" 
-        size="icon" 
+        variant="ghost"
+        size="icon"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <motion.div
           animate={isMenuOpen ? "open" : "closed"}
           variants={{
             open: { rotate: 180 },
-            closed: { rotate: 0 }
+            closed: { rotate: 0 },
           }}
           transition={{ duration: 0.2 }}
           className="w-8 h-8 flex items-center justify-center"
         >
-          {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          {isMenuOpen ? (
+            <X className="w-8 h-8" />
+          ) : (
+            <Menu className="w-8 h-8" />
+          )}
         </motion.div>
       </Button>
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             className="md:hidden fixed top-0 right-0 w-1/2 h-full bg-white/30 backdrop-blur-md"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -178,8 +255,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   ) : (
                     <button
                       onClick={() => {
-                        item.action()
-                        setIsMenuOpen(false)
+                        item.action();
+                        setIsMenuOpen(false);
                       }}
                       className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl"
                     >
@@ -192,7 +269,10 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </motion.div>
         )}
       </AnimatePresence>
-      <OrderModal isOpen={isOrderModalOpen} onClose={() => setIsOrderModalOpen(false)} />
+      <OrderModal
+        isOpen={isOrderModalOpen}
+        onClose={() => setIsOrderModalOpen(false)}
+      />
     </header>
-  )
+  );
 }

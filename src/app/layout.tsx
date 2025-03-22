@@ -77,15 +77,22 @@ const imperial = Imperial_Script({
 export const metadata: Metadata = {
   title: {
     default: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
-    template: "%s | Harley's Fine Baking"
+    template: "%s | Harley's Fine Baking",
   },
 
-  
-
-
-
-  description: "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
-  keywords: ["Harley's","Harley","bakery", "fine baking", "Medovik", "cakes", "Kaffee und Kuchen", "artisan", "European delicacies"],
+  description:
+    "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
+  keywords: [
+    "Harley's",
+    "Harley",
+    "bakery",
+    "fine baking",
+    "Medovik",
+    "cakes",
+    "Kaffee und Kuchen",
+    "artisan",
+    "European delicacies",
+  ],
   authors: [{ name: "Harley's Fine Baking" }],
   creator: "Harley's Fine Baking",
   publisher: "Harley's Fine Baking",
@@ -96,7 +103,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Harley's Fine Baking",
-    description: "Indulge in elegance with Harley's signature Medovik cakes and European delicacies.",
+    description:
+      "Indulge in elegance with Harley's signature Medovik cakes and European delicacies.",
     url: "https://www.harleys.com",
     siteName: "Harley's Fine Baking",
     images: [
@@ -113,7 +121,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Harley's Fine Baking",
-    description: "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
+    description:
+      "Harley's brings Europe's famous “Kaffee und Kuchen” to India, akin to our beloved “Chai Biscuit” tradition, we pair specialty coffee with matched cakes.",
     images: ["/photos/hero1.jpg"],
     creator: "@HarleysFineBaking",
   },
@@ -129,12 +138,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    icon: [{ url: "/icon.png", sizes: "32x32", type: "image/png" }],
   },
   manifest: "/manifest.json",
   themeColor: [
