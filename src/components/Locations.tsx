@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import DecoratedTitle from "@/components/DecoratedTitle";
 import Link from "next/link";
 import path from "path";
+import { useRouter } from "next/navigation";
 
 export const FadeInElement = ({ children, delay = 0 }) => {
   const [ref, inView] = useInView({
@@ -27,11 +28,17 @@ export const FadeInElement = ({ children, delay = 0 }) => {
 };
 
 export function Locations() {
+  const router = useRouter();
   const locations = [
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
   ];
+
+  const handleClick = (name: string) => {
+    sessionStorage.setItem("location", name);
+    router.push("/outlets");
+  };
 
   return (
     <section
@@ -44,7 +51,11 @@ export function Locations() {
         </FadeInElement>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {locations.map((location, index) => (
-            <Link key={`${index + 1}`} href={`/${location.name}/outlets`}>
+            <div
+              key={`${index + 1}`}
+              onClick={() => handleClick(location?.name)}
+              className="cursor-pointer"
+            >
               <FadeInElement delay={index * 0.1}>
                 <div className="bg-white/30 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -63,7 +74,7 @@ export function Locations() {
                   </div>
                 </div>
               </FadeInElement>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
