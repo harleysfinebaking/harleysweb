@@ -175,7 +175,7 @@ export default function OutletsPage() {
               >
                 <FadeInElement delay={index * 0.1}>
                   <div className="bg-[#CBEBF2] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div className="relative aspect-[4/3] lg:aspect-[2] overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
                         src={location.image}
                         alt={`${location.name} Location`}

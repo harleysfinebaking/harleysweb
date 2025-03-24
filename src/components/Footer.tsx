@@ -76,18 +76,18 @@ export function Footer() {
 
             <div className="flex items-center gap-4">
               <Link
-                href="https://www.facebook.com/harleysfinebaking"
-                target="_blank"
-                className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link
                 href="https://www.instagram.com/harleysfinebaking"
                 target="_blank"
                 className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
               >
                 <Instagram className="h-5 w-5" />
+              </Link>
+              <Link
+                href="https://www.facebook.com/harleysfinebaking"
+                target="_blank"
+                className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
               </Link>
               <Link
                 href="https://www.linkedin.com/company/harleys"
