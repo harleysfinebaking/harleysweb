@@ -47,37 +47,8 @@ export default function About() {
       <Header isScrolled={isScrolled} />
 
       <main>
-        {/* <section className="relative h-[50vh] flex items-center justify-center">
-          <Image
-            src="/photos/interior2.jpg"
-            alt="About Harley's Patisserie"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            priority
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
-          <div className="relative z-10 text-center px-4 pt-48">
-            <h1 className="text-4xl md:text-5xl font-light mb-4 text-white">
-              Welcome to Harley's!
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white font-imperial bg-[#CBEBF2]/20 p-2 rounded-lg">
-              Indulge in Luxury, Relish the Moment
-            </p>
-          </div>
-        </section> */}
-
         <section className="pt-36 md:pt-48 pb-12 bg-[#CBEBF2]">
           <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center gap-x-4 lg:gap-x-10 items-center">
-            {/* <div className="text-center max-w-3xl mx-auto hidden">
-              <p className="text-xl mb-8 text-pink-900 font-light leading-relaxed">
-                India's ultimate luxury in cakes, coffee, and confections. Known
-                for world-class flavors, Victorian elegance, and award-winning
-                quality, Harley's is where indulgence meets innovation. Proudly
-                crafted in India, poised to captivate the world.
-              </p>
-            </div> */}
             <iframe
               src="https://www.youtube.com/embed/Sw6EIzPxlZE?si=HkZgxmH-_LWwp32b"
               title="YouTube video player"
@@ -139,7 +110,12 @@ export default function About() {
         >
           <div className="container mx-auto">
             <motion.div variants={fadeInUp}>
-              <DecoratedTitle title="Our Commitments" headingLevel="h2" />
+              <DecoratedTitle
+                title="Our Commitments"
+                headingLevel="h2"
+                className="px-3"
+                fontSize="2xl"
+              />
             </motion.div>
             <div className="flex flex-col items-center justify-between gap-y-4 gap-x-3 mt-8 px-3">
               <motion.div

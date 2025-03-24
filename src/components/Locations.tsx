@@ -47,7 +47,11 @@ export function Locations() {
     >
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <DecoratedTitle title="Our Locations" className="mb-8" />
+          <DecoratedTitle
+            title="Our Locations"
+            className="mb-8"
+            fontSize="2xl"
+          />
         </FadeInElement>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {locations.map((location, index) => (

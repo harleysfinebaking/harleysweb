@@ -65,71 +65,6 @@ export default function Home() {
         <HeroSection />
 
         <motion.section
-          className="py-10 bg-[#CBEBF2] text-center hidden"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }}
-          variants={stagger}
-        >
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row gap-y-2 md:gap-y-0 md:gap-x-2 justify-evenly items-center">
-              <motion.div
-                className="flex flex-col items-center"
-                variants={fadeInUp}
-              >
-                <p className="font-semibold text-[14px] xl:text-base mb-4 px-4 w-full max-w-[600px]">
-                  We Did It! - Broke the “Guinness World Record!” : The
-                  legendary Russian Medovik Cake now stands immortalized in
-                  history, proudly representing Harley's excellence and
-                  innovation.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={inView ? { opacity: 1, scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-40 h-[1px] mb-4 bg-[#221F1F] opacity-70"
-                />
-                <Image
-                  src="/photos/harleys_GWR_Photo.webp"
-                  alt="Harley's Signature Medovik Cake"
-                  width={600}
-                  height={600}
-                  className="rounded-lg shadow-xl"
-                />
-              </motion.div>
-              <motion.div
-                className="flex flex-col items-center"
-                variants={fadeInUp}
-              >
-                <p className="font-semibold text-[14px] xl:text-base mb-4 px-4 w-full max-w-[600px]">
-                  Breaking the existing record, we crafted a colossal 2,254 kg
-                  cake, showcasing Harley's excellence and taking our passion
-                  for baking to the global stage.
-                </p>
-                <motion.div
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  animate={inView ? { opacity: 1, scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="w-40 h-[1px] mb-4 bg-[#221F1F] opacity-70"
-                />
-                <video
-                  playsInline
-                  loop
-                  autoPlay
-                  muted
-                  controls
-                  height={450}
-                  width={600}
-                  className="w-[600px] h-auto md:h-[273px] lg:h-[369px] xl:h-[450px] object-cover rounded-lg shadow-xl"
-                >
-                  <source src={"/photos/GWR_VIDEO.mp4"} type="video/mp4" />
-                </video>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
-
-        <motion.section
           id="about"
           className="py-12 bg-[#f5d1d8]"
           initial="hidden"
@@ -137,7 +72,7 @@ export default function Home() {
           viewport={{ once: false, amount: 0.4 }}
           variants={stagger}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
               <motion.div
                 className="w-full md:w-1/2 md:pl-8 px-0 md:px-0"
@@ -147,7 +82,11 @@ export default function Home() {
                   Harley's Fine Baking - Artisan Cakes & Exotic Coffee
                 </h1>
 
-                <DecoratedTitle title="Who We Are" headingLevel="h1" />
+                <DecoratedTitle
+                  title="Who We Are"
+                  headingLevel="h1"
+                  fontSize="2xl"
+                />
                 <motion.p
                   className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light"
                   variants={fadeInUp}
@@ -203,7 +142,11 @@ export default function Home() {
                   <h2 className="visually-hidden">
                     Harley's Fine Baking - Medovik Cake
                   </h2>
-                  <DecoratedTitle title="Medovik Cake" headingLevel="h2" />
+                  <DecoratedTitle
+                    title="Medovik Cake"
+                    headingLevel="h2"
+                    fontSize="2xl"
+                  />
                 </motion.div>
 
                 <motion.div variants={fadeInUp}>
@@ -253,7 +196,11 @@ export default function Home() {
               <h2 className="visually-hidden">
                 Harley's Fine Baking - Kaffee und Kuchen
               </h2>
-              <DecoratedTitle title="Kaffee und Kuchen" headingLevel="h2" />
+              <DecoratedTitle
+                title="Kaffee und Kuchen"
+                headingLevel="h2"
+                fontSize="2xl"
+              />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
               <motion.div
@@ -283,11 +230,11 @@ export default function Home() {
                   className="bg-[#FEFEFA]/20 p-2 mx-12 md:mx-8 rounded-md"
                   variants={fadeInUp}
                 >
-                  <p className="text-lg md:text-lg lg:text-2xl font-bold  text-[#221F1F] opacity-70 py-1 px-8">
+                  <p className="text-base md:text-lg lg:text-2xl font-bold  text-[#221F1F] opacity-70 py-1 px-6 md:px-8">
                     Kaffee und Kuchen
                   </p>
                   <div className="w-24 h-0.5 bg-[#221F1F] opacity-70 mx-auto"></div>
-                  <p className="text-lg md:text-lg lg:text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-8">
+                  <p className="text-base md:text-lg lg:text-2xl font-bold text-[#221F1F] opacity-70 py-1 px-6 md:px-8">
                     Coffee and Cake
                   </p>
                 </motion.div>
@@ -319,7 +266,11 @@ export default function Home() {
               <noscript>
                 <h2>Harley's Ivory Club</h2>
               </noscript>
-              <DecoratedTitle title="Harley's Ivory Club" headingLevel="h2" />
+              <DecoratedTitle
+                title="Harley's Ivory Club"
+                headingLevel="h2"
+                fontSize="2xl"
+              />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0 md:gap-16 my-8">
               <motion.div

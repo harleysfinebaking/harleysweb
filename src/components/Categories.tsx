@@ -56,47 +56,63 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     <div className={`py-12 ${backgroundColor}`}>
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <DecoratedTitle title={title} headingLevel="h2" className="mb-8" />
+          <DecoratedTitle
+            title={title}
+            headingLevel="h2"
+            className="mb-8"
+            fontSize="2xl"
+          />
         </FadeInElement>
         <div className={`grid ${columns} gap-6`}>
           {items.map((item, index) => (
             <FadeInElement key={index} delay={index * 0.1}>
               {/* <Link href={`/products?category=${encodeURIComponent(item.name)}`}> */}
-                <div className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}>
-                  <div className={`relative ${isContainAndBlur ? "aspect-[22/9]" : "aspect-[4/3]"} overflow-hidden`}>
-                    {isContainAndBlur && (
-                      <div className="absolute inset-0 z-0">
-                        <Image
-                          src={item.imagePath}
-                          alt={item.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="scale-110 blur-lg"
-                          aria-hidden="true"
-                        />
-                      </div>
-                    )}
-                    <div className={`absolute inset-0 ${isContainAndBlur ? 'z-10' : ''} flex items-center justify-center`}>
+              <div
+                className={`${cardBackgroundColor} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`}
+              >
+                <div
+                  className={`relative ${
+                    isContainAndBlur ? "aspect-[22/9]" : "aspect-[4/3]"
+                  } overflow-hidden`}
+                >
+                  {isContainAndBlur && (
+                    <div className="absolute inset-0 z-0">
                       <Image
                         src={item.imagePath}
                         alt={item.name}
                         layout="fill"
-                        objectFit={isContainAndBlur ? "cover" : "cover"}
-                        className="transition-transform duration-300 hover:scale-105"
+                        objectFit="cover"
+                        className="scale-110 blur-lg"
+                        aria-hidden="true"
                       />
                     </div>
-                  </div>
-                  <div className="p-4 text-center">
-                    <h3 className="text-xl font-semibold text-gray-600">{item.name}</h3>
+                  )}
+                  <div
+                    className={`absolute inset-0 ${
+                      isContainAndBlur ? "z-10" : ""
+                    } flex items-center justify-center`}
+                  >
+                    <Image
+                      src={item.imagePath}
+                      alt={item.name}
+                      layout="fill"
+                      objectFit={isContainAndBlur ? "cover" : "cover"}
+                      className="transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
                 </div>
-              
+                <div className="p-4 text-center">
+                  <h3 className="text-xl font-semibold text-gray-600">
+                    {item.name}
+                  </h3>
+                </div>
+              </div>
             </FadeInElement>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function Categories() {
