@@ -9,14 +9,12 @@ interface DecoratedTitleProps {
   title: string;
   className?: string;
   headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  fontSize?: string;
 }
 
 export default function DecoratedTitle({
   title,
   className = "",
   headingLevel = "h2",
-  fontSize = "3xl",
 }: DecoratedTitleProps) {
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -44,7 +42,7 @@ export default function DecoratedTitle({
             objectFit="contain"
           />
         </motion.div>
-        <HeadingTag className={`text-${fontSize} text-center text-[#221F1F]`}>
+        <HeadingTag className="text-2xl lg:text-3xl text-center text-[#221F1F]">
           {title}
         </HeadingTag>
         <motion.div

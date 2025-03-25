@@ -5,8 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import DecoratedTitle from "@/components/DecoratedTitle";
-import Link from "next/link";
-import path from "path";
 import { useRouter } from "next/navigation";
 
 export const FadeInElement = ({ children, delay = 0 }) => {
@@ -47,11 +45,7 @@ export function Locations() {
     >
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <DecoratedTitle
-            title="Our Locations"
-            className="mb-8"
-            fontSize="2xl"
-          />
+          <DecoratedTitle title="Our Locations" className="mb-8" />
         </FadeInElement>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {locations.map((location, index) => (

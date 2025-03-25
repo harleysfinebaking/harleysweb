@@ -114,7 +114,6 @@ export default function About() {
                 title="Our Commitments"
                 headingLevel="h2"
                 className="px-3"
-                fontSize="2xl"
               />
             </motion.div>
             <div className="flex flex-col items-center justify-between gap-y-4 gap-x-3 mt-8 px-3">

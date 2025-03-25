@@ -56,12 +56,7 @@ const CategorySection = ({ title, items, columns, backgroundColor, cardBackgroun
     <div className={`py-12 ${backgroundColor}`}>
       <div className="container mx-auto px-4">
         <FadeInElement>
-          <DecoratedTitle
-            title={title}
-            headingLevel="h2"
-            className="mb-8"
-            fontSize="2xl"
-          />
+          <DecoratedTitle title={title} headingLevel="h2" className="mb-8" />
         </FadeInElement>
         <div className={`grid ${columns} gap-6`}>
           {items.map((item, index) => (

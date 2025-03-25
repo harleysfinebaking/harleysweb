@@ -18,32 +18,33 @@ const menuItemVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.5,
-      ease: "easeOut"
-    }
-  })
-}
+      ease: "easeOut",
+    },
+  }),
+};
 
 export function Header({ isScrolled }: { isScrolled: boolean }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [showMarquee, setShowMarquee] = useState(true)
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false)
-  const router = useRouter()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showMarquee, setShowMarquee] = useState(true);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    setShowMarquee(!isScrolled)
-  }, [isScrolled])
+    setShowMarquee(!isScrolled);
+  }, [isScrolled]);
 
   const scrollToSection = (sectionId: string) => {
-    router.push('/home')
+    router.push("/home");
     setTimeout(() => {
-      const section = document.getElementById(sectionId)
+      const section = document.getElementById(sectionId);
       if (section) {
-        const yOffset = -80
-        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
-        window.scrollTo({ top: y, behavior: 'smooth' })
+        const yOffset = -80;
+        const y =
+          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
-    }, 100)
-  }
+    }, 100);
+  };
 
   const menuItems = [
     { label: "About", href: "/about" },

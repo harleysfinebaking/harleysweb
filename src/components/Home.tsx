@@ -82,20 +82,16 @@ export default function Home() {
                   Harley's Fine Baking - Artisan Cakes & Exotic Coffee
                 </h1>
 
-                <DecoratedTitle
-                  title="Who We Are"
-                  headingLevel="h1"
-                  fontSize="2xl"
-                />
+                <DecoratedTitle title="Who We Are" headingLevel="h1" />
                 <motion.p
-                  className="text-xl mb-4 pt-8 px-8 md:px-16 text-center text-[#221F1F] font-light"
+                  className="text-xl mb-4 pt-6 px-3 lg:px-16 text-center text-[#221F1F] font-light"
                   variants={fadeInUp}
                 >
                   The ultimate luxury destination <br /> for gourmet cakes,
                   speciality coffee, and premium confectionery.
                 </motion.p>
                 <motion.p
-                  className="text-xl mb-4 px-8 md:px-16 text-center text-[#221F1F] font-light"
+                  className="text-xl mb-4 px-3 lg:px-16 text-center text-[#221F1F] font-light"
                   variants={fadeInUp}
                 >
                   Harley's is where indulgence meets innovation. Proudly crafted
@@ -142,11 +138,7 @@ export default function Home() {
                   <h2 className="visually-hidden">
                     Harley's Fine Baking - Medovik Cake
                   </h2>
-                  <DecoratedTitle
-                    title="Medovik Cake"
-                    headingLevel="h2"
-                    fontSize="2xl"
-                  />
+                  <DecoratedTitle title="Medovik Cake" headingLevel="h2" />
                 </motion.div>
 
                 <motion.div variants={fadeInUp}>
@@ -196,11 +188,7 @@ export default function Home() {
               <h2 className="visually-hidden">
                 Harley's Fine Baking - Kaffee und Kuchen
               </h2>
-              <DecoratedTitle
-                title="Kaffee und Kuchen"
-                headingLevel="h2"
-                fontSize="2xl"
-              />
+              <DecoratedTitle title="Kaffee und Kuchen" headingLevel="h2" />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
               <motion.div
@@ -266,11 +254,7 @@ export default function Home() {
               <noscript>
                 <h2>Harley's Ivory Club</h2>
               </noscript>
-              <DecoratedTitle
-                title="Harley's Ivory Club"
-                headingLevel="h2"
-                fontSize="2xl"
-              />
+              <DecoratedTitle title="Harley's Ivory Club" headingLevel="h2" />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0 md:gap-16 my-8">
               <motion.div
