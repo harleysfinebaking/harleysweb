@@ -47,6 +47,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
   };
 
   const menuItems = [
+    { label: "Home", href: "/home" },
     { label: "About", href: "/about" },
     { label: "Menu", action: () => scrollToSection("menu") },
     { label: "Locations", href: "/outlets" },
@@ -72,7 +73,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       <Marquee texts={marqueeTexts} showMarquee={showMarquee} />
       <div
         className={`transition-all duration-300 ${
-          isScrolled ? "bg-[#CBEBF2]/30 backdrop-blur-xl" : "bg-transparent"
+          isScrolled ? "bg-[#CBEBF2]/90" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 py-2 md:py-4">
@@ -106,13 +107,9 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   closed: { rotate: 0 },
                 }}
                 transition={{ duration: 0.2 }}
-                className="w-8 h-8 flex items-center justify-center"
+                className="flex items-center justify-center"
               >
-                {isMenuOpen ? (
-                  <X className="w-8 h-8" />
-                ) : (
-                  <Menu className="w-8 h-8" />
-                )}
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </motion.div>
             </Button>
           </div>
@@ -130,7 +127,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               <Link
                 href="/about"
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
                 About
@@ -142,7 +139,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   scrollToSection("menu");
                 }}
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
                 Menu
@@ -154,7 +151,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   setIsOrderModalOpen(true);
                 }}
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
                 Order Now
@@ -201,7 +198,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               <Link
                 href="/outlets"
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
                 onClick={() => sessionStorage.clear()}
               >
@@ -210,7 +207,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               <Link
                 href="/foundation"
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
                 Foundation
@@ -218,7 +215,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
               <Link
                 href="/coming-soon"
                 className={`hover:text-[#d45770] transition-colors text-lg ${
-                  isScrolled ? "text-[#4A4A4A]" : "text-black"
+                  isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
                 Blog
@@ -237,7 +234,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
             exit={{ x: "100%" }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
           >
-            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-16">
+            <nav className="flex flex-col items-end space-y-8 py-20 px-8 h-full mt-10">
               {menuItems.map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -249,7 +246,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl"
+                      className="text-gray-700 hover:text-[#d45770] transition-colors text-2xl"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}
@@ -260,7 +257,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                         item.action();
                         setIsMenuOpen(false);
                       }}
-                      className="text-[#4A4A4A] hover:text-[#d45770] transition-colors text-2xl"
+                      className="text-gray-700 hover:text-[#d45770] transition-colors text-2xl"
                     >
                       {item.label}
                     </button>

@@ -7,7 +7,6 @@ import { Footer } from '@/components/Footer'
 import { motion } from "framer-motion";
 import DecoratedTitle from "@/components/DecoratedTitle";
 import { Infinity } from "lucide-react";
-// import { Button } from "@/components/ui/button"
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -48,7 +47,7 @@ export default function About() {
 
       <main>
         <section className="pt-36 md:pt-48 pb-12 bg-[#CBEBF2]">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center gap-x-4 lg:gap-x-10 items-center">
+          <div className="container mx-auto px-3 flex flex-col md:flex-row justify-center gap-x-4 lg:gap-x-10 items-center">
             <iframe
               src="https://www.youtube.com/embed/Sw6EIzPxlZE?si=HkZgxmH-_LWwp32b"
               title="YouTube video player"
@@ -56,19 +55,17 @@ export default function About() {
               className="rounded-lg w-full max-w-[900px] h-[300px] md:h-[400px] mb-4 md:mb-0"
             ></iframe>
             <motion.div
-              className="bg-[#E8F7FF] p-4 rounded-2xl border shadow-md md:w-80"
+              className="bg-[#E8F7FF] p-4 rounded-2xl border shadow-md w-full md:max-w-80 md:h-[400px] flex flex-col justify-between"
               variants={fadeInUp}
             >
-              <div className="flex items-center">
-                <div className="border border-gray-400 rounded-full px-3 py-1 text-sm font-medium">
-                  HARLEY'S
-                </div>
-              </div>
-              <div className="my-[68px] text-5xl font-bold leading-[52px]">
-                Guinness <br /> Record <br /> Holder
+              <div className="text-3xl md:text-4xl font-bold leading-[42px] md:leading-[54px]">
+                Guinness <br /> World Record <br /> Holder
               </div>
               <p className="mt-2 text-gray-600 text-base">
-                2254 KG Medovik Cake Made In Hyderabad, India.
+                On December 6, 2024, Broke the “Guinness World Record!” : The
+                legendary Russian Medovik Cake now stands immortalized in
+                history, proudly representing Harley's excellence and
+                innovation.
               </p>
             </motion.div>
           </div>
@@ -84,12 +81,12 @@ export default function About() {
           <div className="container mx-auto md:px-4">
             <div className="px-4 mx-4 md:mx-8">
               <div className="flex items-center">
-                <div className="border border-gray-400 rounded-full px-3 py-1 mb-8 text-base font-medium">
+                <div className="border border-gray-400 rounded-full px-3 py-1 mb-8 text-sm md:text-base font-semibold">
                   Our Vision
                 </div>
               </div>
               <motion.p
-                className="text-xl md:text-[28px] leading-8 text-[#221F1F] mb-8 md:mb-0 "
+                className="text-base md:text-lg lg:text-xl text-[#221F1F] mb-8 md:mb-0 "
                 variants={fadeInUp}
               >
                 To create a world where every bite reflects passion, quality,
@@ -122,12 +119,12 @@ export default function About() {
                 variants={fadeInUp}
               >
                 <div className="flex items-center">
-                  <div className="border border-gray-400 rounded-full px-3 py-1 text-base font-medium">
+                  <div className="border border-gray-400 rounded-full px-3 py-1 text-sm md:text-base font-semibold">
                     Our Commitment to Quality
                   </div>
                 </div>
                 <div className="md:flex items-center gap-x-2 xl:gap-x-40 ">
-                  <p className="md:text-lg lg:text-xl xl:text-2xl py-4 w-full max-w-2/3">
+                  <p className="text-base md:text-lg lg:text-xl py-4 w-full max-w-2/3">
                     We source the finest ingredients to ensure excellence in
                     every product. Our specialty coffee, from one of
                     Chikmagalur's oldest plantations, reflects our dedication to
@@ -138,7 +135,7 @@ export default function About() {
                     alt="Quality"
                     objectFit="cover"
                     height={300}
-                    width={1000}
+                    width={700}
                     className="rounded-md shadow-xl"
                   />
                 </div>
@@ -149,24 +146,24 @@ export default function About() {
                 variants={fadeInUp}
               >
                 <div className="flex items-center">
-                  <div className="border border-gray-400 rounded-full px-3 py-1 text-base font-medium md:ml-auto">
+                  <div className="border border-gray-400 rounded-full px-3 py-1 text-sm md:text-base font-semibold md:ml-auto">
                     Our Commitment to Innovation
                   </div>
                 </div>
-                <div className="md:flex items-center gap-x-2 xl:gap-x-40 ">
+                <div className="md:flex md:flex-row-reverse items-center gap-x-2 xl:gap-x-40 ">
+                  <p className="text-base md:text-lg lg:text-xl md:text-right w-full max-w-2/3 py-4">
+                    Innovation drives us to explore new flavors and techniques.
+                    Through creative recipes and engaging workshops, we redefine
+                    what it means to bake with love.
+                  </p>
                   <Image
                     src="/photos/innovation.webp"
                     alt="Innovation"
                     objectFit="cover"
                     height={300}
-                    width={1000}
-                    className="rounded-md shadow-xl my-4"
+                    width={700}
+                    className="rounded-md shadow-xl"
                   />
-                  <p className="md:text-lg lg:text-xl xl:text-2xl md:text-right w-full max-w-2/3">
-                    Innovation drives us to explore new flavors and techniques.
-                    Through creative recipes and engaging workshops, we redefine
-                    what it means to bake with love.
-                  </p>
                 </div>
               </motion.div>
 
@@ -175,12 +172,12 @@ export default function About() {
                 variants={fadeInUp}
               >
                 <div className="flex items-center">
-                  <div className="border border-gray-400 rounded-full px-3 py-1 text-base font-medium">
+                  <div className="border border-gray-400 rounded-full px-3 py-1 text-sm md:text-base font-semibold">
                     Our Commitment to Happiness
                   </div>
                 </div>
                 <div className="md:flex items-center gap-x-2 xl:gap-x-40">
-                  <p className="md:text-lg lg:text-xl xl:text-2xl py-4 w-full max-w-2/3">
+                  <p className="text-base md:text-lg lg:text-xl py-4 w-full max-w-2/3">
                     At Harley's, we believe happiness is found in the simple
                     pleasures of life. Our mission is to create joyful moments
                     and cherished memories, whether it's savoring a warm cup of
@@ -192,7 +189,7 @@ export default function About() {
                     alt="Happiness"
                     objectFit="cover"
                     height={300}
-                    width={1000}
+                    width={700}
                     className="rounded-md shadow-xl"
                   />
                 </div>
@@ -212,12 +209,12 @@ export default function About() {
           <div className="container mx-auto">
             <motion.div className=" px-3 lg:px-14" variants={fadeInUp}>
               <div className="flex items-center">
-                <div className="border border-gray-400 rounded-full px-3 py-1 text-base font-medium">
+                <div className="border border-gray-400 rounded-full px-3 py-1 text-sm md:text-base font-semibold">
                   The Harley's Values - Our Founders Words
                 </div>
               </div>
-              <div className="md:flex items-center gap-x-4 xl:gap-x-40">
-                <p className="lg:text-lg xl:text-xl py-4 w-full max-w-2/3">
+              <div className="md:flex items-center gap-x-4 xl:gap-x-20">
+                <p className="text-base md:text-lg xl:text-xl py-4 w-full max-w-2/3">
                   "When I started Harley's, I wasn't just stepping into a new
                   business—I was embracing a passion for creating experiences
                   that connect people. Despite not coming from an F&B
@@ -237,11 +234,11 @@ export default function About() {
                 </p>
                 <Image
                   src="/photos/CEO_IMG.webp"
-                  alt="Quality"
+                  alt="Harley's CEO"
                   objectFit="cover"
                   height={300}
-                  width={500}
-                  className="rounded-md shadow-xl"
+                  width={300}
+                  className="rounded-md shadow-xl w-full max-w-[350px] m-auto md:m-0"
                 />
               </div>
             </motion.div>
@@ -266,7 +263,7 @@ export default function About() {
           />
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
-          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10">
+          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
               25 +
             </div>
@@ -274,7 +271,7 @@ export default function About() {
               Outlets & Cloud Kitchens
             </p>
           </div>
-          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10">
+          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
               500 +
             </div>
@@ -282,7 +279,7 @@ export default function About() {
               Employees
             </p>
           </div>
-          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10">
+          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
               5000 +
             </div>
@@ -290,12 +287,12 @@ export default function About() {
               Macrons Produced Everyday
             </p>
           </div>
-          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10">
+          <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold">
               <Infinity
                 size={52}
                 strokeWidth={2}
-                className="ml-3 scale-100 md:scale-150"
+                className="md:ml-3 scale-100 md:scale-150"
               />
             </div>
             <p className="mt-2 text-gray-600 text-sm md:text-base lg:text-xl">

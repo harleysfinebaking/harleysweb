@@ -191,10 +191,7 @@ export default function Home() {
               <DecoratedTitle title="Kaffee und Kuchen" headingLevel="h2" />
             </motion.div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12 mx-4 md:mx-8 lg:mx-24">
-              <motion.div
-                className="md:w-1/2 mb-8 md:mb-0 "
-                variants={fadeInUp}
-              >
+              <motion.div className="md:w-1/2" variants={fadeInUp}>
                 <Image
                   src="/photos/koffeekuchen.png"
                   alt="Kaffee und Kuchen"
@@ -285,7 +282,7 @@ export default function Home() {
                   outlets.
                 </motion.p>
                 <motion.p
-                  className="text-lg mb-6 text-[#221F1F] opacity-70 font-light"
+                  className="text-lg text-[#221F1F] opacity-70 font-light"
                   variants={fadeInUp}
                 >
                   Join our exclusive Ivory Club and indulge in a world of
