@@ -9,6 +9,7 @@ import {
   Instagram,
   Linkedin,
   Menu,
+  MessageCircleMore,
   Phone,
   Plus,
   ShoppingCart,
@@ -342,6 +343,13 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
               >
                 <Phone size={20} />
+              </Link>
+              <Link
+                href={"https://wa.me/+918083098888"}
+                target="_blank"
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <MessageCircleMore size={20} />
               </Link>
               <button
                 onClick={() => {
