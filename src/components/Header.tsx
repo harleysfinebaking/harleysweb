@@ -1,14 +1,23 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { OrderModal } from './OrderModal'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Marquee } from './Marquee'
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Menu,
+  Phone,
+  Plus,
+  ShoppingCart,
+  X,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { OrderModal } from "./OrderModal";
+import { motion, AnimatePresence } from "framer-motion";
+import { Marquee } from "./Marquee";
 
 const menuItemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -24,9 +33,12 @@ const menuItemVariants = {
 };
 
 export function Header({ isScrolled }: { isScrolled: boolean }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showMarquee, setShowMarquee] = useState(true);
-  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [showMarquee, setShowMarquee] = useState<boolean>(true);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -68,6 +80,25 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
     "We Did It! - Broke the “Guinness World Record!” : The legendary Russian Medovik Cake now stands immortalized in history, proudly representing Harley’s excellence and innovation.",
   ];
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <Marquee texts={marqueeTexts} showMarquee={showMarquee} />
@@ -98,7 +129,10 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
         `}
               variant="ghost"
               size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+                setIsOpen(false);
+              }}
             >
               <motion.div
                 animate={isMenuOpen ? "open" : "closed"}
@@ -268,6 +302,69 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <div
+        className="fixed md:hidden bottom-5 right-5 flex flex-col items-end gap-y-4 z-50"
+        ref={menuRef}
+      >
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="flex flex-col items-center gap-2"
+            >
+              <Link
+                href={"https://www.instagram.com/harleysfinebaking"}
+                target="_blank"
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <Instagram size={20} />
+              </Link>
+              <Link
+                href={"https://www.facebook.com/harleysfinebaking"}
+                target="_blank"
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <Facebook size={20} />
+              </Link>
+              <Link
+                href={"https://www.linkedin.com/company/harleys"}
+                target="_blank"
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <Linkedin size={20} />
+              </Link>
+              <Link
+                href={"tel:8083098888"}
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <Phone size={20} />
+              </Link>
+              <button
+                onClick={() => {
+                  setIsOrderModalOpen(true);
+                  setIsOpen(false);
+                }}
+                className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
+              >
+                <ShoppingCart size={20} />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <button
+          className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center shadow-2xl"
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setIsMenuOpen(false);
+          }}
+        >
+          {isOpen ? <X size={20} /> : <Plus size={20} />}
+        </button>
+      </div>
       <OrderModal
         isOpen={isOrderModalOpen}
         onClose={() => setIsOrderModalOpen(false)}
