@@ -105,7 +105,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
       <Marquee texts={marqueeTexts} showMarquee={showMarquee} />
       <div
         className={`transition-all duration-300 ${
-          isScrolled ? "bg-[#CBEBF2]/90" : "bg-transparent"
+          isScrolled ? "bg-[#CBEBF2]/30 backdrop-blur-xl" : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 py-2 md:py-4">
@@ -116,37 +116,9 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 alt="Harley's Logo"
                 width={isScrolled ? 100 : 200}
                 height={isScrolled ? 50 : 200}
-                className={isScrolled ? "w-20 h-auto py-4" : "w-20 h-auto"}
+                className={isScrolled ? "w-24 h-auto py-4" : "w-24 h-auto"}
               />
             </Link>
-            <Button
-              className={`
-          md:hidden z-50 w-12 h-12 
-          bg-pink-100/10 hover:bg-blue-100/30 
-          flex items-center justify-center 
-          fixed right-4 
-          transition-all duration-300 ease-in-out
-          ${isScrolled ? "top-4" : "top-16"}
-        `}
-              variant="ghost"
-              size="icon"
-              onClick={() => {
-                setIsMenuOpen(!isMenuOpen);
-                setIsOpen(false);
-              }}
-            >
-              <motion.div
-                animate={isMenuOpen ? "open" : "closed"}
-                variants={{
-                  open: { rotate: 180 },
-                  closed: { rotate: 0 },
-                }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center justify-center"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </motion.div>
-            </Button>
           </div>
 
           <nav
@@ -259,7 +231,35 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           </nav>
         </div>
       </div>
-
+      <Button
+        className={`
+          md:hidden z-50 w-12 h-12 
+          bg-pink-100/10 hover:bg-blue-100/30 
+          flex items-center justify-center 
+          fixed right-4 
+          transition-all duration-300 ease-in-out
+          ${isScrolled ? "top-4" : "top-16"}
+        `}
+        variant="ghost"
+        size="icon"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <motion.div
+          animate={isMenuOpen ? "open" : "closed"}
+          variants={{
+            open: { rotate: 180 },
+            closed: { rotate: 0 },
+          }}
+          transition={{ duration: 0.2 }}
+          className="w-8 h-8 flex items-center justify-center"
+        >
+          {isMenuOpen ? (
+            <X className="w-8 h-8" />
+          ) : (
+            <Menu className="w-8 h-8" />
+          )}
+        </motion.div>
+      </Button>
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
