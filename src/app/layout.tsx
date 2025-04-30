@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Lato, Mulish, Open_Sans, Outfit, Poppins, Inter, Alumni_Sans_Pinstripe, Quicksand, Montserrat_Alternates, Montserrat, Imperial_Script } from 'next/font/google';
 import Script from 'next/script';
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
+import { Header } from "@/components/Header";
 
 const lato = Lato({
   subsets: ['latin'],
@@ -234,7 +236,7 @@ export default function RootLayout({
         <h1 className='visually-hidden'>Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h1>
         <h2 className='visually-hidden'>Harley's Fine Baking - Artisan Cakes & Exotic Coffee</h2>
         {children}
-        
+        <CookieBanner />
       </body>
     </html>
   );

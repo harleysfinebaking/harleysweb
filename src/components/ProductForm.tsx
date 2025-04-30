@@ -21,12 +21,12 @@ export default function ProductForm() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const querySnapshot = await getDocs(collection(db, 'categories'))
-      const categoriesData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data() as { name: string, group: string }
-      }))
-      setCategories(categoriesData)
+      // const querySnapshot = await getDocs(collection(db, 'categories'))
+      // const categoriesData = querySnapshot.docs.map(doc => ({
+      //   id: doc.id,
+      //   ...doc.data() as { name: string, group: string }
+      // }))
+      // setCategories(categoriesData)
     }
     fetchCategories()
   }, [])

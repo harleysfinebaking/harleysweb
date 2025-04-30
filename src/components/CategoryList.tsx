@@ -33,12 +33,12 @@ export default function CategoryList() {
   }, [])
 
   const fetchCategories = async () => {
-    const querySnapshot = await getDocs(collection(db, 'categories'))
-    const categoriesData = querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Category[]
-    setCategories(categoriesData)
+    // const querySnapshot = await getDocs(collection(db, 'categories'))
+    // const categoriesData = querySnapshot.docs.map(doc => ({
+    //   id: doc.id,
+    //   ...doc.data()
+    // })) as Category[]
+    // setCategories(categoriesData)
   }
 
   const handleEdit = (category: Category) => {

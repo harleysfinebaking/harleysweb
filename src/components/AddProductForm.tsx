@@ -35,12 +35,12 @@ export default function AddProductForm({ onSuccess }: { onSuccess: () => void })
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const querySnapshot = await getDocs(collection(db, 'categories'))
-      const categoriesData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        name: doc.data().name as string
-      }))
-      setCategories(categoriesData)
+      // const querySnapshot = await getDocs(collection(db, 'categories'))
+      // const categoriesData = querySnapshot.docs.map(doc => ({
+      //   id: doc.id,
+      //   name: doc.data().name as string
+      // }))
+      // setCategories(categoriesData)
     }
     fetchCategories()
   }, [])

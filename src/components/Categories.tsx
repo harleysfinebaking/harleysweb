@@ -115,12 +115,12 @@ export default function Categories() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, 'products'))
-      const productsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as Product[]
-      setProducts(productsData)
+      // const querySnapshot = await getDocs(collection(db, 'products'))
+      // const productsData = querySnapshot.docs.map(doc => ({
+      //   id: doc.id,
+      //   ...doc.data()
+      // })) as Product[]
+      // setProducts(productsData)
     }
 
     fetchProducts()
