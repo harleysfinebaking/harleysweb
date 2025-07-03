@@ -90,12 +90,12 @@ export default function OutletsPage() {
   ];
 
   const blrOutlets = [
-    {
-      name: "Harley's Ivory Lounge - Basavanagudi",
-      locationUrl: "https://maps.app.goo.gl/2E4MVtnvo9ahrfHr6",
-      address:
-        "No 31/2, Ground Floor, Bull Temple Road, Basavanagudi, Bengaluru, Karnataka - 560004",
-    },
+    // {
+    //   name: "Harley's Ivory Lounge - Basavanagudi",
+    //   locationUrl: "https://maps.app.goo.gl/2E4MVtnvo9ahrfHr6",
+    //   address:
+    //     "No 31/2, Ground Floor, Bull Temple Road, Basavanagudi, Bengaluru, Karnataka - 560004",
+    // },
     {
       name: "Harley's Ivory Lounge - JP Nagar",
       locationUrl: "https://maps.app.goo.gl/4W4u83AqvHpEDr8t9",
