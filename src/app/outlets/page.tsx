@@ -111,6 +111,12 @@ export default function OutletsPage() {
       address:
         "Ambalal Doshi Marg, Kala Ghoda, Fort, Mumbai, Maharashtra - 400001",
     },
+    {
+      name: "Harley's Ivory Lounge - Phoenix Palladium",
+      locationUrl: "https://share.google/nzPUhnXNOR6rQtxJT",
+      address:
+        "462, Senapati Bapat Marg, Lower Parel, 3rd Floor, Phoenix Palladium, Mumbai, Maharashtra 400013",
+    },
   ];
 
   useEffect(() => {
