@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -112,7 +112,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           <div className="flex justify-between items-center md:hidden z-10">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image
-                src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
+                src={isScrolled ? "/textlogo/smalllogo.png" : "/newLogo.png"}
                 alt="Harley's Logo"
                 width={isScrolled ? 100 : 200}
                 height={isScrolled ? 50 : 200}
@@ -188,7 +188,9 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                   className="relative z-10 inline-flex items-center justify-center w-full h-full"
                 >
                   <Image
-                    src={isScrolled ? "/textlogo/smalllogo.png" : "/logo.png"}
+                    src={
+                      isScrolled ? "/textlogo/smalllogo.png" : "/newLogo.png"
+                    }
                     alt="Harley's Logo"
                     width={isScrolled ? 100 : 120}
                     height={isScrolled ? 50 : 120}
