@@ -177,7 +177,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                       width: "100%",
                       height: "100%",
                       borderRadius: "50%",
-                      top: "50%",
+                      top: "51%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
                     }}
@@ -192,8 +192,8 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                       isScrolled ? "/textlogo/smalllogo.png" : "/newLogo.png"
                     }
                     alt="Harley's Logo"
-                    width={isScrolled ? 100 : 120}
-                    height={isScrolled ? 50 : 120}
+                    width={isScrolled ? 100 : 130}
+                    height={isScrolled ? 50 : 130}
                     className="w-auto h-auto max-h-full"
                   />
                 </Link>
