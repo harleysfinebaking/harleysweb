@@ -90,17 +90,17 @@ export default function OutletsPage() {
   ];
 
   const blrOutlets = [
-    // {
-    //   name: "Harley's Ivory Lounge - Basavanagudi",
-    //   locationUrl: "https://maps.app.goo.gl/2E4MVtnvo9ahrfHr6",
-    //   address:
-    //     "No 31/2, Ground Floor, Bull Temple Road, Basavanagudi, Bengaluru, Karnataka - 560004",
-    // },
     {
       name: "Harley's Ivory Lounge - JP Nagar",
       locationUrl: "https://maps.app.goo.gl/4W4u83AqvHpEDr8t9",
       address:
         "Shop No. 1316, D 9th Cross, 9th Main Road, opp. to Tirumalagiri Venkateshwara Temple, above Central Bank, Marenahalli, 2nd Phase, J. P. Nagar, Bengaluru, Karnataka - 560078",
+    },
+    {
+      name: "Harley's Ivory Lounge - Kalyan Nagar",
+      locationUrl: "https://maps.app.goo.gl/CLYqyJZfkU3F57eL8",
+      address:
+        "BR Plaza, 30, CMR Main Rd, HRBR Layout 2nd Block, HRBR Layout, Kalyan Nagar, Bengaluru, Karnataka 560043",
     },
   ];
 
@@ -113,7 +113,7 @@ export default function OutletsPage() {
     },
     {
       name: "Harley's Ivory Lounge - Phoenix Palladium",
-      locationUrl: "https://share.google/nzPUhnXNOR6rQtxJT",
+      locationUrl: "https://maps.app.goo.gl/uGETrUHtyxtfetNt5",
       address:
         "462, Senapati Bapat Marg, Lower Parel, 3rd Floor, Phoenix Palladium, Mumbai, Maharashtra 400013",
     },

@@ -1,24 +1,25 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
-  const router = useRouter()
+  const router = useRouter();
 
   const scrollToSection = (sectionId: string) => {
-    router.push('/home')
+    router.push("/home");
     setTimeout(() => {
-      const section = document.getElementById(sectionId)
+      const section = document.getElementById(sectionId);
       if (section) {
-        const yOffset = -80
-        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset
-        window.scrollTo({ top: y, behavior: 'smooth' })
+        const yOffset = -80;
+        const y =
+          section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
-    }, 100)
-  }
+    }, 100);
+  };
 
   return (
     <footer className="bg-[#CBEBF2] pt-12 pb-4 font-['Trebuchet_MS',_sans-serif]">
@@ -27,7 +28,7 @@ export function Footer() {
           <div className="mb-8 md:mb-0">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image
-                src="/logo.png"
+                src="/newLogo.png"
                 alt="Harley's Fine Baking"
                 width={120}
                 height={120}
