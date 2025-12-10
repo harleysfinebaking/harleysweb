@@ -31,6 +31,8 @@ export default function OutletsPage() {
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
+    { name: "Pune", image: "/photos/Balewada-Pune.webp" },
+    { name: "Vijayawada", image: "/photos/vijayawada.webp" },
   ];
 
   const hydOutlets = [
@@ -87,6 +89,12 @@ export default function OutletsPage() {
       address:
         " Madhura Nagar Colony, Gachibowli, Hyderabad, Telangana - 500032",
     },
+    {
+      name: "Harley's Fine Baking - Odeon Mall",
+      locationUrl: "https://maps.app.goo.gl/m44CZ6oiyYodpKEQ7",
+      address:
+        "1-8-557, Chikkadpally, New Nallakunta, Hyderabad, Telangana 500020, Hyderabad, Telangana 500020",
+    },
   ];
 
   const blrOutlets = [
@@ -102,6 +110,18 @@ export default function OutletsPage() {
       address:
         "BR Plaza, 30, CMR Main Rd, HRBR Layout 2nd Block, HRBR Layout, Kalyan Nagar, Bengaluru, Karnataka 560043",
     },
+    {
+      name: "Harley's Fine Baking - Bengaluru Airport",
+      locationUrl: "https://maps.app.goo.gl/F1ow2bWeNGGZgDGy9",
+      address:
+        "The Quad by BLR, Terminal 1, Kempegowda International Airport Road, A - Block, Gangamuthanahalli, Karnataka 560300, Bangalore, Karnataka 560300",
+    },
+    {
+      name: "Harley's Fine Baking - Phoenix Mall Of Asia",
+      locationUrl: "https://maps.app.goo.gl/ZSEexafSur3EktgH7",
+      address:
+        "Unit No S-28 and S-28A, 2nd Floor, Byatarayanapura, Yelahanka, Hobli, , Yelahanka Taluk, Bellary Rd, Bengaluru, Karnataka 560092, Bengaluru, Karnataka 560092",
+    },
   ];
 
   const mumOutlets = [
@@ -116,6 +136,36 @@ export default function OutletsPage() {
       locationUrl: "https://maps.app.goo.gl/uGETrUHtyxtfetNt5",
       address:
         "462, Senapati Bapat Marg, Lower Parel, 3rd Floor, Phoenix Palladium, Mumbai, Maharashtra 400013",
+    },
+  ];
+
+const puneOutlets = [
+    {
+      name: "Harley’s Ivory Lounge – Balewadi",
+      locationUrl: "https://maps.app.goo.gl/P7WxQYN6zayv98ts6",
+      address:
+        "Business Point, Sai Chowk Rd, Laxman Nagar, Baner, Pune, Maharashtra 411045, Pune, Maharashtra 411045",
+    },
+    {
+      name: "Harley's Fine Baking - Phoenix Marketcity Pune",
+      locationUrl: "https://maps.app.goo.gl/TvcjJ1gkd6FyN7o39",
+      address:
+        "Ground Floor, Phoenix Marketcity, 207, Pune Nagar Rd, Clover Park, Viman, Nagar, Pune, Maharashtra 411014, Pune, Maharashtra 411014",
+    },
+    {
+      name: "Harley's Fine Baking - Phoenix Mall Millennium",
+      locationUrl: "https://maps.app.goo.gl/Y4M12MJ6ziFKzYne8",
+      address:
+        "G-61A, Ground Floor, Phoenix Mall of the Millennium, Shankar Kalat Nagar, , Wakad, Pimpri-Chinchwad, Maharashtra, Pimpri-Chinchwad, Maharashtra 411057",
+    },
+  ];
+
+const vijayawadaOutlets = [
+    {
+      name: "Harley's Ivory Lounge - Vijayawada",
+      locationUrl: "https://maps.app.goo.gl/GBuQgoMBTQNothwV6",
+      address:
+        "MG Rd, Bhagyanagar Colony, Padmaja Nagar, Kanuru, Vijayawada, Andhra Pradesh 520007",
     },
   ];
 
@@ -203,6 +253,8 @@ export default function OutletsPage() {
           <Outlet id="Hyderabad" outlets={hydOutlets} />
           <Outlet id="Bengaluru" outlets={blrOutlets} />
           <Outlet id="Mumbai" outlets={mumOutlets} />
+          <Outlet id="Pune" outlets={puneOutlets} />
+          <Outlet id="Vijayawada" outlets={vijayawadaOutlets} />
         </motion.section>
       </motion.main>
       <Footer />
