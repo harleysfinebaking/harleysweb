@@ -31,8 +31,8 @@ export default function OutletsPage() {
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
-    { name: "Pune", image: "public/photos/Balewadi-Pune.webp" },
-    { name: "Vijayawada", image: "public/photos/Vijayawada.webp" },
+    { name: "Pune", image: "/photos/Balewadi-Pune.webp" },
+    { name: "Vijayawada", image: "/photos/Vijayawada.webp" },
   ];
 
   const hydOutlets = [
