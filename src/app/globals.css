@@ -102,3 +102,44 @@ body {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* Swiper navigation arrows (Next.js safe) */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  color: #000000c9; 
+  transition: all 0.3s ease;
+}
+
+/* Arrow icon size */
+.swiper-button-next::before,
+.swiper-button-prev::before {
+  font-size: 24px;
+  font-weight: 1000;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 24px;
+  font-weight: 1000;
+}
+
+/* Hover effect */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: white;
+  transform: scale(1.1);
+  color: #000000;
+}
+
+/* Improve positioning */
+.swiper-button-prev {
+  left: -12px;
+}
+
+.swiper-button-next {
+  right: -12px;
+}
