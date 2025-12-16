@@ -7,7 +7,9 @@ import { useInView } from "react-intersection-observer";
 import DecoratedTitle from "@/components/DecoratedTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
 import { useRouter } from "next/navigation";
 
 // FadeInElement component
@@ -82,8 +84,9 @@ export function Locations() {
             }}
             onSwiper={(swiper) => {
               if (prevRef.current && nextRef.current) {
-                swiper.params.navigation.prevEl = prevRef.current;
-                swiper.params.navigation.nextEl = nextRef.current;
+                const navParams = swiper.params.navigation as any;
+                navParams.prevEl = prevRef.current;
+                navParams.nextEl = nextRef.current;
                 swiper.navigation.init();
                 swiper.navigation.update();
               }

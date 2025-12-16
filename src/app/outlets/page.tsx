@@ -188,10 +188,12 @@ export default function OutletsPage() {
                 }}
                 onSwiper={(swiper) => {
                   if (prevRef.current && nextRef.current) {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
-                    swiper.navigation.init();
-                    swiper.navigation.update();
+                    if (typeof swiper.params.navigation === 'object' && swiper.params.navigation) {
+                      swiper.params.navigation.prevEl = prevRef.current;
+                      swiper.params.navigation.nextEl = nextRef.current;
+                      swiper.navigation.init();
+                      swiper.navigation.update();
+                    }
                   }
                 }}
               >
