@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['firebasestorage.googleapis.com'],
-    },
-  }
-  
-  module.exports = nextConfig
-  
-  
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // Or specific domains
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+}
+
+module.exports = nextConfig
