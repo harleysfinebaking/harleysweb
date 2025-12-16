@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next"; // Add Viewport here
 import { Lato, Mulish, Open_Sans, Outfit, Poppins, Inter, Alumni_Sans_Pinstripe, Quicksand, Montserrat_Alternates, Montserrat, Imperial_Script } from 'next/font/google';
 import Script from 'next/script';
 import "./globals.css";
@@ -77,6 +77,7 @@ const imperial = Imperial_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.harleys.com'), // Fixes OG/Twitter image warning
   title: {
     default: "Harley's Fine Baking | Artisan Cakes & Exotic Coffee",
     template: "%s | Harley's Fine Baking",
@@ -143,15 +144,6 @@ export const metadata: Metadata = {
     icon: [{ url: "/icon.png", sizes: "32x32", type: "image/png" }],
   },
   manifest: "/manifest.json",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FEFEFA" },
-    { media: "(prefers-color-scheme: dark)", color: "#4A4A4A" },
-  ],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
   verification: {
     google: "YOUR_GOOGLE_VERIFICATION_CODE",
     yandex: "YOUR_YANDEX_VERIFICATION_CODE",
@@ -159,6 +151,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.harleys.com",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FEFEFA" },
+    { media: "(prefers-color-scheme: dark)", color: "#4A4A4A" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
