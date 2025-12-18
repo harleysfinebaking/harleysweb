@@ -62,6 +62,42 @@ export default function OutletsPage() {
       address:
         "Rajiv Gandhi International Airport, Shamshabad, Hyderabad, Telangana - 500409",
     },
+    {
+      name: "Harley's Fine Baking - TSPA PBEL City",
+      locationUrl: "https://maps.app.goo.gl/99gPKXirEcqV6x8Q8",
+      address:
+        "1st Floor, ASR Complex, Plot No. 9, PBEL City Rd, Snehita Hills, Phase-I, Bandlaguda Jagir, Hyderabad, Telangana - 500091",
+    },
+    {
+      name: "Harley's Fine Baking - Hitec City",
+      locationUrl: "https://maps.app.goo.gl/mW7hXyiSfkHAiywK7",
+      address:
+        "Medicover, H.No.1-90/7/B/28,30 & 59, Plot No.5 To 11, Sy.No.78, Pragathi Nagar, Madhapur, Hyderabad, Telangana - 500081",
+    },
+    {
+      name: "Harleys Fine Baking - Sarath City Capital Mall, Gachibowli",
+      locationUrl: "https://maps.app.goo.gl/DrQVVhHwk2xdyYjJ8",
+      address:
+        "Sharath City Capital Mall, Food Court 4th Floor Gachibowli-Miyapur Road, Whitefields, Hitech City, Kondapur, Hyderabad, Telangana - 500084",
+    },
+    {
+      name: "Harley's Fine Baking - Wells Fargo, Gachibowli",
+      locationUrl: "https://maps.app.goo.gl/5SLTDVCEV9AX61Lh6",
+      address:
+        " Madhura Nagar Colony, Gachibowli, Hyderabad, Telangana - 500032",
+    },
+    {
+      name: "Harley's Fine Baking Odeon Mall",
+      locationUrl: "https://maps.app.goo.gl/Sk7ebRAyjVdMfaez6",
+      address:
+        " 1-8-557, Chikkadpally, New Nallakunta, Hyderabad, Hyderabad, Telangana 500020",
+    },
+    {
+      name: "Harley's Fine Baking - Secunderabad",
+      locationUrl: "https://maps.app.goo.gl/119a791i8GzszpPT6",
+      address:
+        " 9, Sarojini Devi Rd, Regimental Bazaar, Shivaji Nagar, Hyderabad, Secunderabad, Telangana 500003",
+    },
   ];
 
   const blrOutlets = [
