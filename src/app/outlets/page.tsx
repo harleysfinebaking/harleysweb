@@ -114,6 +114,12 @@ export default function OutletsPage() {
       address:
         "BR Plaza, 30, CMR Main Rd, HRBR Layout 2nd Block, HRBR Layout, Kalyan Nagar, Bengaluru, Karnataka 560043",
     },
+    {
+      name: "Harley's Fine Baking - Bengaluru Airport",
+      locationUrl: "https://maps.app.goo.gl/uWLXLrbUQhcpDkJN7",
+      address:
+        "The Quad by BLR, Terminal 1, Kempegowda International Airport Road, A - Block, Gangamuthanahalli, Karnataka 560300, Bangalore, Karnataka 560300",
+    },
   ];
 
   const mumOutlets = [
@@ -153,11 +159,32 @@ export default function OutletsPage() {
       address:
         "G-61A, Ground Floor, Phoenix Mall of the Millennium, Shankar Kalat Nagar, Wakad, Pimpri-Chinchwad, Maharashtra 411057",
     },
+    {
+      name: "Harley's Fine Baking - Phoenix Marketcity Pune",
+      locationUrl: "https://maps.app.goo.gl/bZ95KJLG8yChHKPH6",
+      address:
+        "Ground Floor, Phoenix Marketcity, 207, Pune Nagar Rd, Clover Park, Viman, Nagar, Pune, Maharashtra 411014, Pune, Maharashtra 411014",
+    },
+  ];
+
+  const upcomingOutlets = [
+    {
+      name: "Harley's Fine Baking - Prestige SkyTech",
+      locationUrl: "https://maps.app.goo.gl/z4fNeXWxehboixKKA",
+      address:
+        "Prestige Skytech, S.Y. No. 332, 333, Pupplaguda, Gandipet, Financial, Hyderabad, Telangana 500032",
+    },
+    {
+      name: "Harley's Fine Baking - Jio World Drive",
+      locationUrl: "https://maps.app.goo.gl/kWYFtcBbXRyBsBE9A",
+      address:
+        "SK1, 2nd Floor, Drive In Theatre, Jio World Drive, Bandra Kurla Complex, , Bandra East, Mumbai, Maharashtra 400051, Mumbai, Maharashtra 400051",
+    },
   ];
 
   // Refs for custom navigation buttons
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
   // Fixed navigation useEffect with proper null checks
   useEffect(() => {
@@ -268,7 +295,7 @@ export default function OutletsPage() {
                 slidesPerView={1}
                 spaceBetween={20}
                 loop
-                speed={800}
+                speed={1000}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
@@ -313,15 +340,15 @@ export default function OutletsPage() {
               <button
                 ref={prevRef}
                 onClick={handlePrevClick}
-                className="absolute top-1/2 left-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
+                className="absolute top-1/2 left-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-100 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
                 aria-label="Previous slide"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="24"
+                  height="24"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   fill="none"
@@ -334,15 +361,15 @@ export default function OutletsPage() {
               <button
                 ref={nextRef}
                 onClick={handleNextClick}
-                className="absolute top-1/2 right-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
+                className="absolute top-1/2 right-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-100 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
                 aria-label="Next slide"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="24"
+                  height="24"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   fill="none"
@@ -361,6 +388,7 @@ export default function OutletsPage() {
         <Outlet id="Mumbai" outlets={mumOutlets} />
         <Outlet id="Vijayawada" outlets={vijOutlets} />
         <Outlet id="Pune" outlets={puneOutlets} />
+        <Outlet id="Upcoming" outlets={upcomingOutlets} />
       </motion.main>
       <Footer />
     </div>

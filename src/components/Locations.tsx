@@ -67,7 +67,7 @@ export function Locations() {
             slidesPerView={1}
             spaceBetween={20}
             loop
-            speed={800}
+            speed={1000}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
