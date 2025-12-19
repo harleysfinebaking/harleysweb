@@ -3,7 +3,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { FadeInElement } from "@/components/Locations";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Outlet from "@/components/Outlets";
 import Image from "next/image";
@@ -23,13 +23,14 @@ const stagger = {
 export default function OutletsPage() {
   const [city, setCity] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
 
   const locations = [
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
-    { name: "Vijayawada", image: "/photos/Vijayawada.webp" },
-    { name: "Pune", image: "/photos/Balewadi-Pune.webp" },
+    { name: "Vijayawada", image: "/photos/Vijayawada.jpg" },
+    { name: "Pune", image: "/photos/Balewadi-Pune.jpg" },
   ];
 
   const hydOutlets = [
@@ -154,6 +155,62 @@ export default function OutletsPage() {
     },
   ];
 
+  // Refs for custom navigation buttons
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
+
+  // Fixed navigation useEffect with proper null checks
+  useEffect(() => {
+    if (
+      !swiperInstance ||
+      !prevRef.current ||
+      !nextRef.current ||
+      !swiperInstance.navigation
+    )
+      return;
+
+    try {
+      // Destroy existing navigation if it exists
+      if (swiperInstance.navigation && swiperInstance.navigation.destroy) {
+        swiperInstance.navigation.destroy();
+        swiperInstance.navigation.init = false;
+      }
+
+      // Set navigation params safely
+      swiperInstance.params.navigation = {
+        prevEl: prevRef.current,
+        nextEl: nextRef.current,
+      };
+
+      // Safe initialization
+      if (!swiperInstance.navigation.init) {
+        swiperInstance.navigation.init();
+      }
+
+      // Safe update
+      if (swiperInstance.navigation.update) {
+        swiperInstance.navigation.update();
+      }
+
+      // Force swiper update
+      swiperInstance.update();
+
+    } catch (error) {
+      console.warn("Swiper navigation setup error:", error);
+    }
+
+    // Cleanup
+    return () => {
+      try {
+        if (swiperInstance?.navigation?.destroy) {
+          swiperInstance.navigation.destroy();
+        }
+      } catch (error) {
+        // Silent cleanup fail
+      }
+    };
+  }, [swiperInstance]);
+
   useEffect(() => {
     const loc = sessionStorage.getItem("location");
     if (loc) setCity(loc);
@@ -176,18 +233,22 @@ export default function OutletsPage() {
     }
   }, [city]);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const section = document.getElementById(sectionId.toLowerCase());
     if (section) {
       const yOffset = -90;
       const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
-  };
+  }, []);
 
-  // Refs for custom navigation buttons
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
+  const handlePrevClick = useCallback(() => {
+    swiperInstance?.slidePrev();
+  }, [swiperInstance]);
+
+  const handleNextClick = useCallback(() => {
+    swiperInstance?.slideNext();
+  }, [swiperInstance]);
 
   return (
     <div className="min-h-screen font-['Trebuchet_MS',_sans-serif]">
@@ -200,7 +261,7 @@ export default function OutletsPage() {
       >
         <motion.section variants={fadeInUp} className="mb-12 relative">
           <div className="container mx-auto px-4">
-            <div className="relative">
+            <div className="relative group">
               {/* Swiper */}
               <Swiper
                 modules={[Navigation, Autoplay]}
@@ -218,20 +279,7 @@ export default function OutletsPage() {
                   768: { slidesPerView: 2 },
                   1024: { slidesPerView: 3 },
                 }}
-                navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-                onSwiper={(swiper) => {
-                  if (prevRef.current && nextRef.current) {
-                    if (typeof swiper.params.navigation === 'object' && swiper.params.navigation) {
-                      swiper.params.navigation.prevEl = prevRef.current;
-                      swiper.params.navigation.nextEl = nextRef.current;
-                      swiper.navigation.init();
-                      swiper.navigation.update();
-                    }
-                  }
-                }}
+                onSwiper={setSwiperInstance}
               >
                 {locations.map((location, index) => (
                   <SwiperSlide key={index}>
@@ -260,39 +308,49 @@ export default function OutletsPage() {
                   </SwiperSlide>
                 ))}
               </Swiper>
-    
-              {/* Custom Navigation Arrows */}
-              <div
+
+              {/* Custom Navigation Arrows - Direct Click Handlers */}
+              <button
                 ref={prevRef}
-                className="absolute top-1/2 left-0 -translate-y-1/2 z-10 cursor-pointer p-2 bg-white rounded-full shadow-md hover:scale-110 transition-transform"
+                onClick={handlePrevClick}
+                className="absolute top-1/2 left-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
+                aria-label="Previous slide"
               >
                 <svg
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
-                  stroke="black"
-                  strokeWidth="5"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   fill="none"
+                  className="text-gray-800"
                 >
                   <path d="M15 18l-6-6 6-6" />
                 </svg>
-              </div>
-    
-              <div
+              </button>
+
+              <button
                 ref={nextRef}
-                className="absolute top-1/2 right-0 -translate-y-1/2 z-10 cursor-pointer p-2 bg-white rounded-full shadow-md hover:scale-110 transition-transform"
+                onClick={handleNextClick}
+                className="absolute top-1/2 right-0 -translate-y-1/2 z-20 flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 opacity-75 hover:opacity-100 group-hover:opacity-100 border-2 border-white/50"
+                aria-label="Next slide"
               >
                 <svg
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
-                  stroke="black"
-                  strokeWidth="5"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   fill="none"
+                  className="text-gray-800"
                 >
                   <path d="M9 6l6 6-6 6" />
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
         </motion.section>
