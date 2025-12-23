@@ -182,11 +182,9 @@ export default function OutletsPage() {
     },
   ];
 
-  // Refs for custom navigation buttons
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
-  // Fixed navigation useEffect with proper null checks
   useEffect(() => {
     if (
       !swiperInstance ||
@@ -197,36 +195,30 @@ export default function OutletsPage() {
       return;
 
     try {
-      // Destroy existing navigation if it exists
       if (swiperInstance.navigation && swiperInstance.navigation.destroy) {
         swiperInstance.navigation.destroy();
         swiperInstance.navigation.init = false;
       }
 
-      // Set navigation params safely
       swiperInstance.params.navigation = {
         prevEl: prevRef.current,
         nextEl: nextRef.current,
       };
 
-      // Safe initialization
       if (!swiperInstance.navigation.init) {
         swiperInstance.navigation.init();
       }
 
-      // Safe update
       if (swiperInstance.navigation.update) {
         swiperInstance.navigation.update();
       }
 
-      // Force swiper update
       swiperInstance.update();
 
     } catch (error) {
       console.warn("Swiper navigation setup error:", error);
     }
 
-    // Cleanup
     return () => {
       try {
         if (swiperInstance?.navigation?.destroy) {
@@ -289,7 +281,6 @@ export default function OutletsPage() {
         <motion.section variants={fadeInUp} className="mb-12 relative">
           <div className="container mx-auto px-4">
             <div className="relative group">
-              {/* Swiper */}
               <Swiper
                 modules={[Navigation, Autoplay]}
                 slidesPerView={1}
@@ -336,7 +327,6 @@ export default function OutletsPage() {
                 ))}
               </Swiper>
 
-              {/* Custom Navigation Arrows - Direct Click Handlers */}
               <button
                 ref={prevRef}
                 onClick={handlePrevClick}
@@ -382,7 +372,6 @@ export default function OutletsPage() {
           </div>
         </motion.section>
 
-        {/* Outlets Sections */}
         <Outlet id="Hyderabad" outlets={hydOutlets} />
         <Outlet id="Bengaluru" outlets={blrOutlets} />
         <Outlet id="Mumbai" outlets={mumOutlets} />

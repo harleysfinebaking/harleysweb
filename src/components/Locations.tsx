@@ -37,8 +37,8 @@ export function Locations() {
     { name: "Hyderabad", image: "/photos/jubilee.jpeg" },
     { name: "Bengaluru", image: "/photos/bengaluru2.jpg" },
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
-    { name: "Vijayawada", image: "/photos/Vijayawada.webp" },
-    { name: "Pune", image: "/photos/Balewadi-Pune.webp" },
+    { name: "Vijayawada", image: "/photos/Vijayawada.jpg" },
+    { name: "Pune", image: "/photos/Balewadi-Pune.jpg" },
   ];
 
   const handleClick = (name: string) => {
