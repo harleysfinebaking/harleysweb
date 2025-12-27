@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Label Generator - 4x2 inch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+            font-size: 13px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #003366 0%, #005599 100%);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.6em; margin-bottom: 4px; }
+        .header p { font-size: 0.9em; opacity: 0.9; }
+        .content { padding: 16px; }
+
+        .form-group { margin-bottom: 12px; }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.85em;
+        }
+        select, input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+        }
+
+        .batch-search-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .batch-search-row > div {
+            flex: 1;
+        }
+        #itemSearch {
+            padding-left: 32px;
+            background: #f8f9fa url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23666" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.851a.5.5 0 0 0 .708-.708l-3.66-3.646zM8 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>') no-repeat 10px center;
+            background-size: 16px;
+        }
+
+        .item-line { display: flex; align-items: center; gap: 8px; }
+        .item-name-truncate {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 50ch;
+        }
+        .item-qty-inline { width: 70px; text-align: right; }
+        .item-qty-group {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #e1e5e9;
+            transition: all 0.3s ease;
+        }
+        .item-qty-group:hover { border-color: #007bff; }
+        .item-qty-group.hidden { display: none !important; }
+        .item-header { margin-bottom: 6px; }
+        .item-name { font-weight: 600; font-size: 0.9em; color: #333; }
+        .item-meta { font-size: 0.75em; color: #666; margin-top: 2px; }
+
+        .total-labels {
+            background: #e3f2fd;
+            padding: 8px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.85em;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 22px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(40,167,69,0.4);
+        }
+        .generate-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            padding: 8px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-weight: 500;
+            font-size: 0.85em;
+            display: none;
+        }
+        .status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status.info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+        @media (max-width: 768px) {
+            .batch-search-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .content { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Label Generator</h1>
+        <p>Select City → Batch No + Search → Set Labels per Item → Generate 4×2 inch Labels</p>
+    </div>
+    <div class="content">
+        <div id="status" class="status"></div>
+
+        <div id="formSection" style="display:none;">
+            <div class="form-group">
+                <label>Select City</label>
+                <select id="citySelect">
+                    <option value="">Loading cities...</option>
+                </select>
+            </div>
+
+            <div class="batch-search-row">
+                <div class="form-group">
+                    <label for="batchNoInput">Batch No *</label>
+                    <input type="text" id="batchNoInput" placeholder="Enter Batch No (e.g., BATCH001)" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemSearch">🔍 Search Items</label>
+                    <input type="text" id="itemSearch" placeholder="Type to filter items..." autocomplete="off">
+                </div>
+            </div>
+
+            <div id="itemsSection">
+                <div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">
+                    Loading items...
+                </div>
+            </div>
+
+            <div class="total-labels" id="totalLabels" style="display:none;">
+                Total Labels to Print: <span id="totalCount">0</span>
+            </div>
+
+            <button class="generate-btn" id="generateBtn" onclick="generateLabels()" disabled>
+                Generate Labels Preview
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwB6K-RYOoe3vH5A7GCWVY9zyTUAmPc3JPTQ_kb_I-TmI3y1RQjNBNznUyDihWjl1PZIQ/exec';
+
+    let excelData = { items: [], address: [] };
+    let cleanedItemsCache = [];
+    let allItemElements = [];
+    let itemQuantities = {};
+
+    function showStatus(message, type) {
+        const status = document.getElementById('status');
+        status.textContent = message;
+        status.className = `status ${type}`;
+        status.style.display = 'block';
+        setTimeout(() => status.style.display = 'none', 4000);
+    }
+
+    function formatExcelDate(value) {
+        if (!value) return 'NA';
+        if (value instanceof Date && !isNaN(value)) {
+            const d = value;
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+        if (typeof value === 'number') {
+            const excelEpoch = new Date(1899, 11, 30);
+            const d = new Date(excelEpoch.getTime() + (value * 86400000));
+            if (!isNaN(d)) {
+                const day = String(d.getDate()).padStart(2, '0');
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const year = d.getFullYear();
+                return `${day}-${month}-${year}`;
+            }
+        }
+        const parsed = new Date(value);
+        if (!isNaN(parsed)) {
+            const day = String(parsed.getDate()).padStart(2, '0');
+            const month = String(parsed.getMonth() + 1).padStart(2, '0');
+            const year = parsed.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+        return value ? value.toString() : 'NA';
+    }
+
+    function setupSearch() {
+        const searchInput = document.getElementById('itemSearch');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            filterItems(searchTerm);
+        });
+    }
+
+    function filterItems(searchTerm) {
+        allItemElements.forEach(element => {
+            const itemName = element.querySelector('.item-name')?.textContent.toLowerCase() || '';
+            if (searchTerm === '' || itemName.includes(searchTerm)) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        });
+        updateTotalLabels();
+    }
+
+    async function loadDataFromAppsScript() {
+        try {
+            showStatus('Loading data from Google Sheets...', 'info');
+            const res = await fetch(APPS_SCRIPT_URL);
+            if (!res.ok) throw new Error('API returned status ' + res.status);
+            const data = await res.json();
+
+            excelData.items = data.items || [];
+            excelData.address = data.address || [];
+
+            if (!excelData.items.length) {
+                throw new Error('No data found in "Pre-packed Item list" sheet.');
+            }
+
+            document.getElementById('formSection').style.display = 'block';
+            showStatus(`Loaded ${excelData.items.length} items`, 'success');
+            populateCities();
+        } catch (err) {
+            showStatus('Error: ' + err.message, 'error');
+        }
+    }
+
+    function populateCities() {
+        const cities = [...new Set(
+            (excelData.address || [])
+                .map(row => (row.City || '').toString().trim())
+                .filter(city => city && city.toLowerCase() !== 'nan')
+                .map(city => city.toLowerCase())
+        )];
+        const select = document.getElementById('citySelect');
+        select.innerHTML = '';
+
+        if (!cities.length) {
+            select.innerHTML = '<option value="">No cities found</option>';
+            return;
+        }
+
+        cities.forEach(city => {
+            const opt = document.createElement('option');
+            opt.value = city;
+            opt.textContent = city.charAt(0).toUpperCase() + city.slice(1);
+            select.appendChild(opt);
+        });
+
+        select.value = cities[0];
+        populateItemsQuantities();
+    }
+
+    document.addEventListener('change', (e) => {
+        if (e.target && e.target.id === 'citySelect') {
+            populateItemsQuantities();
+        }
+    });
+
+    function cleanItemsData(items) {
+        return (items || [])
+            .map(item => {
+                const cleaned = { ...item };
+
+                if (item['Item No']) cleaned.ItemNo = item['Item No'];
+                if (item['Item Name']) cleaned.ItemName = item['Item Name'];
+                if (item['ItemNo']) cleaned.ItemNo = item['ItemNo'];
+                if (item['ItemName']) cleaned.ItemName = item['ItemName'];
+
+                if (item['Batch No']) cleaned.BatchNo = item['Batch No'];
+                if (item['BatchNo']) cleaned.BatchNo = item['BatchNo'];
+
+                if (item['Fssai Text']) cleaned.FssaiText = item['Fssai Text'];
+                if (item['FssaiText']) cleaned.FssaiText = item['FssaiText'];
+
+                if (item['Mfg Date']) cleaned.MfgDate = item['Mfg Date'];
+                if (item['MfgDate']) cleaned.MfgDate = item['MfgDate'];
+
+                if (item['Use By']) cleaned.UseBy = item['Use By'];
+                if (item['UseBy']) cleaned.UseBy = item['UseBy'];
+
+                if (item['NUTRITIONAL INFORMATION-per 100 gms (approx)']) {
+                    cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION-per 100 gms (approx)'];
+                } else if (item['NUTRITIONAL INFORMATION Per 100 gms approx']) {
+                    cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION Per 100 gms approx'];
+                } else if (item['Nutrition']) {
+                    cleaned.NutritionInfo = item['Nutrition'];
+                } else if (item['NUTRITIONALINFORMATIONPer100gmsapprox']) {
+                    cleaned.NutritionInfo = item['NUTRITIONALINFORMATIONPer100gmsapprox'];
+                }
+
+                ['ItemNo', 'Qty', 'Pieces', 'MRP', 'USP', 'Weight'].forEach(col => {
+                    if (cleaned[col] !== undefined && cleaned[col] !== null && cleaned[col] !== '') {
+                        const num = parseFloat(cleaned[col]);
+                        if (!isNaN(num)) cleaned[col] = num;
+                    }
+                });
+
+                return cleaned;
+            })
+            .filter(item => !isNaN(item.ItemNo))
+            .sort((a, b) => (a.ItemNo || 0) - (b.ItemNo || 0));
+    }
+
+    function populateItemsQuantities() {
+        cleanedItemsCache = cleanItemsData(excelData.items);
+        const container = document.getElementById('itemsSection');
+        container.innerHTML = '';
+        itemQuantities = {};
+        allItemElements = [];
+
+        if (!cleanedItemsCache.length) {
+            container.innerHTML =
+                '<div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">No valid items found</div>';
+            return;
+        }
+
+        cleanedItemsCache.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'item-qty-group';
+            div.dataset.index = index;
+
+            const mrpDisplay = item.MRP || 'NA';
+            const uspDisplay = item.USP || 'NA';
+
+            div.innerHTML = `
+                <div class="item-header">
+                    <div class="item-line">
+                    <div class="item-name item-name-truncate">
+                        ${item.ItemName || 'NA'}
+                        <span class="item-count" id="item-count-${index}"
+                               style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
+                    </div>
+                    <input type="number"
+                           class="qty-input item-qty-inline"
+                           data-index="${index}"
+                           min="0" max="50"
+                           value="0"
+                           onchange="updateTotalLabels()"
+                           title="Number of labels">
+                    </div>
+                    <div class="item-meta">
+                        Item ${item.ItemNo || 'NA'} | ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g
+                        | MRP ${mrpDisplay} | USP ${uspDisplay}
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+            allItemElements.push(div);
+        });
+
+        updateTotalLabels();
+        showStatus(`Select items by setting number of labels > 0. Total ${cleanedItemsCache.length} items`, 'info');
+        setupSearch();
+    }
+
+    function updateTotalLabels() {
+        let total = 0;
+        const inputs = document.querySelectorAll('.qty-input');
+        inputs.forEach(input => {
+            const index = parseInt(input.dataset.index, 10);
+            const qty = parseInt(input.value || '0', 10) || 0;
+            itemQuantities[index] = qty;
+            total += qty;
+
+            const countSpan = document.getElementById(`item-count-${index}`);
+            if (countSpan) countSpan.textContent = qty;
+        });
+
+        const totalDiv = document.getElementById('totalLabels');
+        const countSpanTotal = document.getElementById('totalCount');
+        countSpanTotal.textContent = total;
+        total > 0 ? totalDiv.style.display = 'block' : totalDiv.style.display = 'none';
+
+        const btn = document.getElementById('generateBtn');
+        if (total > 0) {
+            btn.disabled = false;
+            btn.textContent = `Generate Labels Preview (${total})`;
+        } else {
+            btn.disabled = true;
+            btn.textContent = 'Generate Labels Preview';
+        }
+    }
+
+    async function generateLabels() {
+        const totalLabels = Object.values(itemQuantities)
+            .reduce((sum, qty) => sum + (qty || 0), 0);
+        if (!totalLabels) {
+            showStatus('Set at least 1 label for some items', 'error');
+            return;
+        }
+
+        const batchNo = document.getElementById('batchNoInput').value.trim();
+        if (!batchNo) {
+            showStatus('Please enter a Batch No before generating labels.', 'error');
+            return;
+        }
+
+        showStatus('Generating preview...', 'info');
+
+        const cityName = document.getElementById('citySelect').value;
+        const addressInfo = (excelData.address || []).find(row =>
+            (row.City || '').toString().trim().toLowerCase() === cityName
+        );
+
+        const finalItems = [];
+        Object.entries(itemQuantities).forEach(([indexStr, qty]) => {
+            qty = parseInt(qty || 0, 10);
+            if (qty > 0) {
+                const index = parseInt(indexStr, 10);
+                const item = cleanedItemsCache[index];
+                for (let i = 0; i < qty; i++) {
+                    finalItems.push({
+                        ...item,
+                        City: cityName,
+                        CorpAddress: addressInfo
+                            ? (addressInfo['Corp Address'] || addressInfo.CorpAddress || 'NA')
+                            : 'NA',
+                        FSSAI: addressInfo ? (addressInfo.FSSAI || 'NA') : 'NA',
+                        MfgAddress: addressInfo
+                            ? (addressInfo['Mfg Address'] || addressInfo.MfgAddress || 'NA')
+                            : 'NA',
+                        FssaiText: item.FssaiText || 'FSSAI Compliant Product',
+                        NutritionInfo: item.NutritionInfo || 'Follow FSSAI RDA Norms',
+                        MFDDate: formatExcelDate(item.MfgDate),
+                        UsedByDate: formatExcelDate(item.UseBy),
+                        BatchNo: batchNo
+                    });
+                }
+            }
+        });
+
+        if (!finalItems.length) {
+            showStatus('No labels to generate. Please set quantities.', 'error');
+            return;
+        }
+
+        const previewHtml = generatePreviewHtml(finalItems);
+        const win = window.open('', '_blank');
+
+        win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Labels Preview</title>
+            <style>
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 4.094in;
+                    height: 2in;
+                    box-sizing: border-box;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                    font-size: 8px;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                }
+                body { display: flex; align-items: center; justify-content: center; background: #f8f9fa; }
+                .preview-labels { display: flex; flex-direction: column; gap: 4px; padding: 0px; }
+                .preview-label {
+                    background: #ffffff;
+                    border: 1px solid #000;
+                    width: 4.094in;
+                    height: 2in;
+                    box-sizing: border-box;
+                    padding: 0in;
+                    display: grid;
+                    grid-template-columns: 1.1fr 0.9fr;
+                    color: #000;
+                    font-size: 6px;
+                    line-height: 1.0;
+                    page-break-inside: avoid;
+                    font-weight: bold !important;
+                    color: #000 !important;
+                }
+                .column1, .column2 { padding: 0.04in 0.1in; overflow: hidden; }
+                .label-top { text-align: center; margin-bottom: 2px; }
+                .label-brand { font-size: 10px; font-weight: 700; }
+                .item-title { font-size: 9px; font-weight: 700; margin-top: 1px; margin-bottom: 3px; }
+                .qr-box { width: 1.5in; height: 1.5in; margin: 0 auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; }
+                .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+                .exec-line { font-size: 9px; font-weight: 700; text-align: center; margin-top: 0px; }
+                .exec-mail { font-size: 9px; font-weight: 700; text-align: center; margin-top: 0px; }
+                .note-section { grid-row: 2; grid-column: 1 / -1; display: flex; align-items: center; margin-top: 0in; font-size: 9px !important; }
+                .note-title { font-weight: bold !important; line-height: 1.0 !important; margin-right: 0.1in; }
+                .note-text { line-height: 1.0 !important; font-weight: bold !important; color: #000 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                .print-bar { margin: 0px 0 5px 0; text-align: right; }
+                .print-btn { background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 6px 16px; border: none; border-radius: 16px; font-size: 0.9em; cursor: pointer; }
+                @page { size: 4.094in 2in; margin: 0; }
+                @media print {
+                    body { background: #ffffff; width: 4.094in; height: 2in; margin: 0; padding: 0; display: block; }
+                    .print-bar { display: none !important; }
+                    .preview-labels { margin: 0; padding: 0.02in 0.2in 0.01in 0.1in; }
+                    .preview-label { margin: 0; border: 1px solid #000; page-break-after: always; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="print-bar">
+                <button class="print-btn" onclick="window.print()">Print Labels</button>
+            </div>
+            <div class="preview-labels">
+                ${previewHtml}
+            </div>
+        </body>
+        </html>
+        `);
+        win.document.close();
+
+        showStatus('Preview opened in a new tab. ' + finalItems.length + ' labels generated.', 'success');
+    }
+
+    function generatePreviewHtml(items) {
+        let html = '';
+        items.forEach(item => {
+            const netQty = `${item.Pieces || 'N/A'} pcs (@${item.Weight || 'N/A'}Gms)`;
+            const mrpUsp = (item.MRP || item.USP)
+                ? `₹${item.MRP || 'N/A'} / ₹${item.USP || 'N/A'}`
+                : 'N/A / N/A';
+
+            const fssaiFromExcel = item.FssaiText || 'NA';
+            const nutritionFromExcel = item.NutritionInfo || 'NA';
+
+            const qrPayload =
+                '*FSSAI / Ingredients:* ' + fssaiFromExcel + '\n' +
+                ' *NUTRITION INFORMATION* ' + '\n' +
+                '*(Per 100 gms (approx) & FSSAI RDA Norms):* ' + nutritionFromExcel;
+
+            const qrUrl =
+                'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' +
+                encodeURIComponent(qrPayload);
+
+            // Build note section content dynamically
+            let noteSectionContent = '<div class="note-title" style="font-size: 8px; margin-bottom: 5px;">NOTE:</div>';
+            
+            // Always add QR Scanner note
+            noteSectionContent += '<div class="note-text" style="font-size: 8px; margin-bottom: 5px">QR Best Viewed by "QR Scanner App"</div>';
+
+            html += `
+            <div class="preview-label">
+                <div class="column1">
+                    <div class="label-top">
+                    <div class="label-brand">HARLEYS INDIA PVT LTD</div>
+                    <div class="item-title">${item.ItemName || 'NA'}</div>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 45px; display: inline-block;">NET QTY</span>
+                        <span style="flex:1; text-align:right;">${netQty}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 50px; display: inline-block;">MRP / USP(per Gm)</span>
+                        <span style="flex:1; text-align:right;">${mrpUsp}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 30px; display: inline-block;">MFD</span>
+                        <span style="flex:1; text-align:right;">${item.MFDDate || 'NA'}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 40px; display: inline-block;">USE BY</span>
+                        <span style="flex:1; text-align:right;">${item.UsedByDate || 'NA'}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 50px; display: inline-block;">FSSAI</span>
+                        <span style="flex:1; text-align:right;">${item.FSSAI || 'NA'}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 50px; display: inline-block;">BATCH NO</span>
+                        <span style="flex:1; text-align:right;">${item.BatchNo || 'NA'}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 55px; display: inline-block;">MFG ADDRESS</span>
+                        <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.MfgAddress || 'NA'}</span>
+                    </div>
+                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                        <span style="min-width: 55px; display: inline-block;"> CORP ADDRESS</span>
+                        <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
+                    </div>
+                    <div class="note-section">
+                        ${noteSectionContent}
+                    </div>
+                </div>
+                <div class="column2">
+                    <div class="qr-box">
+                        <img src="${qrUrl}" alt="QR CODE"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                        <div style="font-size: 8px; display: none;">FSSAI & Nutrition Info</div>
+                    </div>
+                    <div style="font-size: 8px; margin: 5px; font-weight: bold; text-align: center;">
+                        FSSAI &amp; Nutrition Info
+                    </div>
+                    <div class="exec-line">Customer Care: 8083098888</div>
+                    <div class="exec-mail">Email: care@harleys.com</div>
+                </div>
+            </div>`;
+        });
+        return html;
+    }
+
+    window.addEventListener('load', loadDataFromAppsScript);
+</script>
+</body>
+</html>
