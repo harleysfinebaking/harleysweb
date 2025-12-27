@@ -575,7 +575,7 @@
             const nutritionFromExcel = item.NutritionInfo || 'NA';
 
             const itemNameClean = (item.ItemName || '').toLowerCase().replace(/[()]/g, '').replace(/[']/g, '').trim().replace(/\s+/g, '-');
-            const qrPayload = "http://Harley.com/FssaiText.html#" + itemNameClean;
+            const qrPayload = "http://Harleys.com/FssaiText.html#" + itemNameClean;
 
             const qrUrl =
                 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' +
