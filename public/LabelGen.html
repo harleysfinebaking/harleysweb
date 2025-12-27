@@ -386,8 +386,8 @@
                     <input type="number"
                            class="qty-input item-qty-inline"
                            data-index="${index}"
-                           min="0" max="50"
-                           value="0"
+                           min="0" max="500"
+                           value=""
                            onchange="updateTotalLabels()"
                            title="Number of labels">
                     </div>
@@ -411,7 +411,7 @@
         const inputs = document.querySelectorAll('.qty-input');
         inputs.forEach(input => {
             const index = parseInt(input.dataset.index, 10);
-            const qty = parseInt(input.value || '0', 10) || 0;
+            const qty = input.value ? parseInt(input.value, 10) : 0;
             itemQuantities[index] = qty;
             total += qty;
 
