@@ -59,13 +59,13 @@ export default function OutletsPage() {
     },
     {
       name: "Harley's Fine Baking - Airport (Domestic & International)",
-      locationUrl: "https://maps.app.goo.gl/RGKsQz8hmww1E8jn9",
+      locationUrl: "https://maps.app.goo.gl/fFkKeRtgvvcMC5sS8",
       address:
         "Rajiv Gandhi International Airport, Shamshabad, Hyderabad, Telangana - 500409",
     },
     {
       name: "Harley's Fine Baking - TSPA PBEL City",
-      locationUrl: "https://maps.app.goo.gl/99gPKXirEcqV6x8Q8",
+      locationUrl: "https://maps.app.goo.gl/WqVou8hpHpwiDDPE9",
       address:
         "1st Floor, ASR Complex, Plot No. 9, PBEL City Rd, Snehita Hills, Phase-I, Bandlaguda Jagir, Hyderabad, Telangana - 500091",
     },
@@ -288,7 +288,7 @@ export default function OutletsPage() {
                 loop
                 speed={1000}
                 autoplay={{
-                  delay: 3000,
+                  delay: 1000,
                   disableOnInteraction: false,
                   pauseOnMouseEnter: true,
                 }}
