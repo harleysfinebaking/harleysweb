@@ -28,7 +28,7 @@ export function Footer() {
           <div className="mb-8 md:mb-0">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image
-                src="/newLogo.png"
+                src="/NewLogo1.png"
                 alt="Harley's Fine Baking"
                 width={120}
                 height={120}
