@@ -112,7 +112,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
           <div className="flex justify-between items-center md:hidden z-10">
             <Link href="/home" className="text-2xl font-bold text-[#4A4A4A]">
               <Image
-                src={isScrolled ? "/textlogo/smalllogo.png" : "/newLogo.png"}
+                src={isScrolled ? "/textlogo/smalllogo.png" : "/NewLogo1.png"}
                 alt="Harley's Logo"
                 width={isScrolled ? 100 : 200}
                 height={isScrolled ? 50 : 200}
@@ -189,7 +189,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 >
                   <Image
                     src={
-                      isScrolled ? "/textlogo/smalllogo.png" : "/newLogo.png"
+                      isScrolled ? "/textlogo/smalllogo.png" : "/NewLogo1.png"
                     }
                     alt="Harley's Logo"
                     width={isScrolled ? 100 : 130}
