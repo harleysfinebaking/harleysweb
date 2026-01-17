@@ -5,6 +5,7 @@
     <title>Label Generator - 4x2 inch</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* --- All existing styles remain the same --- */
         * { margin: 0; padding:0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -32,13 +33,7 @@
         .content { padding: 16px; }
 
         .form-group { margin-bottom: 12px; }
-        label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.85em;
-        }
+        label { display: block; margin-bottom: 4px; font-weight: 600; color: #333; font-size: 0.85em; }
         select, input {
             width: 100%;
             padding: 6px 8px;
@@ -48,111 +43,39 @@
             transition: all 0.3s ease;
             background: white;
         }
-        select:focus, input:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
-        }
+        select:focus, input:focus { outline: none; border-color: #007bff; box-shadow: 0 0 0 2px rgba(0,123,255,0.1); }
 
-        /* 3-column row: MFG Date + Batch No + Search */
-        .input-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .input-row > div {
-            flex: 1;
-        }
+        .input-row { display: flex; gap: 10px; margin-bottom: 16px; }
+        .input-row > div { flex: 1; }
         #itemSearch {
             padding-left: 32px;
             background: #f8f9fa url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23666" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.851a.5.5 0 0 0 .708-.708l-3.66-3.646zM8 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>') no-repeat 10px center;
             background-size: 16px;
         }
 
-        .date-info-box {
-            background: #e7f3ff;
-            border: 1px solid #b3d9ff;
-            border-radius: 6px;
-            padding: 8px 10px;
-            margin-bottom: 12px;
-            font-size: 0.85em;
-            color: #004085;
-        }
-        .date-info-box strong { color: #003366; }
-
         .item-line { display: flex; align-items: center; gap: 8px; }
-        .item-name-truncate {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 50ch;
-        }
+        .item-name-truncate { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50ch; }
         .item-qty-inline { width: 70px; text-align: right; }
-        .item-qty-group {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 8px;
-            border: 1px solid #e1e5e9;
-            transition: all 0.3s ease;
-        }
+        .item-qty-group { background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid #e1e5e9; transition: all 0.3s ease; }
         .item-qty-group:hover { border-color: #007bff; }
         .item-qty-group.hidden { display: none !important; }
         .item-header { margin-bottom: 6px; }
         .item-name { font-weight: 600; font-size: 0.9em; color: #333; }
         .item-meta { font-size: 0.75em; color: #666; margin-top: 2px; }
 
-        .total-labels {
-            background: #e3f2fd;
-            padding: 8px;
-            border-radius: 6px;
-            margin: 10px 10px 0px 0px;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.85em;
-        }
+        .total-labels { background: #e3f2fd; padding: 8px; border-radius: 6px; margin: 10px 10px 0px 0px; font-weight: 600; text-align: center; font-size: 0.85em; }
 
-        .generate-btn {
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 22px;
-            font-size: 0.95em;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-        }
-        .generate-btn:hover:not(:disabled) {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 16px rgba(40,167,69,0.4);
-        }
-        .generate-btn:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .generate-btn { background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 10px 20px; border: none; border-radius: 22px; font-size: 0.95em; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.3s ease; margin-top: 8px; }
+        .generate-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 16px rgba(40,167,69,0.4); }
+        .generate-btn:disabled { background: #6c757d; cursor: not-allowed; transform: none; }
 
-        .status {
-            padding: 8px;
-            border-radius: 6px;
-            margin: 12px 0;
-            font-weight: 500;
-            font-size: 0.85em;
-            display: none;
-        }
+        .status { padding: 8px; border-radius: 6px; margin: 12px 0; font-weight: 500; font-size: 0.85em; display: none; }
         .status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .status.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         .status.info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
 
         @media (max-width: 768px) {
-            .input-row {
-                flex-direction: column;
-                gap: 12px;
-            }
+            .input-row { flex-direction: column; gap: 12px; }
             .content { padding: 12px; }
         }
     </style>
@@ -161,31 +84,36 @@
 <div class="container">
     <div class="header">
         <h1>Label Generator</h1>
-        <p>Select City → MFG Date → Batch No + Search → Set Labels per Item → Generate 4×2 inch Labels</p>
+        <p>Select Type → City (if applicable) → MFG Date → Batch No + Search → Set Labels per Item → Generate 4×2 inch Labels</p>
     </div>
     <div class="content">
         <div id="status" class="status"></div>
 
         <div id="formSection" style="display:none;">
             <div class="form-group">
+                <label>Select Label Type</label>
+                <select id="labelTypeSelect">
+                    <option value="">Select Type</option>
+                    <option value="fssai-labels">Fssai Labels</option>
+                    <option value="airport">Airport</option>
+                    <option value="intercity">Intercity</option>
+                </select>
+            </div>
+            <div class="form-group" id="cityGroup" style="display:none;">
                 <label>Select City</label>
                 <select id="citySelect">
                     <option value="">Loading cities...</option>
                 </select>
             </div>
 
-            <!-- Clean 3-column row: MFG Date + Batch No + Search -->
             <div class="input-row">
                 <div class="form-group">
                     <label>📅 MFG Date *</label>
                     <input type="date" id="mfgDateInput" required>
-                    <small style="color: #856404; font-size: 0.75em; margin-top: 4px; display: block;">
-                        USE BY will be automatically calculated as MFG Date + Shelf Life
-                    </small>
                 </div>
                 <div class="form-group">
-                    <label for="batchNoInput">Batch No *</label>
-                    <input type="text" id="batchNoInput" placeholder="Enter Batch No (e.g., BATCH001)" required>
+                    <label for="batchNoInput">Batch No</label>
+                    <input type="text" id="batchNoInput" placeholder="Enter Batch No (e.g., BATCH001)">
                 </div>
                 <div class="form-group">
                     <label for="itemSearch">🔍 Search Items</label>
@@ -195,7 +123,7 @@
 
             <div id="itemsSection">
                 <div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">
-                    Loading items...
+                    Select label type and city to load items.
                 </div>
             </div>
 
@@ -211,12 +139,12 @@
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = 'https://script.googleusercontent.com/a/macros/harleys.com/echo?user_content_key=AehSKLiyi6-Ulb-28nR7yec6hIAW48aJArf-bMLXfHTgmLZH68Zd4hkZUGgPeYckCzb8EqLpJd4jn4sig20KpIHM1yvL0ZYDZX3TKfnuqomz5PKqT8Fmw_dFMdVUkLh2woJKlmf2uY1Mo2WedyOAebDxW8MERjwo8EvXFq1l82k-RcAMJwhroA2CHgeLVRZjgZwy-HPsKqrxOZTj8Ogt5Dr-8oiojpzB800dXMVBtM4O4fbJmYl-qQf8KNr75oH0nq5plwQ7YEFBuNL3puWvqo78T2coOSROYtcG-NNMuVUn17LXWSdIsZM&lib=M9uU--b86kRkZqIMpOMp7Ae2zo6csdZLF';
-
-    let excelData = { items: [], address: [] };
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwMlJs44AaQJ7ABoislOVl3p7nxcPYzrSTlpM0MGEDKk3UMKBr5RYNNQTQfBUUT4NDng/exec';
+    let excelData = { items: [], address: [], airport: [], intercity: [] };
     let cleanedItemsCache = [];
     let allItemElements = [];
     let itemQuantities = {};
+    let currentLabelType = '';
 
     function showStatus(message, type) {
         const status = document.getElementById('status');
@@ -255,171 +183,92 @@
         return value ? value.toString() : 'NA';
     }
 
-    function formatDateForDisplay(dateString) {
-        if (!dateString) return '-';
-        const date = new Date(dateString);
-        if (isNaN(date)) return '-';
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
-    }
-
-    // Set today's date as default for MFG Date
     function setTodayDate() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('mfgDateInput').value = today;
-        updateDateInfo();
-    }
-
-    function updateDateInfo() {
-        const mfgDateInput = document.getElementById('mfgDateInput').value;
-        const dateInfoBox = document.getElementById('dateInfoBox');
-        
-        if (mfgDateInput) {
-            document.getElementById('displayMfgDate').textContent = formatDateForDisplay(mfgDateInput);
-            dateInfoBox.style.display = 'block';
-        } else {
-            dateInfoBox.style.display = 'none';
-        }
     }
 
     function setupSearch() {
         const searchInput = document.getElementById('itemSearch');
         searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            filterItems(searchTerm);
+            const term = this.value.toLowerCase().trim();
+            allItemElements.forEach(el => {
+                const name = el.querySelector('.item-name')?.textContent.toLowerCase() || '';
+                el.classList.toggle('hidden', term && !name.includes(term));
+            });
+            updateTotalLabels();
         });
-    }
-
-    function filterItems(searchTerm) {
-        allItemElements.forEach(element => {
-            const itemName = element.querySelector('.item-name')?.textContent.toLowerCase() || '';
-            if (searchTerm === '' || itemName.includes(searchTerm)) {
-                element.classList.remove('hidden');
-            } else {
-                element.classList.add('hidden');
-            }
-        });
-        updateTotalLabels();
     }
 
     async function loadDataFromAppsScript() {
         try {
             showStatus('Loading data from Google Sheets...', 'info');
             const res = await fetch(APPS_SCRIPT_URL);
-            if (!res.ok) throw new Error('API returned status ' + res.status);
             const data = await res.json();
-
             excelData.items = data.items || [];
             excelData.address = data.address || [];
-
-            if (!excelData.items.length) {
-                throw new Error('No data found in "Pre-packed Item list" sheet.');
-            }
-
+            excelData.airport = data.airport || [];
+            excelData.intercity = data.intercity || [];
             document.getElementById('formSection').style.display = 'block';
-            showStatus(`Loaded ${excelData.items.length} items`, 'success');
-            populateCities();
+            showStatus(`Loaded data from sheets`, 'success');
+            setupLabelTypeHandler();
             setTodayDate();
         } catch (err) {
             showStatus('Error: ' + err.message, 'error');
         }
     }
 
-    function populateCities() {
-        const cities = [...new Set(
-            (excelData.address || [])
-                .map(row => (row.City || '').toString().trim())
-                .filter(city => city && city.toLowerCase() !== 'nan')
-                .map(city => city.toLowerCase())
-        )];
-        const select = document.getElementById('citySelect');
-        select.innerHTML = '';
-
-        if (!cities.length) {
-            select.innerHTML = '<option value="">No cities found</option>';
-            return;
-        }
-
-        cities.forEach(city => {
-            const opt = document.createElement('option');
-            opt.value = city;
-            opt.textContent = city.charAt(0).toUpperCase() + city.slice(1);
-            select.appendChild(opt);
-        });
-
-        select.value = cities[0];
-        populateItemsQuantities();
+    // === FSSAI LABELS SPECIFIC FUNCTIONS ===
+    function loadFssaiLabelsItems(city) {
+        cleanedItemsCache = cleanItemsData(excelData.items);
+        populateDetailedItemsQuantities();
+        showStatus(`Loaded ${cleanedItemsCache.length} Fssai Labels items`, 'success');
     }
-
-    document.addEventListener('change', (e) => {
-        if (e.target && e.target.id === 'citySelect') {
-            populateItemsQuantities();
-        }
-        if (e.target && e.target.id === 'mfgDateInput') {
-            updateDateInfo();
-        }
-    });
 
     function cleanItemsData(items) {
-        return (items || [])
-            .map(item => {
-                const cleaned = { ...item };
+        return (items || []).map(item => {
+            const cleaned = { ...item };
+            
+            // Handle various column name variations
+            if (item['Item No']) cleaned.ItemNo = item['Item No'];
+            if (item['Item Name']) cleaned.ItemName = item['Item Name'];
+            if (item['ItemNo']) cleaned.ItemNo = item['ItemNo'];
+            if (item['ItemName']) cleaned.ItemName = item['ItemName'];
+            if (item['Shelf Life']) cleaned.ShelfLife = item['Shelf Life'];
+            if (item['MRP (₹)']) cleaned.MRP = item['MRP (₹)'];
+            if (item['USP (₹)']) cleaned.USP = item['USP (₹)'];
+            if (item['Weight (gms)']) cleaned.Weight = item['Weight (gms)'];
+            if (item['Pieces (pcs)']) cleaned.Pieces = item['Pieces (pcs)'];
+            if (item['Qty (in units)']) cleaned.Qty = item['Qty (in units)'];
 
-                if (item['Item No']) cleaned.ItemNo = item['Item No'];
-                if (item['Item Name']) cleaned.ItemName = item['Item Name'];
-                if (item['ItemNo']) cleaned.ItemNo = item['ItemNo'];
-                if (item['ItemName']) cleaned.ItemName = item['ItemName'];
+            // Nutrition info variations
+            if (item['NUTRITIONAL INFORMATION-per 100 gms (approx)']) {
+                cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION-per 100 gms (approx)'];
+            } else if (item['NUTRITIONAL INFORMATION Per 100 gms approx']) {
+                cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION Per 100 gms approx'];
+            }
 
-                if (item['Batch No']) cleaned.BatchNo = item['Batch No'];
-                if (item['BatchNo']) cleaned.BatchNo = item['BatchNo'];
-
-                if (item['Fssai Text']) cleaned.FssaiText = item['Fssai Text'];
-                if (item['FssaiText']) cleaned.FssaiText = item['FssaiText'];
-
-                if (item['Mfg Date']) cleaned.MfgDate = item['Mfg Date'];
-                if (item['MfgDate']) cleaned.MfgDate = item['MfgDate'];
-
-                if (item['Use By']) cleaned.UseBy = item['Use By'];
-                if (item['UseBy']) cleaned.UseBy = item['UseBy'];
-
-                if (item['Shelf Life']) cleaned.ShelfLife = item['Shelf Life'];
-                if (item['ShelfLife']) cleaned.ShelfLife = item['ShelfLife'];
-
-                if (item['NUTRITIONAL INFORMATION-per 100 gms (approx)']) {
-                    cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION-per 100 gms (approx)'];
-                } else if (item['NUTRITIONAL INFORMATION Per 100 gms approx']) {
-                    cleaned.NutritionInfo = item['NUTRITIONAL INFORMATION Per 100 gms approx'];
-                } else if (item['Nutrition']) {
-                    cleaned.NutritionInfo = item['Nutrition'];
-                } else if (item['NUTRITIONALINFORMATIONPer100gmsapprox']) {
-                    cleaned.NutritionInfo = item['NUTRITIONALINFORMATIONPer100gmsapprox'];
+            // Numeric fields
+            ['ShelfLife', 'MRP', 'USP', 'Weight', 'Pieces', 'Qty'].forEach(col => {
+                if (cleaned[col] !== undefined && cleaned[col] !== null && cleaned[col] !== '') {
+                    const num = parseFloat(cleaned[col]);
+                    if (!isNaN(num)) cleaned[col] = num;
                 }
+            });
 
-                ['ItemNo', 'Qty', 'Pieces', 'MRP', 'USP', 'Weight', 'ShelfLife'].forEach(col => {
-                    if (cleaned[col] !== undefined && cleaned[col] !== null && cleaned[col] !== '') {
-                        const num = parseFloat(cleaned[col]);
-                        if (!isNaN(num)) cleaned[col] = num;
-                    }
-                });
-
-                return cleaned;
-            })
-            .filter(item => !isNaN(item.ItemNo))
-            .sort((a, b) => (a.ItemNo || 0) - (b.ItemNo || 0));
+            cleaned.ShelfLife = parseInt(item['Shelf Life']) || parseInt(item.ShelfLife) || 0;
+            return cleaned;
+        }).filter(i => i.ItemNo || i.No);
     }
 
-    function populateItemsQuantities() {
-        cleanedItemsCache = cleanItemsData(excelData.items);
+    function populateDetailedItemsQuantities() {
         const container = document.getElementById('itemsSection');
         container.innerHTML = '';
-        itemQuantities = {};
         allItemElements = [];
+        itemQuantities = {};
 
         if (!cleanedItemsCache.length) {
-            container.innerHTML =
-                '<div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">No valid items found</div>';
+            container.innerHTML = '<div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">No valid items found</div>';
             return;
         }
 
@@ -437,71 +286,44 @@
                     <div class="item-line">
                     <div class="item-name item-name-truncate">
                         ${item.ItemName || 'NA'}
-                        <span class="item-count" id="item-count-${index}"
-                               style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
+                        <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
                     </div>
-                    <input type="number"
-                           class="qty-input item-qty-inline"
-                           data-index="${index}"
-                           min="0" max="500"
-                           value=""
-                           onchange="updateTotalLabels()"
-                           title="Number of labels">
-                    </div>
-                    <div class="item-meta">
-                        Item ${item.ItemNo || 'NA'} | ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g
-                        | MRP ${mrpDisplay} | USP ${uspDisplay} | Shelf Life: ${shelfLifeDisplay} days
-                    </div>
+                    <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="" onchange="updateTotalLabels()" title="Number of labels">
                 </div>
-            `;
+                <div class="item-meta">
+                    Item ${item.ItemNo || 'NA'} | ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g | MRP ${mrpDisplay} | USP ${uspDisplay} | Shelf Life: ${shelfLifeDisplay} days
+                </div>
+                </div>`;
             container.appendChild(div);
             allItemElements.push(div);
         });
-
-        updateTotalLabels();
-        showStatus(`Select items by setting number of labels > 0. Total ${cleanedItemsCache.length} items`, 'info');
         setupSearch();
     }
 
-    function updateTotalLabels() {
-        let total = 0;
-        const inputs = document.querySelectorAll('.qty-input');
-        inputs.forEach(input => {
-            const index = parseInt(input.dataset.index, 10);
-            const qty = input.value ? parseInt(input.value, 10) : 0;
-            itemQuantities[index] = qty;
-            total += qty;
-
-            const countSpan = document.getElementById(`item-count-${index}`);
-            if (countSpan) countSpan.textContent = qty;
-        });
-
-        const totalDiv = document.getElementById('totalLabels');
-        const countSpanTotal = document.getElementById('totalCount');
-        countSpanTotal.textContent = total;
-        total > 0 ? totalDiv.style.display = 'block' : totalDiv.style.display = 'none';
-
-        const btn = document.getElementById('generateBtn');
-        if (total > 0) {
-            btn.disabled = false;
-            btn.textContent = `Generate Labels Preview (${total})`;
-        } else {
-            btn.disabled = true;
-            btn.textContent = 'Generate Labels Preview';
+    // === VALIDATION FUNCTIONS ===
+    function validateBatchNo(labelType) {
+        const batchNo = document.getElementById('batchNoInput').value.trim();
+        
+        if (labelType === 'fssai-labels' && !batchNo) {
+            showStatus('Batch No is mandatory for FSSAI labels', 'error');
+            return false;
         }
+        
+        if (labelType === 'intercity') {
+            // For intercity, batch no is not used at all
+            const batchNo = document.getElementById('batchNoInput').value.trim(); // Optional for intercity
+        }
+        
+        return true;
     }
 
-    async function generateLabels() {
-        const totalLabels = Object.values(itemQuantities)
-            .reduce((sum, qty) => sum + (qty || 0), 0);
+    // === FSSAI LABEL GENERATION ===
+    function generateFssaiLabels() {
+        if (!validateBatchNo('fssai-labels')) return;
+        
+        const totalLabels = Object.values(itemQuantities).reduce((sum, qty) => sum + (qty || 0), 0);
         if (!totalLabels) {
             showStatus('Set at least 1 label for some items', 'error');
-            return;
-        }
-
-        const batchNo = document.getElementById('batchNoInput').value.trim();
-        if (!batchNo) {
-            showStatus('Please enter a Batch No before generating labels.', 'error');
             return;
         }
 
@@ -511,12 +333,19 @@
             return;
         }
 
+        const city = document.getElementById('citySelect').value;
+        if (!city) {
+            showStatus('Please select a City before generating labels', 'error');
+            return;
+        }
+
         showStatus('Generating preview...', 'info');
 
         const cityName = document.getElementById('citySelect').value.toLowerCase();
         const addressInfo = (excelData.address || []).find(row =>
             (row.City || '').toString().trim().toLowerCase() === cityName
         );
+        const batchNo = document.getElementById('batchNoInput').value.trim();
 
         const finalItems = [];
         Object.entries(itemQuantities).forEach(([indexStr, qty]) => {
@@ -537,14 +366,9 @@
                     finalItems.push({
                         ...item,
                         City: cityName,
-                        CorpAddress: addressInfo
-                            ? (addressInfo['Corp Address'] || addressInfo.CorpAddress || 'NA')
-                            : 'NA',
+                        CorpAddress: addressInfo ? (addressInfo['Corp Address'] || addressInfo.CorpAddress || 'NA') : 'NA',
                         FSSAI: addressInfo ? (addressInfo.FSSAI || 'NA') : 'NA',
-                        MfgAddress: addressInfo
-                            ? (addressInfo['Mfg Address'] || addressInfo.MfgAddress || 'NA')
-                            : 'NA',
-                        FssaiText: item.FssaiText || 'FSSAI Compliant Product',
+                        MfgAddress: addressInfo ? (addressInfo['Mfg Address'] || addressInfo.MfgAddress || 'NA') : 'NA',
                         NutritionInfo: item.NutritionInfo || 'Follow FSSAI RDA Norms',
                         MFDDate: mfgDateFormatted,
                         UsedByDate: useByDateFormatted,
@@ -560,48 +384,104 @@
             return;
         }
 
-        const previewHtml = generatePreviewHtml(finalItems);
-        const win = window.open('', '_blank');
+        const previewHtml = generateFssaiPreviewHtml(finalItems);
+        openDetailedPreviewWindow(previewHtml);
+        showStatus('Preview opened in a new tab. ' + finalItems.length + ' labels generated.', 'success');
+    }
 
+    function generateFssaiPreviewHtml(items) {
+        let html = '';
+        items.forEach(item => {
+            const netQty = `${item.Pieces || 'N/A'} pcs (@${item.Weight || 'N/A'}Gms)`;
+            const mrpUsp = (item.MRP || item.USP)
+                ? `₹${item.MRP || 'N/A'} / ₹${item.USP || 'N/A'}`
+                : 'N/A / N/A';
+
+            const itemNameClean = (item.ItemName || '').toLowerCase().replace(/[()]/g, '').replace(/[']/g, '').trim().replace(/\s+/g, '-');
+            const qrPayload = "http://Harleys.com/FssaiText.html#" + itemNameClean;
+            const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(qrPayload);
+
+            html += `
+            <div class="preview-label">
+                <div class="column1">
+                    <div class="label-top">
+                    <div class="label-brand">HARLEYS INDIA PVT LTD</div>
+                    <div class="item-title">${item.ItemName || 'NA'}</div>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 45px; display: inline-block;">NET QTY</span>
+                    <span style="flex:1; text-align:right;">${netQty}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">MRP / USP(per Gm)</span>
+                    <span style="flex:1; text-align:right;">${mrpUsp}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 30px; display: inline-block;">MFD</span>
+                    <span style="flex:1; text-align:right;">${item.MFDDate || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 40px; display: inline-block;">USE BY</span>
+                    <span style="flex:1; text-align:right;">${item.UsedByDate || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">FSSAI</span>
+                    <span style="flex:1; text-align:right;">${item.FSSAI || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">BATCH NO</span>
+                    <span style="flex:1; text-align:right;">${item.BatchNo || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 55px; display: inline-block;">MFG ADDRESS</span>
+                    <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.MfgAddress || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 55px; display: inline-block;"> CORP ADDRESS</span>
+                    <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
+                </div>
+                <div class="note-section">
+                    <div class="note-title" style="font-size: 8px; margin-bottom: 5px;">NOTE:</div>
+                    <div class="note-text" style="font-size: 8px; margin-bottom: 5px">QR Best Viewed by "QR Scanner App"</div>
+                </div>
+                </div>
+                <div class="column2">
+                    <div class="qr-box">
+                        <img src="${qrUrl}" alt="QR CODE" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                        <div style="font-size: 8px; display: none;">FSSAI & Nutrition Info</div>
+                    </div>
+                    <div style="font-size: 8px; margin: 5px; font-weight: bold; text-align: center;">
+                        FSSAI & Nutrition Info
+                    </div>
+                    <div class="exec-line">Customer Care: 8083098888</div>
+                    <div class="exec-mail">Email: care@harleys.com</div>
+                </div>
+            </div>`;
+        });
+        return html;
+    }
+
+    function openDetailedPreviewWindow(previewHtml) {
+        const win = window.open('', '_blank');
         win.document.write(`
         <!DOCTYPE html>
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Labels Preview</title>
+            <title>Fssai Labels Preview</title>
             <style>
                 html, body {
-                    margin: 0;
-                    padding: 0;
-                    width: 4.094in;
-                    height: 2in;
-                    box-sizing: border-box;
-                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                    font-size: 8px;
-                    -webkit-print-color-adjust: exact;
-                    print-color-adjust: exact;
+                    margin: 0; padding: 0; width: 4.094in; height: 2in; box-sizing: border-box;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 8px;
+                    -webkit-print-color-adjust: exact; print-color-adjust: exact;
                 }
                 body { display: flex; align-items: flex-start; justify-content: flex-start; background: #f8f9fa; padding: 0; }
                 .preview-labels { display: flex; flex-direction: column; gap: 0; padding: 0; margin: 0; }
                 .preview-label {
-                    background: #ffffff;
-                    border: 1px solid #000;
-                    width: 4.094in;
-                    height: 2in;
-                    box-sizing: border-box;
-                    padding: 0.01in 0.1in;
-                    display: grid;
-                    grid-template-columns: 1.1fr 0.9fr;
-                    color: #000;
-                    font-size: 6px;
-                    line-height: 1.0;
-                    page-break-inside: avoid;
-                    page-break-after: always;
-                    font-weight: bold !important;
-                    color: #000 !important;
-                    margin: 0;
-                    position: relative;
-                    top: 0;
+                    background: #ffffff; border: 1px solid #000; width: 4.094in; height: 2in; box-sizing: border-box;
+                    padding: 0.01in 0.1in; display: grid; grid-template-columns: 1.1fr 0.9fr; color: #000; font-size: 6px;
+                    line-height: 1.0; page-break-inside: avoid; page-break-after: always; font-weight: bold !important;
+                    color: #000 !important; margin: 0; position: relative; top: 0;
                 }
                 .column1, .column2 { padding: 0.02in 0.02in; overflow: hidden; }
                 .label-top { text-align: center; margin-bottom: 2px; }
@@ -621,12 +501,7 @@
                     body { background: #ffffff; width: 4.094in; height: 2in; margin: 0; padding: 0; display: block; }
                     .print-bar { display: none !important; }
                     .preview-labels { margin: 0; padding: 0 !important; }
-                    .preview-label { 
-                        margin: 0 !important; 
-                        border: 1px solid #000; 
-                        page-break-after: always; 
-                        padding-top: 0.01in !important;
-                    }
+                    .preview-label { margin: 0 !important; border: 1px solid #000; page-break-after: always; padding-top: 0.01in !important; }
                     .preview-label:last-child { page-break-after: avoid; }
                 }
             </style>
@@ -635,93 +510,220 @@
             <div class="print-bar">
                 <button class="print-btn" onclick="window.print()">Print Labels</button>
             </div>
-            <div class="preview-labels">
-                ${previewHtml}
-            </div>
+            <div class="preview-labels">${previewHtml}</div>
         </body>
-        </html>
-        `);
+        </html>`);
         win.document.close();
-
-        showStatus('Preview opened in a new tab. ' + finalItems.length + ' labels generated.', 'success');
     }
 
-    function generatePreviewHtml(items) {
-        let html = '';
-        items.forEach(item => {
-            const netQty = `${item.Pieces || 'N/A'} pcs (@${item.Weight || 'N/A'}Gms)`;
-            const mrpUsp = (item.MRP || item.USP)
-                ? `₹${item.MRP || 'N/A'} / ₹${item.USP || 'N/A'}`
-                : 'N/A / N/A';
+    // === AIRPORT LABELS (Batch No optional) ===
+    function generateAirportLabels() {
+        const totalLabels = Object.values(itemQuantities).reduce((sum, qty) => sum + (qty || 0), 0);
+        if (!totalLabels) {
+            showStatus('Set at least 1 label for some items', 'error');
+            return;
+        }
 
-            const itemNameClean = (item.ItemName || '').toLowerCase().replace(/[()]/g, '').replace(/[']/g, '').trim().replace(/\s+/g, '-');
-            const qrPayload = "http://Harleys.com/FssaiText.html#" + itemNameClean;
+        const mfgDateInput = document.getElementById('mfgDateInput').value;
+        if (!mfgDateInput) {
+            showStatus('Please select MFG Date before generating labels', 'error');
+            return;
+        }
 
-            const qrUrl =
-                'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' +
-                encodeURIComponent(qrPayload);
+        const city = document.getElementById('citySelect').value;
+        if (!city) {
+            showStatus('Please select a City before generating labels', 'error');
+            return;
+        }
 
-            let noteSectionContent = '<div class="note-title" style="font-size: 8px; margin-bottom: 5px;">NOTE:</div>';
-            noteSectionContent += '<div class="note-text" style="font-size: 8px; margin-bottom: 5px">QR Best Viewed by "QR Scanner App"</div>';
-
-            html += `
-            <div class="preview-label">
-                <div class="column1">
-                    <div class="label-top">
-                    <div class="label-brand">HARLEYS INDIA PVT LTD</div>
-                    <div class="item-title">${item.ItemName || 'NA'}</div>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 45px; display: inline-block;">NET QTY</span>
-                        <span style="flex:1; text-align:right;">${netQty}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 50px; display: inline-block;">MRP / USP(per Gm)</span>
-                        <span style="flex:1; text-align:right;">${mrpUsp}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 30px; display: inline-block;">MFD</span>
-                        <span style="flex:1; text-align:right;">${item.MFDDate || 'NA'}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 40px; display: inline-block;">USE BY</span>
-                        <span style="flex:1; text-align:right;">${item.UsedByDate || 'NA'}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 50px; display: inline-block;">FSSAI</span>
-                        <span style="flex:1; text-align:right;">${item.FSSAI || 'NA'}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 50px; display: inline-block;">BATCH NO</span>
-                        <span style="flex:1; text-align:right;">${item.BatchNo || 'NA'}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 55px; display: inline-block;">MFG ADDRESS</span>
-                        <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.MfgAddress || 'NA'}</span>
-                    </div>
-                    <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
-                        <span style="min-width: 55px; display: inline-block;"> CORP ADDRESS</span>
-                        <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
-                    </div>
-                    <div class="note-section">
-                        ${noteSectionContent}
-                    </div>
-                </div>
-                <div class="column2">
-                    <div class="qr-box">
-                        <img src="${qrUrl}" alt="QR CODE"
-                             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-                        <div style="font-size: 8px; display: none;">FSSAI & Nutrition Info</div>
-                    </div>
-                    <div style="font-size: 8px; margin: 5px; font-weight: bold; text-align: center;">
-                        FSSAI &amp; Nutrition Info
-                    </div>
-                    <div class="exec-line">Customer Care: 8083098888</div>
-                    <div class="exec-mail">Email: care@harleys.com</div>
-                </div>
-            </div>`;
+        const batchNo = document.getElementById('batchNoInput').value.trim(); // Optional for airport
+        const mfgDate = new Date(mfgDateInput);
+        const addressInfo = excelData.address.find(a => a.City === city) || {};
+        const labels = [];
+        
+        Object.entries(itemQuantities).forEach(([i, qty]) => {
+            qty = parseInt(qty);
+            if (qty > 0) {
+                const item = cleanedItemsCache[i];
+                const useBy = new Date(mfgDate);
+                useBy.setDate(useBy.getDate() + (item.ShelfLife || 0));
+                for (let j = 0; j < qty; j++) {
+                    labels.push({
+                        ItemName: item.ItemName, 
+                        Category: item.Category || 'NA',
+                        MFDDate: formatExcelDate(mfgDate), 
+                        UseByDate: formatExcelDate(useBy),
+                        FSSAI: addressInfo.FSSAI || 'NA', 
+                        MfgAddress: addressInfo['Mfg Address'] || 'NA',
+                        CorpAddress: addressInfo['Corp Address'] || 'NA', 
+                        BatchNo: batchNo || '' // Only include if provided
+                    });
+                }
+            }
         });
-        return html;
+
+        const html = labels.map(l => `
+            <div style="border:1px solid #000; width:2in; height:1.975in; padding:0px; font-size:9px; font-weight:bold;
+                        display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+            <div>HARLEYS INDIA PVT LTD</div>
+            <div>Item: ${l.ItemName}</div>
+            <div>Best By: ${l.UseByDate}</div>
+            ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
+            <div>FSSAI: ${l.FSSAI}</div>
+            <div>CATEGORY: ${l.Category}</div>
+            <div>MFG Address: ${l.MfgAddress}</div>
+            <div>CORP Address: ${l.CorpAddress}</div>
+        </div>`).join('');
+
+        const win = window.open('', '_blank');
+        win.document.write(`<html><head><title>Airport Labels</title></head><body style="display: flex; flex-wrap: wrap; margin:0; padding:0;">${html}</body></html>`);
+        win.document.close();
+        showStatus('Preview opened. ' + labels.length + ' labels generated.', 'success');
+    }
+
+    // === INTERCITY LABELS (Updated logic) ===
+    function generateIntercityLabels() {
+        const totalLabels = Object.values(itemQuantities).reduce((sum, qty) => sum + (qty || 0), 0);
+        if (!totalLabels) {
+            showStatus('Set at least 1 label for some items', 'error');
+            return;
+        }
+
+        const mfgDateInput = document.getElementById('mfgDateInput').value;
+        if (!mfgDateInput) {
+            showStatus('Please select MFG Date before generating labels', 'error');
+            return;
+        }
+
+        const mfgDateFormatted = formatExcelDate(new Date(mfgDateInput));
+        const labels = [];
+        
+        Object.entries(itemQuantities).forEach(([i, qty]) => {
+            qty = parseInt(qty);
+            if (qty > 0) {
+                const item = cleanedItemsCache[i];
+                // Show all fields from intercity sheet except MFG Date logic
+                const showMFGDate = (item.MFGD || '').toString().trim().toLowerCase() === 'yes';
+                
+                for (let j = 0; j < qty; j++) {
+                    const labelData = {
+                        ItemName: item.ItemName || 'NA',
+                        Category: item.Category || 'NA',
+                        MFGDate: showMFGDate ? mfgDateFormatted : null,
+                        ...item
+                    };
+                    labels.push(labelData);
+                }
+            }
+        });
+
+        // Generate HTML showing all fields dynamically, with conditional MFG Date
+        const html = labels.map(l => {
+            let labelContent = `
+                <div>HARLEYS INDIA PVT LTD</div>
+                <div>Item: ${l.ItemName}</div>
+                <div>CATEGORY: ${l.Category}</div>
+                ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
+            `;
+            
+            // Dynamically add all other fields from the sheet (excluding MFGD and MFGDate)
+            Object.keys(l).forEach(key => {
+                if (key !== 'ItemName' && key !== 'Category' && key !== 'MFGD' && key !== 'Shelf Life' && key !== 'No' && l[key] && l[key] !== 'NA') {
+                    labelContent += `<div>${key.replace(/([A-Z])/g, ' $1').trim()}: ${l[key]}</div>`;
+                }
+            });
+            
+            return `
+                <div style="border:1px solid #000; width:1.975in; height:1.935in; padding:0px; font-size:8px; font-weight:bold; 
+                            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: left; overflow: hidden;">
+                    ${labelContent}
+                </div>`;
+        }).join('');
+
+        const win = window.open('', '_blank');
+        win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Intercity Labels</title>
+                <style>
+                    body { margin: 0; padding: 0px; display: flex; flex-wrap: wrap; gap: 0px; font-family: Arial, sans-serif; }
+                    @media print {
+                        body { padding: 0; gap: 0; }
+                    }
+                </style>
+            </head>
+            <body>${html}</body>
+            </html>
+        `);
+        win.document.close();
+        showStatus('Preview opened. ' + labels.length + ' labels generated. MFG Date shown only for items where MFGD=Yes', 'success');
+    }
+
+    function populateCities() {
+        const cities = [...new Set((excelData.address || []).map(r => r.City).filter(Boolean))];
+        const select = document.getElementById('citySelect');
+        select.innerHTML = '<option value="">Select City</option>' + cities.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    function updateTotalLabels() {
+        let total = 0;
+        document.querySelectorAll('.qty-input').forEach(input => {
+            const idx = parseInt(input.dataset.index);
+            const qty = parseInt(input.value) || 0;
+            itemQuantities[idx] = qty;
+            total += qty;
+            const countSpan = document.getElementById(`item-count-${idx}`);
+            if (countSpan) countSpan.textContent = qty;
+        });
+        const totalDiv = document.getElementById('totalLabels');
+        totalDiv.style.display = total ? 'block' : 'none';
+        document.getElementById('totalCount').textContent = total;
+        document.getElementById('generateBtn').disabled = total === 0;
+    }
+
+    function generateLabels() {
+        const labelType = document.getElementById('labelTypeSelect').value;
+        switch(labelType) {
+            case 'fssai-labels': generateFssaiLabels(); break;
+            case 'airport': generateAirportLabels(); break;
+            case 'intercity': generateIntercityLabels(); break;
+            default: showStatus('Please select a label type first', 'error');
+        }
+    }
+
+    function setupLabelTypeHandler() {
+        const labelTypeSelect = document.getElementById('labelTypeSelect');
+        const cityGroup = document.getElementById('cityGroup');
+        
+        labelTypeSelect.addEventListener('change', function() {
+            currentLabelType = this.value;
+            cityGroup.style.display = 'none';
+            document.getElementById('batchNoInput').required = false; // Reset required
+            
+            if (currentLabelType === 'fssai-labels' || currentLabelType === 'airport') {
+                cityGroup.style.display = 'block';
+                populateCities();
+            } else if (currentLabelType === 'intercity') {
+                cleanedItemsCache = cleanItemsData(excelData.intercity);
+                populateDetailedItemsQuantities();
+            }
+            
+            // Set batch no requirement based on type
+            if (currentLabelType === 'fssai-labels') {
+                document.getElementById('batchNoInput').required = true;
+            }
+        });
+
+        document.getElementById('citySelect').addEventListener('change', function() {
+            const selectedType = labelTypeSelect.value;
+            if (selectedType === 'fssai-labels') {
+                loadFssaiLabelsItems(this.value);
+            } else if (selectedType === 'airport') {
+                cleanedItemsCache = cleanItemsData(excelData.airport);
+                populateDetailedItemsQuantities();
+            }
+        });
     }
 
     window.addEventListener('load', loadDataFromAppsScript);
