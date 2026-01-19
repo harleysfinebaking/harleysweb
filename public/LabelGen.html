@@ -563,16 +563,16 @@
         });
 
         const html = labels.map(l => `
-            <div style="border:1px solid #000; width:2in; height:1.975in; padding:0px; font-size:9px; font-weight:bold;
+            <div style="border:1px solid #000; width:1.977in; height:1.977in; padding:0px; font-size:10px; font-weight:bold;
                         display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
             <div>HARLEYS INDIA PVT LTD</div>
-            <div>Item: ${l.ItemName}</div>
+            <div>${l.ItemName}</div>
             <div>Best By: ${l.UseByDate}</div>
             ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
             <div>FSSAI: ${l.FSSAI}</div>
             <div>CATEGORY: ${l.Category}</div>
-            <div>MFG Address: ${l.MfgAddress}</div>
-            <div>CORP Address: ${l.CorpAddress}</div>
+            <div style="font-size:9px">MFG Address: ${l.MfgAddress}</div>
+            <div style="font-size:9px">CORP Address: ${l.CorpAddress}</div>
         </div>`).join('');
 
         const win = window.open('', '_blank');
@@ -621,20 +621,20 @@
         const html = labels.map(l => {
             let labelContent = `
                 <div>HARLEYS INDIA PVT LTD</div>
-                <div>Item: ${l.ItemName}</div>
+                <div style="font-size : 8px">${l.ItemName}</div>
                 <div>CATEGORY: ${l.Category}</div>
                 ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
             `;
             
             // Dynamically add all other fields from the sheet (excluding MFGD and MFGDate)
             Object.keys(l).forEach(key => {
-                if (key !== 'ItemName' && key !== 'Category' && key !== 'MFGD' && key !== 'Shelf Life' && key !== 'No' && l[key] && l[key] !== 'NA') {
+                if (key !== 'ItemName' && key !== 'Category' && key !== 'MFGD' && key !== 'Shelf Life' && key !== 'No' && key !== 'Item Name' && l[key] && l[key] !== 'NA') {
                     labelContent += `<div>${key.replace(/([A-Z])/g, ' $1').trim()}: ${l[key]}</div>`;
                 }
             });
             
             return `
-                <div style="border:1px solid #000; width:1.975in; height:1.935in; padding:0px; font-size:8px; font-weight:bold; 
+                <div style="border:1px solid #000; width:1.977in; height:1.977in; padding:0px; font-size:9px; font-weight:bold; 
                             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: left; overflow: hidden;">
                     ${labelContent}
                 </div>`;
