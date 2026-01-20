@@ -116,7 +116,7 @@ export default function OutletsPage() {
     },
     {
       name: "Harley's Fine Baking - Bengaluru Airport",
-      locationUrl: "https://maps.app.goo.gl/uWLXLrbUQhcpDkJN7",
+      locationUrl: "https://maps.app.goo.gl/hC98tZHng5MRCpCs5",
       address:
         "The Quad by BLR, Terminal 1, Kempegowda International Airport Road, A - Block, Gangamuthanahalli, Karnataka 560300, Bangalore, Karnataka 560300",
     },
