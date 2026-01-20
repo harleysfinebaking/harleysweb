@@ -268,7 +268,10 @@
         itemQuantities = {};
 
         if (!cleanedItemsCache.length) {
-            container.innerHTML = '<div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">No valid items found</div>';
+            container.innerHTML = `
+                <div style="padding: 10px; text-align: center; color: #999; font-size: 0.85em;">
+                    No valid items found
+                </div>`;
             return;
         }
 
@@ -277,26 +280,73 @@
             div.className = 'item-qty-group';
             div.dataset.index = index;
 
-            const mrpDisplay = item.MRP || 'NA';
-            const uspDisplay = item.USP || 'NA';
             const shelfLifeDisplay = item.ShelfLife || 'NA';
 
-            div.innerHTML = `
-                <div class="item-header">
-                    <div class="item-line">
-                    <div class="item-name item-name-truncate">
-                        ${item.ItemName || 'NA'}
-                        <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
+            // 🔹 INTERCITY (MERGED FROM CODE 1)
+            if (currentLabelType === 'intercity') {
+                div.innerHTML = `
+                    <div class="item-header">
+                        <div class="item-line">
+                            <div class="item-name item-name-truncate">
+                                ${item.ItemName || item['Item Name'] || 'NA'}
+                                <span class="item-count" id="item-count-${index}"
+                                    style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
+                            </div>
+                            <input type="number"
+                                class="qty-input item-qty-inline"
+                                data-index="${index}"
+                                min="0"
+                                max="500"
+                                value=""
+                                onchange="updateTotalLabels()"
+                                title="Number of labels">
+                        </div>
+                        <div class="item-meta">
+                            From: ${item['From City'] || item.FromCity || 'NA'} |
+                            To: ${item['To City'] || item.ToCity || 'NA'} |
+                            Category: ${item.Category || 'NA'} |
+                            Shelf Life: ${shelfLifeDisplay} days
+                        </div>
                     </div>
-                    <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="" onchange="updateTotalLabels()" title="Number of labels">
-                </div>
-                <div class="item-meta">
-                    Item ${item.ItemNo || 'NA'} | ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g | MRP ${mrpDisplay} | USP ${uspDisplay} | Shelf Life: ${shelfLifeDisplay} days
-                </div>
-                </div>`;
+                `;
+            }
+
+            // 🔹 FSSAI + AIRPORT (UNCHANGED FROM CODE 2)
+            else {
+                const mrpDisplay = item.MRP || 'NA';
+                const uspDisplay = item.USP || 'NA';
+
+                div.innerHTML = `
+                    <div class="item-header">
+                        <div class="item-line">
+                            <div class="item-name item-name-truncate">
+                                ${item.ItemName || 'NA'}
+                                <span class="item-count" id="item-count-${index}"
+                                    style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
+                            </div>
+                            <input type="number"
+                                class="qty-input item-qty-inline"
+                                data-index="${index}"
+                                min="0"
+                                max="500"
+                                value=""
+                                onchange="updateTotalLabels()"
+                                title="Number of labels">
+                        </div>
+                        <div class="item-meta">
+                            Item ${item.ItemNo || 'NA'} |
+                            ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g |
+                            MRP ${mrpDisplay} | USP ${uspDisplay} |
+                            Shelf Life: ${shelfLifeDisplay} days
+                        </div>
+                    </div>
+                `;
+            }
+
             container.appendChild(div);
             allItemElements.push(div);
         });
+
         setupSearch();
     }
 
@@ -653,7 +703,9 @@
                     }
                 </style>
             </head>
-            <body>${html}</body>
+            <body>
+                ${html}
+            </body>
             </html>
         `);
         win.document.close();
