@@ -508,7 +508,7 @@
             <title>Fssai Labels Preview</title>
             <style>
                 html, body {
-                    margin: 0; padding: 0; width: 4.094in; height: 1.9in; box-sizing: border-box;
+                    margin: 0; padding: 0; width: 4.094in; height: 2in; box-sizing: border-box;
                     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 8px;
                     -webkit-print-color-adjust: exact; print-color-adjust: exact;
                 }
@@ -533,16 +533,15 @@
                 @page { size: 4.094in 2in; margin: 0; padding: 0; }
                 @media print {
                     html, body { margin: 0 !important; padding: 0 !important; }
-                    body { background: #ffffff; width: 4.094in; height: 1.9in; display: block; }
+                    body { background: #ffffff; width: 4.094in; height: 2in; display: block; }
                     .print-bar { display: none !important; }
                     .preview-labels { margin: 0 !important; padding: 0 !important; display: block; }
                     .preview-label { 
                         margin: 0 !important; 
-                        padding-top: 0.01 !important;
+                        padding-top: 0.2in !important;
                         padding-left: 0.1in !important;
                         padding-right: 0.1in !important;
                         border: 1px solid #000; 
-                        transform: translateY(-1mm);
                         page-break-after: always; 
                         position: relative;
                         top: 0 !important;
@@ -643,7 +642,6 @@
             display: grid;
             grid-template-columns: 2in 2in;
             grid-template-rows: 1in 1in;
-            transform: translateY(-5mm); /* ✅ Zebra ZD-230 fix */
             page-break-after: always;
             }
 
@@ -775,7 +773,6 @@
             display: grid;
             grid-template-columns: 2in 2in;
             grid-template-rows: 1in 1in;
-            transform: translateY(-5mm); /* Zebra ZD-230 fix */
             page-break-after: always;
             }
 
