@@ -89,7 +89,8 @@
                 <select id="labelTypeSelect">
                     <option value="">Select Type</option>
                     <option value="fssai-labels">Fssai Labels</option>
-                    <option value="airport">Airport</option>
+                    <option value="airportFssai">Airport Fssai Labels</option>
+                    <option value="airportContinental">Airport Continental</option>
                     <option value="intercity">Intercity</option>
                 </select>
             </div>
@@ -133,8 +134,8 @@
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjPmX-_w2NudsoIzqmHuaK0ZjtCW7qTbalh4qnDKY4EH2XC3sSc9LNk6l-8Lm_86vMdw/exec';
-    let excelData = { items: [], address: [], airport: [], intercity: [] };
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAG7STyIa5Qj4OMRgVrVAf9kQeBNlMlHk7dbxgwF6HB6Rt3-kPm7M9zVikJ6cZ0aAyew/exec';
+    let excelData = { items: [], address: [], airportfssai: [], airportcontinental:[], intercity: [] };
     let cleanedItemsCache = [];
     let allItemElements = [];
     let itemQuantities = {};
@@ -201,7 +202,8 @@
             const data = await res.json();
             excelData.items = data.items || [];
             excelData.address = data.address || [];
-            excelData.airport = data.airport || [];
+            excelData.airportfssai = data.airportfssai || [];
+            excelData.airportcontinental = data.airportcontinental || [];
             excelData.intercity = data.intercity || [];
             document.getElementById('formSection').style.display = 'block';
             showStatus(`Loaded data from sheets`, 'success');
@@ -498,6 +500,145 @@
         return html;
     }
 
+    function generateAirportFssaiLabels() {
+        if (!validateBatchNo('fssai-labels')) return;
+        
+        const totalLabels = Object.values(itemQuantities).reduce((sum, qty) => sum + (qty || 0), 0);
+        if (!totalLabels) {
+            showStatus('Set at least 1 label for some items', 'error');
+            return;
+        }
+
+        const mfgDateInput = document.getElementById('mfgDateInput').value;
+        if (!mfgDateInput) {
+            showStatus('Please select MFG Date before generating labels', 'error');
+            return;
+        }
+
+        const city = document.getElementById('citySelect').value;
+        if (!city) {
+            showStatus('Please select a City before generating labels', 'error');
+            return;
+        }
+
+        showStatus('Generating preview...', 'info');
+
+        const cityName = document.getElementById('citySelect').value.toLowerCase();
+        const addressInfo = (excelData.address || []).find(row =>
+            (row.City || '').toString().trim().toLowerCase() === cityName
+        );
+        const batchNo = document.getElementById('batchNoInput').value.trim();
+
+        const finalItems = [];
+        Object.entries(itemQuantities).forEach(([indexStr, qty]) => {
+            qty = parseInt(qty || 0, 10);
+            if (qty > 0) {
+                const index = parseInt(indexStr, 10);
+                const item = cleanedItemsCache[index];
+
+                const mfgDate = new Date(mfgDateInput);
+                const shelfLifeDays = parseInt(item.ShelfLife) || 0;
+                const useByDate = new Date(mfgDate);
+                useByDate.setDate(useByDate.getDate() + shelfLifeDays);
+
+                const mfgDateFormatted = formatExcelDate(mfgDate);
+                const useByDateFormatted = formatExcelDate(useByDate);
+
+                for (let i = 0; i < qty; i++) {
+                    finalItems.push({
+                        ...item,
+                        City: cityName,
+                        CorpAddress: addressInfo ? (addressInfo['Corp Address'] || addressInfo.CorpAddress || 'NA') : 'NA',
+                        FSSAI: addressInfo ? (addressInfo.FSSAI || 'NA') : 'NA',
+                        MfgAddress: addressInfo ? (addressInfo['Mfg Address'] || addressInfo.MfgAddress || 'NA') : 'NA',
+                        NutritionInfo: item.NutritionInfo || 'Follow FSSAI RDA Norms',
+                        MFDDate: mfgDateFormatted,
+                        UsedByDate: useByDateFormatted,
+                        BatchNo: batchNo,
+                        ShelfLifeDays: shelfLifeDays
+                    });
+                }
+            }
+        });
+
+        if (!finalItems.length) {
+            showStatus('No labels to generate. Please set quantities.', 'error');
+            return;
+        }
+
+        const previewHtml = generateAirportFssaiPreviewHtml(finalItems);
+        openDetailedPreviewWindow(previewHtml);
+        showStatus('Preview opened in a new tab. ' + finalItems.length + ' labels generated.', 'success');
+    }
+
+    function generateAirportFssaiPreviewHtml(items) {
+        let html = '';
+        items.forEach(item => {
+            const netQty = `${item.Pieces || 'N/A'} pcs (@${item.Weight || 'N/A'}Gms)`;
+            const mrpUsp = (item.MRP || item.USP)
+                ? `₹${item.MRP || 'N/A'} / ₹${item.USP || 'N/A'}`
+                : 'N/A / N/A';
+
+            const itemNameClean = (item.ItemName || '').toLowerCase().replace(/[()]/g, '').replace(/[']/g, '').trim().replace(/\s+/g, '-');
+            const qrPayload = "http://Harleys.com/FssaiText.html#" + itemNameClean;
+            const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(qrPayload);
+
+            html += `
+            <div class="preview-label">
+                <div class="column1">
+                    <div class="label-top">
+                    <div class="label-brand">HARLEYS INDIA PVT LTD</div>
+                    <div class="item-title">${item.ItemName || 'NA'}</div>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 45px; display: inline-block;">NET QTY</span>
+                    <span style="flex:1; text-align:right;">${netQty}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">MRP / USP(per Gm)</span>
+                    <span style="flex:1; text-align:right;">${mrpUsp}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 2px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 30px; display: inline-block;">MFD</span>
+                    <span style="flex:1; text-align:right;">${item.MFDDate || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 40px; display: inline-block;">USE BY</span>
+                    <span style="flex:1; text-align:right;">${item.UsedByDate || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">FSSAI</span>
+                    <span style="flex:1; text-align:right;">${item.FSSAI || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 50px; display: inline-block;">BATCH NO</span>
+                    <span style="flex:1; text-align:right;">${item.BatchNo || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 55px; display: inline-block;">MFG ADDRESS</span>
+                    <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.MfgAddress || 'NA'}</span>
+                </div>
+                <div style="font-size: 9px; margin-bottom: 3px; display:flex; justify-content:space-between;">
+                    <span style="min-width: 55px; display: inline-block;"> CORP ADDRESS</span>
+                    <span class="mfg-value" style="font-size: 8px ; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
+                </div>
+                </div>
+                <div class="column2">
+                    <div class="qr-box">
+                        <img src="${qrUrl}" alt="QR CODE" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                        <div style="font-size: 8px; display: none;">FSSAI & Nutrition Info</div>
+                    </div>
+                    <div style="font-size: 8px; margin: 5px; font-weight: bold; text-align: center;">
+                        FSSAI & Nutrition Info
+                    </div>
+                    <div class="exec-line">Customer Care: 8083098888</div>
+                    <div class="exec-mail">Email: care@harleys.com</div>
+                </div>
+            </div>`;
+        });
+        return html;
+    }
+
     function openDetailedPreviewWindow(previewHtml) {
         const win = window.open('', '_blank');
         win.document.write(`
@@ -561,7 +702,7 @@
     }
 
     // === AIRPORT LABELS (Batch No optional) ===
-    function generateAirportLabels() {
+    function generateAirportContinentalLabels() {
         const totalLabels = Object.values(itemQuantities)
             .reduce((sum, qty) => sum + (qty || 0), 0);
 
@@ -619,7 +760,7 @@
             <!DOCTYPE html>
             <html>
             <head>
-            <title>Airport Labels</title>
+            <title>Airport Continental Labels</title>
             <style>
             * { box-sizing: border-box; }
 
@@ -675,8 +816,14 @@
                     <div>${l.ItemName}</div>
                     <div>Best By: ${l.UseByDate}</div>
                     ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
-                    <div>FSSAI: ${l.FSSAI}</div>
-                    <div>CATEGORY: ${l.Category}</div>
+                    ${
+                        l.ItemName?.toLowerCase() !== 'harleys trays'
+                        ? `
+                            <div>FSSAI: ${l.FSSAI}</div>
+                            <div>CATEGORY: ${l.Category}</div>
+                        `
+                        : ''
+                    }
                 </div>
                 `).join('')}
             </div>
@@ -860,7 +1007,8 @@
         const labelType = document.getElementById('labelTypeSelect').value;
         switch(labelType) {
             case 'fssai-labels': generateFssaiLabels(); break;
-            case 'airport': generateAirportLabels(); break;
+            case 'airportFssai': generateAirportFssaiLabels(); break;
+            case 'airportContinental': generateAirportContinentalLabels(); break;
             case 'intercity': generateIntercityLabels(); break;
             default: showStatus('Please select a label type first', 'error');
         }
@@ -875,7 +1023,7 @@
             cityGroup.style.display = 'none';
             document.getElementById('batchNoInput').required = false; // Reset required
             
-            if (currentLabelType === 'fssai-labels' || currentLabelType === 'airport') {
+            if (currentLabelType === 'fssai-labels' || currentLabelType === 'airportFssai' || currentLabelType === 'airportContinental') {
                 cityGroup.style.display = 'block';
                 populateCities();
             } else if (currentLabelType === 'intercity') {
@@ -893,8 +1041,13 @@
             const selectedType = labelTypeSelect.value;
             if (selectedType === 'fssai-labels') {
                 loadFssaiLabelsItems(this.value);
-            } else if (selectedType === 'airport') {
-                cleanedItemsCache = cleanItemsData(excelData.airport);
+            }
+            else if (selectedType === 'airportFssai') {
+                cleanedItemsCache = cleanItemsData(excelData.airportfssai);
+                populateDetailedItemsQuantities();
+            }
+            else if (selectedType === 'airportContinental') {
+                cleanedItemsCache = cleanItemsData(excelData.airportcontinental);
                 populateDetailedItemsQuantities();
             }
         });
