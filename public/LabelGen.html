@@ -90,6 +90,7 @@
                     <option value="">Select Type</option>
                     <option value="fssai-labels">Fssai Labels</option>
                     <option value="airportFssai">Airport Fssai Labels</option>
+                    <option value="nonfssai">Non Fssai Labels</option>
                     <option value="airportContinental">Airport Continental</option>
                     <option value="intercity">Intercity</option>
                 </select>
@@ -134,8 +135,8 @@
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAG7STyIa5Qj4OMRgVrVAf9kQeBNlMlHk7dbxgwF6HB6Rt3-kPm7M9zVikJ6cZ0aAyew/exec';
-    let excelData = { items: [], address: [], airportfssai: [], airportcontinental:[], intercity: [] };
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWyIwiF7ZY7XC1-oNAJ0VxK3K2E_2RyLVfZUEKcEQ_xtFGHh8Ro5XZ9-fxkY-ZYxZ0bg/exec';
+    let excelData = { items: [], address: [], airportfssai: [], nonfssai:[], airportcontinental:[], intercity: [] };
     let cleanedItemsCache = [];
     let allItemElements = [];
     let itemQuantities = {};
@@ -203,6 +204,7 @@
             excelData.items = data.items || [];
             excelData.address = data.address || [];
             excelData.airportfssai = data.airportfssai || [];
+            excelData.nonfssai = data.nonfssai || [];
             excelData.airportcontinental = data.airportcontinental || [];
             excelData.intercity = data.intercity || [];
             document.getElementById('formSection').style.display = 'block';
@@ -219,6 +221,12 @@
         cleanedItemsCache = cleanItemsData(excelData.items);
         populateDetailedItemsQuantities();
         showStatus(`Loaded ${cleanedItemsCache.length} Fssai Labels items`, 'success');
+    }
+
+    function loadNonFssaiLabelsItems(city) {
+        cleanedItemsCache = cleanItemsData(excelData.nonfssai);
+        populateDetailedItemsQuantities();
+        showStatus(`Loaded ${cleanedItemsCache.length} Non Fssai Labels items`, 'success');
     }
 
     function cleanItemsData(items) {
@@ -339,7 +347,6 @@
             container.appendChild(div);
             allItemElements.push(div);
         });
-
         setupSearch();
     }
 
@@ -639,6 +646,112 @@
         return html;
     }
 
+    function generateNonFssaiLabels() {
+        const itemName = excelData.nonfssai['Item Name'] || '';
+        const category = excelData.nonfssai['Category'] || '';
+        const remarks = excelData.nonfssai['Remarks'] || '';
+        const mfgDate = new Date(document.getElementById('mfgDateInput').value);
+        const shelfLifeDays = parseInt(excelData.nonfssai['Shelf Life']) || 0;
+        const useByDate = new Date(mfgDate);
+        useByDate.setDate(useByDate.getDate() + shelfLifeDays);
+        //console.log('MFG Date:', mfgDate, 'Use By Date:', useByDate);
+        return `
+            <div class="preview-label">
+                <div class="label-header">NON-FSSAI PRODUCT</div>
+                <div class="label-content">
+                    <div class="label-row">
+                        <span class="label-field">Item:</span>
+                        <span class="label-value">${itemName}</span>
+                    </div>
+                    <div class="label-row">
+                        <span class="label-field">Category:</span>
+                        <span class="label-value">${category}</span>
+                    </div>
+                    <div class="label-row">
+                        <span class="label-field">MFG Date:</span>
+                        <span class="label-value">${mfgDate}</span>
+                    </div>
+                    <div class="label-row">
+                        <span class="label-field">Use By:</span>
+                        <span class="label-value">${useByDate}</span>
+                    </div>
+                    <div class="remarks-section">
+                        <strong>Remarks:</strong> ${remarks}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function openNonFssaiPreviewWindow(previewHtml) {
+    const win = window.open('', '_blank');
+    win.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Non FSSAI Labels Preview</title>
+        <style>
+            html, body {
+                margin: 0; padding: 0; width: 4.094in; height: 2in; box-sizing: border-box;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 8px;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            body { display: flex; align-items: flex-start; justify-content: flex-start; background: #f8f9fa; padding: 0; }
+            .preview-labels { display: flex; flex-direction: column; gap: 0; padding: 0; margin: 0; }
+            .preview-label {
+                background: #ffffff; border: 1px solid #000; width: 4.094in; height: 2in; box-sizing: border-box;
+                padding: 0.1in 0.1in; display: block; color: #000; font-size: 8px;
+                line-height: 1.1; page-break-inside: avoid; page-break-after: always; 
+                margin: 0; position: relative; top: 0;
+            }
+            .label-header {
+                text-align: center; font-weight: bold; font-size: 11px; margin-bottom: 4px;
+                border-bottom: 1px solid #000; padding-bottom: 2px;
+            }
+            .label-content {
+                font-size: 9px; line-height: 1.2;
+            }
+            .label-row {
+                margin-bottom: 2px; display: flex; justify-content: space-between;
+            }
+            .label-field { font-weight: 600; }
+            .label-value { font-weight: normal; }
+            .remarks-section {
+                margin-top: 8px; padding-top: 4px; border-top: 1px dashed #666;
+                font-size: 8px; text-align: center;
+            }
+            .print-bar { margin: 10px 0; text-align: right; padding-right: 10px; }
+            .print-btn { 
+                background: linear-gradient(135deg, #dc3545, #c82333); color: white; 
+                padding: 8px 20px; border: none; border-radius: 20px; font-size: 14px; 
+                cursor: pointer; font-weight: 600;
+            }
+            .print-btn:hover { background: linear-gradient(135deg, #c82333, #a71e2a); }
+            @page { size: 4.094in 2in; margin: 0; padding: 0; }
+            @media print {
+                html, body { margin: 0 !important; padding: 0 !important; }
+                body { background: #ffffff; width: 4.094in; height: 2in; display: block; }
+                .print-bar { display: none !important; }
+                .preview-labels { margin: 0 !important; padding: 0 !important; display: block; }
+                .preview-label { 
+                    margin: 0 !important; padding: 0.15in 0.1in !important;
+                    border: 1px solid #000; page-break-after: always; position: relative;
+                    top: 0 !important; height: 2in !important;
+                }
+                .preview-label:last-child { page-break-after: avoid; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="print-bar">
+            <button class="print-btn" onclick="window.print()">🖨️ Print Non-FSSAI Labels</button>
+        </div>
+        <div class="preview-labels">${previewHtml}</div>
+    </body>
+    </html>`);
+    win.document.close();
+}
     function openDetailedPreviewWindow(previewHtml) {
         const win = window.open('', '_blank');
         win.document.write(`
@@ -1003,11 +1116,48 @@
         document.getElementById('generateBtn').disabled = total === 0;
     }
 
+
+function openNonFssaiPreviewWindow(previewHtml) {
+    const win = window.open('', '_blank');
+    win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Non FSSAI Labels Preview</title>
+            <style>
+                html, body { margin: 0; padding: 0; width: 4.094in; height: 2in; box-sizing: border-box;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 8px;
+                    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+                body { display: flex; align-items: flex-start; justify-content: flex-start; background: #f8f9fa; padding: 0; }
+                .preview-labels { display: flex; flex-direction: column; gap: 0; padding: 0; margin: 0; }
+                .preview-label { background: #ffffff; border: 1px solid #000; width: 4.094in; height: 2in; box-sizing: border-box;
+                    padding: 0.1in 0.1in; display: block; color: #000; font-size: 8px; line-height: 1.1; 
+                    page-break-inside: avoid; page-break-after: always; margin: 0; position: relative; top: 0; }
+                .label-header { text-align: center; font-weight: bold; font-size: 11px; margin-bottom: 4px; border-bottom: 1px solid #000; padding-bottom: 2px; }
+                .label-content { font-size: 9px; line-height: 1.2; }
+                .label-row { margin-bottom: 2px; display: flex; justify-content: space-between; }
+                .label-field { font-weight: 600; }
+                .remarks-section { margin-top: 8px; padding-top: 4px; border-top: 1px dashed #666; font-size: 8px; text-align: center; }
+                .print-bar { margin: 10px 0; text-align: right; padding-right: 10px; }
+                .print-btn { background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 8px 20px; border: none; border-radius: 20px; font-size: 14px; cursor: pointer; font-weight: 600; }
+                @media print { .print-bar { display: none !important; } .preview-label { margin: 0 !important; padding: 0.15in 0.1in !important; border: 1px solid #000; page-break-after: always; height: 2in !important; } }
+            </style>
+        </head>
+        <body>
+            <div class="print-bar"><button class="print-btn" onclick="window.print()">🖨️ Print Labels</button></div>
+            <div class="preview-labels">${previewHtml}</div>
+        </body></html>`);
+    win.document.close();
+}
+
     function generateLabels() {
         const labelType = document.getElementById('labelTypeSelect').value;
         switch(labelType) {
             case 'fssai-labels': generateFssaiLabels(); break;
             case 'airportFssai': generateAirportFssaiLabels(); break;
+            case 'nonfssai': generateNonFssaiLabels(); break; 
+            console.log(nonfssai);
             case 'airportContinental': generateAirportContinentalLabels(); break;
             case 'intercity': generateIntercityLabels(); break;
             default: showStatus('Please select a label type first', 'error');
@@ -1023,7 +1173,7 @@
             cityGroup.style.display = 'none';
             document.getElementById('batchNoInput').required = false; // Reset required
             
-            if (currentLabelType === 'fssai-labels' || currentLabelType === 'airportFssai' || currentLabelType === 'airportContinental') {
+            if (currentLabelType === 'fssai-labels' || currentLabelType === 'airportFssai' || currentLabelType === 'airportContinental' || currentLabelType === 'nonfssai') {
                 cityGroup.style.display = 'block';
                 populateCities();
             } else if (currentLabelType === 'intercity') {
@@ -1048,6 +1198,10 @@
             }
             else if (selectedType === 'airportContinental') {
                 cleanedItemsCache = cleanItemsData(excelData.airportcontinental);
+                populateDetailedItemsQuantities();
+            }
+            else if (selectedType === 'nonfssai') {
+                cleanedItemsCache = cleanItemsData(excelData.nonfssai);
                 populateDetailedItemsQuantities();
             }
         });
