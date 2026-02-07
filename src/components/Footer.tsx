@@ -118,6 +118,13 @@ export function Footer() {
               >
                 +91 80830 98888
               </Link>
+              <text>For Bulk order or Cake Customization contact</text>
+              <Link
+                href="tel:+91 9100106801"
+                className="hover:text-[#d45770] transition-colors"
+              >
+                +91 9100106801
+              </Link>
             </div>
           </div>
         </div>
