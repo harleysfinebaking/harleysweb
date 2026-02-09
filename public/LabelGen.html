@@ -696,7 +696,7 @@
         return html;
     }
 
-    function generateNonFssaiLabels() {
+    /*function generateNonFssaiLabels() {
         console.log('---- [Non-FSSAI] Generation Started ----');
 
         console.log('[Non-FSSAI] cleanedItemsCache:', cleanedItemsCache);
@@ -783,6 +783,138 @@
 
         showStatus(
             `Non-FSSAI preview opened (${labelCounter} labels)`,
+            'success'
+        );
+    }*/ 
+
+    function generateNonFssaiLabels(){
+        const totalLabels = Object.values(itemQuantities)
+            .reduce((sum, qty) => sum + (qty || 0), 0);
+
+        if (!totalLabels) {
+            showStatus('Set at least 1 label for some items', 'error');
+            return;
+        }
+
+        const mfgDateInput = document.getElementById('mfgDateInput').value;
+        if (!mfgDateInput) {
+            showStatus('Please select MFG Date before generating labels', 'error');
+            return;
+        }
+
+        const city = document.getElementById('citySelect').value;
+        if (!city) {
+            showStatus('Please select a City before generating labels', 'error');
+            return;
+        }
+
+        const batchNo = document.getElementById('batchNoInput').value.trim();
+        const mfgDate = new Date(mfgDateInput);
+        const addressInfo = excelData.address.find(a => a.City === city) || {};
+        const labels = [];
+
+        Object.entries(itemQuantities).forEach(([i, qty]) => {
+            qty = parseInt(qty, 10);
+            if (qty > 0) {
+                const item = cleanedItemsCache[i];
+                const useBy = new Date(mfgDate);
+                useBy.setDate(useBy.getDate() + (item.ShelfLife || 0));
+
+                for (let j = 0; j < qty; j++) {
+                    labels.push({
+                        ItemName: item.ItemName || 'NA',
+                        Category: item.Category || 'NA',
+                        UseByDate: formatExcelDate(useBy),
+                        FSSAI: addressInfo.FSSAI || 'NA',
+                        BatchNo: batchNo || ''
+                    });
+                }
+            }
+        });
+
+        if (!labels.length) {
+            showStatus('No labels generated', 'error');
+            return;
+        }
+
+        // ✅ GROUP INTO PAGES OF 4
+        const pages = chunkArray(labels, 4);
+
+        const win = window.open('', '_blank');
+        win.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <title>Non Fssai Labels</title>
+            <style>
+            * { box-sizing: border-box; }
+
+            @page {
+            size: 4in 2in;
+            margin: 0;
+            }
+
+            /* BODY HEIGHT MUST BE AUTO */
+            html, body {
+            margin: 0;
+            padding: 0;
+            width: 4in;
+            font-family: Arial, sans-serif;
+            }
+
+            .page {
+            width: 4in;
+            height: 2in;
+            display: grid;
+            grid-template-columns: 2in 2in;
+            grid-template-rows: 1in 1in;
+            page-break-after: always;
+            }
+
+            .page:last-child {
+            page-break-after: avoid;
+            }
+
+            .label {
+            width: 2in;
+            height: 1in;
+            border: 1px solid #000;
+            padding: 4px;
+            font-size: 8px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            }
+            </style>
+            </head>
+            <body>
+
+            ${pages.map(page => `
+            <div class="page">
+                ${page.map(l => `
+                <div class="label">
+                    <div>HARLEYS INDIA PVT LTD</div>
+                    <div>${l.ItemName}</div>
+                    <div>Best By: ${l.UseByDate}</div>
+                    ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
+                    <div>FSSAI: ${l.FSSAI}</div>
+                    <div>CATEGORY: ${l.Category}</div>
+                </div>
+                `).join('')}
+            </div>
+            `).join('')}
+
+            </body>
+            </html>
+        `);
+        win.document.close();
+
+        showStatus(
+            'Preview opened. ' + labels.length + ' Non Fssai labels generated.',
             'success'
         );
     }
