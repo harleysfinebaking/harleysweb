@@ -112,12 +112,12 @@ export default function FoundationPage() {
                     PDF for {selectedYear}
                   </h2>
                   <iframe
-                    src={`/pdfs/${selectedYear}.pdf`}
+                    src={`/pdfs/${selectedYear}.pdf#toolbar=0&navpanes=0&scrollbar=0`}
                     width="100%"
                     height="600px"
                     className="border border-gray-300 rounded-md"
                     title={`PDF for ${selectedYear}`}
-                  ></iframe>
+                  />
                 </motion.div>
               )}
             </motion.div>
