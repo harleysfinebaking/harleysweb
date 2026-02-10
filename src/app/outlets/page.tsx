@@ -99,6 +99,12 @@ export default function OutletsPage() {
       address:
         " 9, Sarojini Devi Rd, Regimental Bazaar, Shivaji Nagar, Hyderabad, Secunderabad, Telangana 500003",
     },
+    {
+      name: "Harley's Fine Baking - Prestige SkyTech",
+      locationUrl: "https://maps.app.goo.gl/z4fNeXWxehboixKKA",
+      address:
+        "Prestige Skytech, S.Y. No. 332, 333, Pupplaguda, Gandipet, Financial, Hyderabad, Telangana 500032",
+    },
   ];
 
   const blrOutlets = [
@@ -135,6 +141,12 @@ export default function OutletsPage() {
       address:
         "462, Senapati Bapat Marg, Lower Parel, 3rd Floor, Phoenix Palladium, Mumbai, Maharashtra 400013",
     },
+    {
+      name: "Harley's Fine Baking - Jio World Drive",
+      locationUrl: "https://maps.app.goo.gl/kWYFtcBbXRyBsBE9A",
+      address:
+        "SK1, 2nd Floor, Drive In Theatre, Jio World Drive, Bandra Kurla Complex, , Bandra East, Mumbai, Maharashtra 400051, Mumbai, Maharashtra 400051",
+    },
   ];
 
   const vijOutlets = [
@@ -168,18 +180,6 @@ export default function OutletsPage() {
   ];
 
   const upcomingOutlets = [
-    {
-      name: "Harley's Fine Baking - Prestige SkyTech",
-      locationUrl: "https://maps.app.goo.gl/z4fNeXWxehboixKKA",
-      address:
-        "Prestige Skytech, S.Y. No. 332, 333, Pupplaguda, Gandipet, Financial, Hyderabad, Telangana 500032",
-    },
-    {
-      name: "Harley's Fine Baking - Jio World Drive",
-      locationUrl: "https://maps.app.goo.gl/kWYFtcBbXRyBsBE9A",
-      address:
-        "SK1, 2nd Floor, Drive In Theatre, Jio World Drive, Bandra Kurla Complex, , Bandra East, Mumbai, Maharashtra 400051, Mumbai, Maharashtra 400051",
-    },
   ];
 
   const prevRef = useRef<HTMLButtonElement>(null);
@@ -377,7 +377,9 @@ export default function OutletsPage() {
         <Outlet id="Mumbai" outlets={mumOutlets} />
         <Outlet id="Vijayawada" outlets={vijOutlets} />
         <Outlet id="Pune" outlets={puneOutlets} />
-        <Outlet id="Upcoming" outlets={upcomingOutlets} />
+        {upcomingOutlets.length > 0 && (
+          <Outlet id="Upcoming" outlets={upcomingOutlets} />
+        )}
       </motion.main>
       <Footer />
     </div>
