@@ -134,8 +134,8 @@
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwWyIwiF7ZY7XC1-oNAJ0VxK3K2E_2RyLVfZUEKcEQ_xtFGHh8Ro5XZ9-fxkY-ZYxZ0bg/exec';
-    let excelData = { items: [], address: [], airportfssai: [], nonfssai:[], airportcontinental:[], intercity: [] };
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfSgNGncypcjl3n3L_BVnhmeRyPemTg_BiAeHDoD589Bn4lii3lDIyLrJ1jDw09OxsWA/exec';
+    let excelData = { items: [], address: [], airportfssai: [], nonfssai:[], airportcontinental:[], intercity: [], delhiFssai: [] };
     let cleanedItemsCache = [];
     let allItemElements = [];
     let itemQuantities = {};
@@ -206,6 +206,7 @@
             excelData.nonfssai = data.nonfssai || [];
             excelData.airportcontinental = data.airportcontinental || [];
             excelData.intercity = data.intercity || [];
+            excelData.delhifssai = data.delhiFssai || [];
             document.getElementById('formSection').style.display = 'block';
             showStatus(`Loaded data from sheets`, 'success');
             setupLabelTypeHandler();
@@ -1357,23 +1358,25 @@
             }
         });
 
-        document.getElementById('citySelect').addEventListener('change', function () {
+        document.getElementById('citySelect').addEventListener('change', function() {
             const selectedType = labelTypeSelect.value;
-            console.log('[City Change] Type:', selectedType, 'City:', this.value);
-
+            console.log('City Change', 'Type:', selectedType, 'City:', this.value);
             if (selectedType === 'fssai-labels') {
+                if (this.value === 'NCR-DELHI') {
+                cleanedItemsCache = cleanItemsData(excelData.delhifssai);
+                showStatus('Loaded ' + cleanedItemsCache.length + ' Delhi Fssai Labels items', 'success');
+                } else {
                 loadFssaiLabelsItems(this.value);
-            }
-            else if (selectedType === 'airportFssai') {
+                }
+                populateDetailedItemsQuantities();
+            } else if (selectedType === 'airportFssai') {
                 cleanedItemsCache = cleanItemsData(excelData.airportfssai);
                 populateDetailedItemsQuantities();
-            }
-            else if (selectedType === 'airportContinental') {
+            } else if (selectedType === 'airportContinental') {
                 cleanedItemsCache = cleanItemsData(excelData.airportcontinental);
                 populateDetailedItemsQuantities();
-            }
-            else if (selectedType === 'nonfssai') {
-                console.log('[Non-FSSAI] Loading items');
+            } else if (selectedType === 'nonfssai') {
+                console.log('Non-FSSAI Loading items');
                 loadNonFssaiLabelsItems(this.value);
             }
         });
