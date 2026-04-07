@@ -85,7 +85,7 @@ const Careers = ({ openings }: CareerProps) => {
 
                 <div className="flex gap-x-2 mt-2">
                   <a
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=leelamohan366@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=hrlead1@harleys.com"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

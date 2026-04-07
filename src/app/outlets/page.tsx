@@ -31,6 +31,7 @@ export default function OutletsPage() {
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
     { name: "Vijayawada", image: "/photos/Vijayawada.jpg" },
     { name: "Pune", image: "/photos/Balewadi-Pune.jpg" },
+    { name: "New Delhi", image: "/photos/newdelhi.jpg" },
   ];
 
   const hydOutlets = [
@@ -126,6 +127,12 @@ export default function OutletsPage() {
       address:
         "The Quad by BLR, Terminal 1, Kempegowda International Airport Road, A - Block, Gangamuthanahalli, Karnataka 560300, Bangalore, Karnataka 560300",
     },
+    {
+      name: "Harley's Fine Baking - Prestige Tech Park",
+      locationUrl: "https://share.google/RlaY1ilwUwmllcoyx",
+      address:
+        "Ground floor, The Gravity, PRESTIGE TECH PARK, Unit No. 05B, Kodbisanhalli, IV, Bengaluru, Karnataka 560103",
+    },
   ];
 
   const mumOutlets = [
@@ -176,6 +183,15 @@ export default function OutletsPage() {
       locationUrl: "https://maps.app.goo.gl/bZ95KJLG8yChHKPH6",
       address:
         "Ground Floor, Phoenix Marketcity, 207, Pune Nagar Rd, Clover Park, Viman, Nagar, Pune, Maharashtra 411014, Pune, Maharashtra 411014",
+    },
+  ];
+
+  const newdelhiOutlets = [
+    {
+      name: "Harley's Ivory Lounge - New Delhi",
+      locationUrl: "https://share.google/UWt8A5LBZPf4TTUF7",
+      address:
+        "76 C, Phase IV, Udyog Vihar, Sector 18, Gurugram, Haryana, 122015",
     },
   ];
 
@@ -377,6 +393,7 @@ export default function OutletsPage() {
         <Outlet id="Mumbai" outlets={mumOutlets} />
         <Outlet id="Vijayawada" outlets={vijOutlets} />
         <Outlet id="Pune" outlets={puneOutlets} />
+        <Outlet id="New Delhi" outlets={newdelhiOutlets} />
         {upcomingOutlets.length > 0 && (
           <Outlet id="Upcoming" outlets={upcomingOutlets} />
         )}

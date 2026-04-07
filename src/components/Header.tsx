@@ -189,7 +189,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 >
                   <Image
                     src={
-                      isScrolled ? "/textlogo/smalllogo.png" : "/NewLogo1.png"
+                      isScrolled ? "/textlogo/smalllogo.png" : "/NewLogo2.png"
                     }
                     alt="Harley's Logo"
                     width={isScrolled ? 100 : 130}
