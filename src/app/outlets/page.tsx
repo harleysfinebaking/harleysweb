@@ -31,7 +31,7 @@ export default function OutletsPage() {
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
     { name: "Vijayawada", image: "/photos/Vijayawada.jpg" },
     { name: "Pune", image: "/photos/Balewadi-Pune.jpg" },
-    { name: "New Delhi", image: "/photos/NewDelhi.webp" },
+    { name: "Gurgaon", image: "/photos/Gurgaon.webp" },
   ];
 
   const hydOutlets = [
@@ -186,9 +186,9 @@ export default function OutletsPage() {
     },
   ];
 
-  const newdelhiOutlets = [
+  const ncrOutlets = [
     {
-      name: "Harley's Ivory Lounge - New Delhi",
+      name: "Harley's Ivory Lounge - Gurgaon",
       locationUrl: "https://share.google/UWt8A5LBZPf4TTUF7",
       address:
         "76 C, Phase IV, Udyog Vihar, Sector 18, Gurugram, Haryana, 122015",
@@ -393,7 +393,7 @@ export default function OutletsPage() {
         <Outlet id="Mumbai" outlets={mumOutlets} />
         <Outlet id="Vijayawada" outlets={vijOutlets} />
         <Outlet id="Pune" outlets={puneOutlets} />
-        <Outlet id="New Delhi" outlets={newdelhiOutlets} />
+        <Outlet id="Gurgaon" outlets={ncrOutlets} />
         {upcomingOutlets.length > 0 && (
           <Outlet id="Upcoming" outlets={upcomingOutlets} />
         )}
