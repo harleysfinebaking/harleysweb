@@ -31,7 +31,7 @@ export default function OutletsPage() {
     { name: "Mumbai", image: "/photos/mumbai.jpg" },
     { name: "Vijayawada", image: "/photos/Vijayawada.jpg" },
     { name: "Pune", image: "/photos/Balewadi-Pune.jpg" },
-    { name: "New Delhi", image: "/photos/newdelhi.jpg" },
+    { name: "New Delhi", image: "/photos/NewDelhi.webp" },
   ];
 
   const hydOutlets = [
