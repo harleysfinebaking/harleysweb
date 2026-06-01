@@ -53,6 +53,7 @@
         .item-line { display: flex; align-items: center; gap: 8px; }
         .item-name-truncate { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50ch; }
         .item-qty-inline { width: 70px; text-align: right; }
+        .item-batch-inline { width: 130px; text-align: left; }
         .item-qty-group { background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid #e1e5e9; transition: all 0.3s ease; }
         .item-qty-group:hover { border-color: #007bff; }
         .item-qty-group.hidden { display: none !important; }
@@ -78,7 +79,7 @@
 <div class="container">
     <div class="header">
         <h1>Label Generator</h1>
-        <p>Select Type → City (if applicable) → MFG Date → Batch No + Search → Set Labels per Item → Generate 4×2 inch Labels</p>
+        <p>Select Type → City (if applicable) → MFG Date → Set Batch No per Item → Generate 4×2 inch Labels</p>
     </div>
     <div class="content">
         <div id="status" class="status"></div>
@@ -105,10 +106,6 @@
                 <div class="form-group">
                     <label>📅 MFG Date *</label>
                     <input type="date" id="mfgDateInput" required>
-                </div>
-                <div class="form-group">
-                    <label for="batchNoInput">Batch No</label>
-                    <input type="text" id="batchNoInput" placeholder="Enter Batch No (e.g., BATCH001)">
                 </div>
                 <div class="form-group">
                     <label for="itemSearch">🔍 Search Items</label>
@@ -184,7 +181,9 @@
     }
 
     function setupSearch() {
-        const searchInput = document.getElementById('itemSearch');
+        const oldInput = document.getElementById('itemSearch');
+        const searchInput = oldInput.cloneNode(true);
+        oldInput.parentNode.replaceChild(searchInput, oldInput);
         searchInput.addEventListener('input', function() {
             const term = this.value.toLowerCase().trim();
             allItemElements.forEach(el => {
@@ -229,6 +228,31 @@
         showStatus(`Loaded ${cleanedItemsCache.length} Non Fssai Labels items`, 'success');
     }
 
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function getItemBatch(index) {
+        const item = cleanedItemsCache[index];
+        if (!item) return '';
+        return (item.ItemBatchNo ?? item.BatchNo ?? item.Batch ?? '').toString().trim();
+    }
+
+    function setItemBatch(index, value) {
+        const item = cleanedItemsCache[index];
+        if (!item) return;
+        item.ItemBatchNo = (value || '').toString().trim();
+    }
+
+    function syncItemBatch(index, value) {
+        setItemBatch(index, value);
+    }
+
     function cleanItemsData(items) {
         return (items || []).map(item => {
             const cleaned = { ...item };
@@ -261,6 +285,7 @@
             });
 
             cleaned.ShelfLife = parseInt(item['Shelf Life']) || parseInt(item.ShelfLife) || 0;
+            cleaned.ItemBatchNo = (item.ItemBatchNo ?? item.BatchNo ?? item.Batch ?? '').toString().trim();
             return cleaned;
         }).filter(i => i.ItemNo || i.No);
     }
@@ -285,65 +310,30 @@
             div.dataset.index = index;
 
             const shelfLifeDisplay = item.ShelfLife || 'NA';
+            const batchValue = escapeHtml(getItemBatch(index));
             if (currentLabelType === 'intercity') {
                 div.innerHTML = `
                     <div class="item-header">
                         <div class="item-line">
-                            <div class="item-name item-name-truncate">
-                                ${item.ItemName || item['Item Name'] || 'NA'}
-                                <span class="item-count" id="item-count-${index}"
-                                    style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
-                            </div>
-                            <input type="number"
-                                class="qty-input item-qty-inline"
-                                data-index="${index}"
-                                min="0"
-                                max="500"
-                                value=""
-                                onchange="updateTotalLabels()"
-                                title="Number of labels">
+                            <div class="item-name item-name-truncate">${escapeHtml(item.ItemName || item['Item Name'] || 'N/A')} <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span></div>
+                            <input type="text" class="item-batch-inline" data-index="${index}" value="${batchValue}" placeholder="Batch No" oninput="syncItemBatch(${index}, this.value)" title="Batch number for this item">
+                            <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="0" onchange="updateTotalLabels()" title="Number of labels">
                         </div>
-                        <div class="item-meta">
-                            From: ${item['From City'] || item.FromCity || 'NA'} |
-                            To: ${item['To City'] || item.ToCity || 'NA'} |
-                            Category: ${item.Category || 'NA'} |
-                            Shelf Life: ${shelfLifeDisplay} days
-                        </div>
-                    </div>
-                `;
-            }
-
-            else {
-                const mrpDisplay = item.MRP || 'NA';
-                const uspDisplay = item.USP || 'NA';
-
+                        <div class="item-meta">From: ${escapeHtml(item['From City'] || item.FromCity || 'N/A')} | To: ${escapeHtml(item['To City'] || item.ToCity || 'N/A')} | Category: ${escapeHtml(item.Category || 'N/A')} | Shelf Life: ${escapeHtml(shelfLifeDisplay)} days</div>
+                    </div>`;
+            } else {
+                const mrpDisplay = item.MRP || 'N/A';
+                const uspDisplay = item.USP || 'N/A';
                 div.innerHTML = `
                     <div class="item-header">
                         <div class="item-line">
-                            <div class="item-name item-name-truncate">
-                                ${item.ItemName || 'NA'}
-                                <span class="item-count" id="item-count-${index}"
-                                    style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span>
-                            </div>
-                            <input type="number"
-                                class="qty-input item-qty-inline"
-                                data-index="${index}"
-                                min="0"
-                                max="500"
-                                value=""
-                                onchange="updateTotalLabels()"
-                                title="Number of labels">
+                            <div class="item-name item-name-truncate">${escapeHtml(item.ItemName || 'N/A')} <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span></div>
+                            <input type="text" class="item-batch-inline" data-index="${index}" value="${batchValue}" placeholder="Batch No" oninput="syncItemBatch(${index}, this.value)" title="Batch number for this item">
+                            <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="0" onchange="updateTotalLabels()" title="Number of labels">
                         </div>
-                        <div class="item-meta">
-                            Item ${item.ItemNo || 'NA'} |
-                            ${item.Pieces || 'NA'} pcs ${item.Weight || 'NA'}g |
-                            MRP ${mrpDisplay} | USP ${uspDisplay} |
-                            Shelf Life: ${shelfLifeDisplay} days
-                        </div>
-                    </div>
-                `;
+                        <div class="item-meta">Item: ${escapeHtml(item.ItemNo || 'N/A')} | ${escapeHtml(item.Pieces || 'N/A')} pcs | ${escapeHtml(item.Weight || 'N/A')}g | MRP: ${escapeHtml(mrpDisplay)} | USP: ${escapeHtml(uspDisplay)} | Shelf Life: ${escapeHtml(shelfLifeDisplay)} days</div>
+                    </div>`;
             }
-
             container.appendChild(div);
             allItemElements.push(div);
         });
@@ -352,18 +342,19 @@
 
     // === VALIDATION FUNCTIONS ===
     function validateBatchNo(labelType) {
-        const batchNo = document.getElementById('batchNoInput').value.trim();
-        
-        if (labelType === 'fssai-labels' && !batchNo) {
-            showStatus('Batch No is mandatory for FSSAI labels', 'error');
+        if (labelType === 'intercity') return true;
+        const requiresBatch = ['fssai-labels', 'airportFssai'];
+        if (!requiresBatch.includes(labelType)) return true;
+
+        const missingItems = Object.entries(itemQuantities)
+            .filter(([index, qty]) => parseInt(qty || 0, 10) > 0 && !getItemBatch(parseInt(index, 10)))
+            .map(([index]) => cleanedItemsCache[parseInt(index, 10)]?.ItemName || `Item ${index}`);
+
+        if (missingItems.length) {
+            showStatus(`Batch No is mandatory per item. Missing for ${missingItems.slice(0, 3).join(', ')}${missingItems.length > 3 ? '...' : ''}`, 'error');
             return false;
         }
-        
-        if (labelType === 'intercity') {
-            // For intercity, batch no is not used at all
-            const batchNo = document.getElementById('batchNoInput').value.trim(); // Optional for intercity
-        }
-        
+
         return true;
     }
 
@@ -395,7 +386,6 @@
         const addressInfo = (excelData.address || []).find(row =>
             (row.City || '').toString().trim().toLowerCase() === cityName
         );
-        const batchNo = document.getElementById('batchNoInput').value.trim();
 
         const finalItems = [];
         Object.entries(itemQuantities).forEach(([indexStr, qty]) => {
@@ -422,7 +412,7 @@
                         NutritionInfo: item.NutritionInfo || 'Follow FSSAI RDA Norms',
                         MFDDate: mfgDateFormatted,
                         UsedByDate: useByDateFormatted,
-                        BatchNo: batchNo,
+                        BatchNo: getItemBatch(index),
                         ShelfLifeDays: shelfLifeDays
                     });
                 }
@@ -559,7 +549,6 @@
         const addressInfo = (excelData.address || []).find(row =>
             (row.City || '').toString().trim().toLowerCase() === cityName
         );
-        const batchNo = document.getElementById('batchNoInput').value.trim();
 
         const finalItems = [];
         Object.entries(itemQuantities).forEach(([indexStr, qty]) => {
@@ -586,7 +575,7 @@
                         NutritionInfo: item.NutritionInfo || 'Follow FSSAI RDA Norms',
                         MFDDate: mfgDateFormatted,
                         UsedByDate: useByDateFormatted,
-                        BatchNo: batchNo,
+                        BatchNo: getItemBatch(index),
                         ShelfLifeDays: shelfLifeDays
                     });
                 }
@@ -807,8 +796,6 @@
             showStatus('Please select a City before generating labels', 'error');
             return;
         }
-
-        const batchNo = document.getElementById('batchNoInput').value.trim();
         const mfgDate = new Date(mfgDateInput);
         const addressInfo = excelData.address.find(a => a.City === city) || {};
         const labels = [];
@@ -826,7 +813,7 @@
                         Category: item.Category || 'NA',
                         UseByDate: formatExcelDate(useBy),
                         FSSAI: addressInfo.FSSAI || 'NA',
-                        BatchNo: batchNo || ''
+                        BatchNo: getItemBatch(parseInt(i, 10)) || ''
                     });
                 }
             }
@@ -1002,8 +989,6 @@
             showStatus('Please select a City before generating labels', 'error');
             return;
         }
-
-        const batchNo = document.getElementById('batchNoInput').value.trim();
         const mfgDate = new Date(mfgDateInput);
         const addressInfo = excelData.address.find(a => a.City === city) || {};
         const labels = [];
@@ -1021,7 +1006,7 @@
                         Category: item.Category || 'NA',
                         UseByDate: formatExcelDate(useBy),
                         FSSAI: addressInfo.FSSAI || 'NA',
-                        BatchNo: batchNo || ''
+                        BatchNo: getItemBatch(parseInt(i, 10)) || ''
                     });
                 }
             }
@@ -1260,7 +1245,6 @@
         );
     }
 
-
     function populateCities() {
         const cities = [...new Set((excelData.address || []).map(r => r.City).filter(Boolean))];
         const select = document.getElementById('citySelect');
@@ -1282,7 +1266,6 @@
         document.getElementById('totalCount').textContent = total;
         document.getElementById('generateBtn').disabled = total === 0;
     }
-
 
     function openNonFssaiPreviewWindow(previewHtml) {
         console.log('[Non-FSSAI] Preview window opened');
@@ -1341,8 +1324,7 @@
         
         labelTypeSelect.addEventListener('change', function() {
             currentLabelType = this.value;
-            cityGroup.style.display = 'none';
-            document.getElementById('batchNoInput').required = false; // Reset required
+            cityGroup.style.display = 'none'; // Reset required
             
             if (currentLabelType === 'fssai-labels' || currentLabelType === 'airportFssai' || currentLabelType === 'airportContinental' || currentLabelType === 'nonfssai') {
                 cityGroup.style.display = 'block';
