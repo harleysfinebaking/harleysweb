@@ -265,7 +265,7 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
           <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
-              35 +
+              60 +
             </div>
             <p className="mt-2 text-gray-600 text-sm md:text-base lg:text-xl">
               Outlets & Cloud Kitchens
@@ -273,7 +273,7 @@ export default function About() {
           </div>
           <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
-              700 +
+              800 +
             </div>
             <p className="mt-2 text-gray-600 text-sm md:text-base lg:text-xl">
               Employees
@@ -281,7 +281,7 @@ export default function About() {
           </div>
           <div className="bg-[#E8F7FF]/80 p-4 rounded-2xl border shadow-md relative z-10 hover:bg-[#f5d1d8]/80 hover:scale-105 transition-transform duration-300">
             <div className="mt-10 lg:mt-0 text-4xl md:text-5xl font-bold leading-[52px]">
-              7000 +
+              25000 +
             </div>
             <p className="mt-2 text-gray-600 text-sm md:text-base lg:text-xl">
               Macarons Produced Everyday

@@ -133,6 +133,20 @@ export default function OutletsPage() {
       address:
         "Ground floor, The Gravity, PRESTIGE TECH PARK, Unit No. 05B, Kodbisanhalli, IV, Bengaluru, Karnataka 560103",
     },
+    
+    {
+      name: "Harley's Fine Baking - Phoenix Marketcity Bengaluru",
+      locationUrl: "https://share.google/30F2ZtIo8w3YqdbIb",
+      address:
+        "Whitefield Main Road, Devasandra Industrial Estate, Mahadevapura, Bengaluru, Karnataka 560048",
+    },
+    
+    {
+      name: "Harley's Fine Baking - Phoenix Mall Of Asia",
+      locationUrl: "https://share.google/SQGV5xOS1SJTCCtEs",
+      address:
+        "Unit No S-28 and S-28A, 2nd Floor, Byatarayanapura, Yelahanka, Hobli, Bellary Rd, Yelahanka, Bengaluru, Karnataka 560092",
+    },
   ];
 
   const mumOutlets = [
