@@ -18,18 +18,27 @@ const Careers = ({ openings }: CareerProps) => {
   const [search, setSearch] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
 
-  // Get unique locations
+  // Get unique locations by splitting mixed entries
   const locations = Array.from(
-    new Set(openings.map((job) => job.location))
-  );
+    new Set(
+      openings.flatMap((job) =>
+        job.location
+          .replace(/&/g, ",")               // Convert all "&" to commas
+          .split(",")                       // Split into individual city elements
+          .map((loc) => loc.trim())         // Trim white spaces around names
+          .filter((loc) => loc.length > 0)  // Drop any empty elements
+      )
+    )
+  ).sort(); // Optional: Keeps dropdown options organized alphabetically
 
   const filteredOpenings = openings.filter((job) => {
     const matchesSearch =
       job.designation.toLowerCase().includes(search.toLowerCase()) ||
       job.location.toLowerCase().includes(search.toLowerCase());
 
+    // Matches if dropdown is empty or if the job's location contains the chosen filter
     const matchesLocation =
-      locationFilter === "" || job.location === locationFilter;
+      locationFilter === "" || job.location.includes(locationFilter);
 
     return matchesSearch && matchesLocation;
   });
