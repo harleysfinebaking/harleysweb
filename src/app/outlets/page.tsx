@@ -106,6 +106,18 @@ export default function OutletsPage() {
       address:
         "Prestige Skytech, S.Y. No. 332, 333, Pupplaguda, Gandipet, Financial, Hyderabad, Telangana 500032",
     },
+    {
+      name: "Harley's Fine Baking - Sainikpuri",
+      locationUrl: "https://maps.app.goo.gl/jHVuRBFpD8Dgepkg8",
+      address:
+        "Door, No. 37/18/824/G1, Plot No: 824, Defence Colony, Sainikpuri, Hyderabad, Secunderabad, Telangana 500094",
+    },
+    {
+      name: "Harley’s Fine Baking - Kapil Towers",
+      locationUrl: "https://maps.app.goo.gl/poovTnybwNpxJQ2W7",
+      address:
+        "Survey 115/1, Kapil Towers, ISB Rd, Financial District, Gachibowli, Hyderabad, Nanakramguda, Telangana 500032",
+    },
   ];
 
   const blrOutlets = [
