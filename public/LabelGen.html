@@ -467,7 +467,7 @@
                 <div class="column1">
                     <div class="label-top">
                         <div class="label-brand">HARLEYS INDIA PVT LTD</div>
-                        <div class="item-title"><span>${item.ItemName || 'NA'}</span>${vegSymbolHtml()}</div>
+                        <div class="item-title"><span>${item.ItemName || 'NA'}</span></div>
                     </div>
 
                     <div style="font-size: 9px; display:flex; justify-content:space-between;">
@@ -631,7 +631,7 @@
                 <div class="column1">
                     <div class="label-top">
                         <div class="label-brand">HARLEYS INDIA PVT LTD</div>
-                        <div class="item-title"><span>${item.ItemName || 'NA'}</span>${vegSymbolHtml()}</div>
+                        <div class="item-title"><span>${item.ItemName || 'NA'}</span></div>
                     </div>
 
                     <div style="font-size: 9px; display:flex; justify-content:space-between;">
@@ -893,7 +893,7 @@
                 ${page.map(l => `
                 <div class="label">
                     <div>HARLEYS INDIA PVT LTD</div>
-                    <div class="item-name-line"><span>${l.ItemName}</span>${vegSymbolHtml()}</div>
+                    <div class="item-name-line"><span>${l.ItemName}</span></div>
                     <div>Best By: ${l.UseByDate}</div>
                     ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
                     <div>FSSAI: ${l.FSSAI}</div>
@@ -1092,7 +1092,7 @@
                 ${page.map(l => `
                 <div class="label">
                     <div>HARLEYS INDIA PVT LTD</div>
-                    <div class="item-name-line"><span>${l.ItemName}</span>${vegSymbolHtml()}</div>
+                    <div class="item-name-line"><span>${l.ItemName}</span></div>
                     <div>Best By: ${l.UseByDate}</div>
                     ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
                     ${
@@ -1231,7 +1231,7 @@
                 ${page.map(l => `
                 <div class="label">
                     <div>HARLEYS INDIA PVT LTD</div>
-                    <div class="item-name-line" style="font-size:8px"><span>${l.ItemName}</span>${vegSymbolHtml()}</div>
+                    <div class="item-name-line" style="font-size:8px"><span>${l.ItemName}</span></div>
                     <div>CATEGORY: ${l.Category}</div>
                     ${l.MFGDate ? `<div>MFG DATE: ${l.MFGDate}</div>` : ''}
                     ${Object.keys(l).map(key => {
