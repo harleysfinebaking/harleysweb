@@ -268,7 +268,7 @@
     }
 
     function syncItemFlavor(index, value) {
-        itemFlavors[index] = (value || '').toString().slice(0, 40);
+        itemFlavors[index] = (value || '').toString().slice(0, 20).toUpperCase();
     }
     function cleanItemsData(items) {
         return (items || []).map(item => {
@@ -332,7 +332,7 @@
             const shelfLifeDisplay = item.ShelfLife || 'NA';
             const batchValue = escapeHtml(getItemBatch(index));
             const flavorInputHtml = currentLabelType === 'nonfssai' && isFlavorRequired(item)
-                ? `<input type="text" class="item-flavor-inline" data-index="${index}" maxlength="40" value="${escapeHtml(getItemFlavor(index))}" placeholder="Flavor" oninput="syncItemFlavor(${index}, this.value)" title="Flavor is mandatory for this item when quantity is set">`
+                ? `<input type="text" class="item-flavor-inline" data-index="${index}" maxlength="20" value="${escapeHtml(getItemFlavor(index))}" placeholder="Flavor" oninput="syncItemFlavor(${index}, this.value)" title="Flavor is mandatory for this item when quantity is set">`
                 : '';
             if (currentLabelType === 'intercity') {
                 div.innerHTML = `
@@ -833,8 +833,7 @@
                 ${page.map(l => `
                 <div class="label">
                     <div>HARLEYS INDIA PVT LTD</div>
-                    <div class="item-name-line"><span>${l.ItemName}</span></div>
-                    ${l.Flavor ? `<div>FLAVOR: ${l.Flavor}</div>` : ''}
+                    <div class="item-name-line"><span>${l.ItemName}${l.Flavor ? ` (${l.Flavor})` : ''}</span></div>
                     <div>Best By: ${l.UseByDate}</div>
                     ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
                     <div>FSSAI: ${l.FSSAI}</div>
