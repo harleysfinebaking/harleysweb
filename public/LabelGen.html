@@ -54,6 +54,7 @@
         .item-name-truncate { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50ch; }
         .item-qty-inline { width: 70px; text-align: right; }
         .item-batch-inline { width: 130px; text-align: left; }
+        .item-flavor-inline { width: 140px; text-align: left; }
         .item-qty-group { background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid #e1e5e9; transition: all 0.3s ease; }
         .item-qty-group:hover { border-color: #007bff; }
         .item-qty-group.hidden { display: none !important; }
@@ -136,6 +137,7 @@
     let cleanedItemsCache = [];
     let allItemElements = [];
     let itemQuantities = {};
+    let itemFlavors = {};
     let currentLabelType = '';
 
     function showStatus(message, type) {
@@ -257,6 +259,17 @@
         setItemBatch(index, value);
     }
 
+    function isFlavorRequired(item) {
+        return (item?.Flavor || item?.Flavour || '').toString().trim().toLowerCase() === 'yes';
+    }
+
+    function getItemFlavor(index) {
+        return (itemFlavors[index] || '').toString().trim();
+    }
+
+    function syncItemFlavor(index, value) {
+        itemFlavors[index] = (value || '').toString().slice(0, 40);
+    }
     function cleanItemsData(items) {
         return (items || []).map(item => {
             const cleaned = { ...item };
@@ -272,6 +285,8 @@
             if (item['Weight (gms)']) cleaned.Weight = item['Weight (gms)'];
             if (item['Pieces (pcs)']) cleaned.Pieces = item['Pieces (pcs)'];
             if (item['Qty (in units)']) cleaned.Qty = item['Qty (in units)'];
+            if (item['Flavor'] !== undefined) cleaned.Flavor = item['Flavor'];
+            if (item['Flavour'] !== undefined) cleaned.Flavour = item['Flavour'];
 
             // Nutrition info variations
             if (item['NUTRITIONAL INFORMATION-per 100 gms (approx)']) {
@@ -299,6 +314,7 @@
         container.innerHTML = '';
         allItemElements = [];
         itemQuantities = {};
+        itemFlavors = {};
 
         if (!cleanedItemsCache.length) {
             container.innerHTML = `
@@ -315,12 +331,16 @@
 
             const shelfLifeDisplay = item.ShelfLife || 'NA';
             const batchValue = escapeHtml(getItemBatch(index));
+            const flavorInputHtml = currentLabelType === 'nonfssai' && isFlavorRequired(item)
+                ? `<input type="text" class="item-flavor-inline" data-index="${index}" maxlength="40" value="${escapeHtml(getItemFlavor(index))}" placeholder="Flavor" oninput="syncItemFlavor(${index}, this.value)" title="Flavor is mandatory for this item when quantity is set">`
+                : '';
             if (currentLabelType === 'intercity') {
                 div.innerHTML = `
                     <div class="item-header">
                         <div class="item-line">
                             <div class="item-name item-name-truncate">${escapeHtml(item.ItemName || item['Item Name'] || 'N/A')} <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span></div>
                             <input type="text" class="item-batch-inline" data-index="${index}" value="${batchValue}" placeholder="Batch No" oninput="syncItemBatch(${index}, this.value)" title="Batch number for this item">
+                            ${flavorInputHtml}
                             <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="0" onchange="updateTotalLabels()" title="Number of labels">
                         </div>
                         <div class="item-meta">From: ${escapeHtml(item['From City'] || item.FromCity || 'N/A')} | To: ${escapeHtml(item['To City'] || item.ToCity || 'N/A')} | Category: ${escapeHtml(item.Category || 'N/A')} | Shelf Life: ${escapeHtml(shelfLifeDisplay)} days</div>
@@ -333,6 +353,7 @@
                         <div class="item-line">
                             <div class="item-name item-name-truncate">${escapeHtml(item.ItemName || 'N/A')} <span class="item-count" id="item-count-${index}" style="font-size:0.8em; color:#007bff; margin-left:6px;">0</span></div>
                             <input type="text" class="item-batch-inline" data-index="${index}" value="${batchValue}" placeholder="Batch No" oninput="syncItemBatch(${index}, this.value)" title="Batch number for this item">
+                            ${flavorInputHtml}
                             <input type="number" class="qty-input item-qty-inline" data-index="${index}" min="0" max="500" value="0" onchange="updateTotalLabels()" title="Number of labels">
                         </div>
                         <div class="item-meta">Item: ${escapeHtml(item.ItemNo || 'N/A')} | ${escapeHtml(item.Pieces || 'N/A')} pcs | ${escapeHtml(item.Weight || 'N/A')}g | MRP: ${escapeHtml(mrpDisplay)} | USP: ${escapeHtml(uspDisplay)} | Shelf Life: ${escapeHtml(shelfLifeDisplay)} days</div>
@@ -691,97 +712,6 @@
         return html;
     }
 
-    /*function generateNonFssaiLabels() {
-        console.log('---- [Non-FSSAI] Generation Started ----');
-
-        console.log('[Non-FSSAI] cleanedItemsCache:', cleanedItemsCache);
-        console.log('[Non-FSSAI] itemQuantities:', itemQuantities);
-
-        const totalLabels = Object.values(itemQuantities)
-            .reduce((sum, qty) => sum + (parseInt(qty) || 0), 0);
-
-        console.log('[Non-FSSAI] Total labels requested:', totalLabels);
-
-        if (!totalLabels) {
-            console.error('[Non-FSSAI] No quantities set');
-            showStatus('Set at least 1 label for some items', 'error');
-            return;
-        }
-
-        const mfgDateInput = document.getElementById('mfgDateInput').value;
-        console.log('[Non-FSSAI] MFG Date Input:', mfgDateInput);
-
-        if (!mfgDateInput) {
-            console.error('[Non-FSSAI] MFG Date missing');
-            showStatus('Please select MFG Date', 'error');
-            return;
-        }
-
-        const mfgDate = new Date(mfgDateInput);
-        let previewHtml = '';
-        let labelCounter = 0;
-
-        Object.entries(itemQuantities).forEach(([index, qty]) => {
-            qty = parseInt(qty, 10);
-
-            if (qty > 0) {
-                const item = cleanedItemsCache[index];
-                console.log(`[Non-FSSAI] Processing item index ${index}`, item);
-
-                const shelfLife = parseInt(item.ShelfLife) || 0;
-                const useBy = new Date(mfgDate);
-                useBy.setDate(useBy.getDate() + shelfLife);
-
-                for (let i = 0; i < qty; i++) {
-                    labelCounter++;
-
-                    previewHtml += `
-                    <div class="preview-label">
-                        <div class="label-header">HARLEYS INDIA PVT LTD</div>
-                        <div class="label-content">
-                            <div class="label-row">
-                                <span class="label-field">Item:</span>
-                                <span>${item.ItemName || 'NA'}</span>
-                            </div>
-                            <div class="label-row">
-                                <span class="label-field">Category:</span>
-                                <span>${item.Category || 'NA'}</span>
-                            </div>
-                            <div class="label-row">
-                                <span class="label-field">MFG Date:</span>
-                                <span>${formatExcelDate(mfgDate)}</span>
-                            </div>
-                            <div class="label-row">
-                                <span class="label-field">Use By:</span>
-                                <span>${formatExcelDate(useBy)}</span>
-                            </div>
-                            ${item.Remarks ? `
-                            <div class="remarks-section">
-                                <strong>Remarks:</strong> ${item.Remarks}
-                            </div>` : ''}
-                        </div>
-                    </div>`;
-                }
-            }
-        });
-
-        //console.log('[Non-FSSAI] Labels built:', labelCounter);
-
-        if (!previewHtml) {
-            console.error('[Non-FSSAI] previewHtml empty');
-            showStatus('No labels generated', 'error');
-            return;
-        }
-
-        console.log('[Non-FSSAI] Opening preview window');
-        openNonFssaiPreviewWindow(previewHtml);
-
-        showStatus(
-            `Non-FSSAI preview opened (${labelCounter} labels)`,
-            'success'
-        );
-    }*/ 
-
     function generateNonFssaiLabels(){
         const totalLabels = Object.values(itemQuantities)
             .reduce((sum, qty) => sum + (qty || 0), 0);
@@ -802,6 +732,15 @@
             showStatus('Please select a City before generating labels', 'error');
             return;
         }
+
+        const missingFlavorItems = Object.entries(itemQuantities)
+            .filter(([i, qty]) => parseInt(qty || 0, 10) > 0 && isFlavorRequired(cleanedItemsCache[parseInt(i, 10)]) && !getItemFlavor(parseInt(i, 10)))
+            .map(([i]) => cleanedItemsCache[parseInt(i, 10)]?.ItemName || `Item ${i}`);
+
+        if (missingFlavorItems.length) {
+            showStatus(`Flavor is mandatory for ${missingFlavorItems.slice(0, 3).join(', ')}${missingFlavorItems.length > 3 ? '...' : ''}`, 'error');
+            return;
+        }
         const mfgDate = new Date(mfgDateInput);
         const addressInfo = excelData.address.find(a => a.City === city) || {};
         const labels = [];
@@ -819,7 +758,8 @@
                         Category: item.Category || 'NA',
                         UseByDate: formatExcelDate(useBy),
                         FSSAI: addressInfo.FSSAI || 'NA',
-                        BatchNo: getItemBatch(parseInt(i, 10)) || ''
+                        BatchNo: getItemBatch(parseInt(i, 10)) || '',
+                        Flavor: getItemFlavor(parseInt(i, 10))
                     });
                 }
             }
@@ -894,6 +834,7 @@
                 <div class="label">
                     <div>HARLEYS INDIA PVT LTD</div>
                     <div class="item-name-line"><span>${l.ItemName}</span></div>
+                    ${l.Flavor ? `<div>FLAVOR: ${l.Flavor}</div>` : ''}
                     <div>Best By: ${l.UseByDate}</div>
                     ${l.BatchNo ? `<div>Batch No: ${l.BatchNo}</div>` : ''}
                     <div>FSSAI: ${l.FSSAI}</div>
@@ -1001,6 +942,7 @@
             showStatus('Please select a City before generating labels', 'error');
             return;
         }
+
         const mfgDate = new Date(mfgDateInput);
         const addressInfo = excelData.address.find(a => a.City === city) || {};
         const labels = [];
