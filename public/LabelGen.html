@@ -239,10 +239,6 @@
             .replace(/'/g, '&#39;');
     }
 
-    function vegSymbolHtml() {
-        return '<span class="veg-symbol" aria-label="Vegetarian"><span></span></span>';
-    }
-
     function getItemBatch(index) {
         const item = cleanedItemsCache[index];
         if (!item) return '';
@@ -532,7 +528,6 @@
                         <span style="min-width:55px;">CORP ADDRESS</span>
                         <span style="font-size:8px; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
                     </div>
-                    <div class="large-veg-mark">V</div>
                 </div>
 
                 <div class="column2">
@@ -696,7 +691,6 @@
                         <span style="min-width:55px;">CORP ADDRESS</span>
                         <span style="font-size:8px; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
                     </div>
-                    <div class="large-veg-mark">V</div>
                 </div>
                 
                 <div class="column2">
@@ -822,8 +816,6 @@
             text-align: center;
             overflow: hidden;
             }            .item-name-line { display: flex; align-items: center; justify-content: center; gap: 3px; max-width: 100%; }
-            .veg-symbol { width: 8px; height: 8px; border: 1px solid #008000; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 8px; }
-            .veg-symbol span { width: 4px; height: 4px; border-radius: 50%; background: #008000; display: block; }
             </style>
             </head>
             <body>
@@ -881,9 +873,6 @@
                 .label-top { text-align: center; margin-bottom: 2px; }
                 .label-brand { font-size: 10px; font-weight: 700; }
                 .item-title { font-size: 9px; font-weight: 700; margin-top: 1px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; gap: 3px; }
-                .veg-symbol { width: 8px; height: 8px; border: 1px solid #008000; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 8px; }
-                .veg-symbol span { width: 4px; height: 4px; border-radius: 50%; background: #008000; display: block; }
-                .large-veg-mark { color: #008000; font-size: 28px; font-weight: 900; line-height: 1; text-align: left; font-family: Arial, sans-serif; position: absolute; left: 0.02in; bottom: 0.01in; width: 0.35in; height: 0.22in; display: flex; align-items: flex-end; justify-content: flex-start; }
                 .qr-box { width: 1.2in; height: 1.2in; margin: 0 auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; }
                 .qr-box img { width: 100%; height: 100%; object-fit: contain; }
                 .exec-line { font-size: 9px; font-weight: 700; text-align: center; margin-top: 0px; }
@@ -1021,9 +1010,8 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            }            .item-name-line { display: flex; align-items: center; justify-content: center; gap: 3px; max-width: 100%; }
-            .veg-symbol { width: 8px; height: 8px; border: 1px solid #008000; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 8px; }
-            .veg-symbol span { width: 4px; height: 4px; border-radius: 50%; background: #008000; display: block; }
+            }            
+            .item-name-line { display: flex; align-items: center; justify-content: center; gap: 3px; max-width: 100%; }
             </style>
             </head>
             <body>
@@ -1160,9 +1148,8 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            }            .item-name-line { display: flex; align-items: center; justify-content: center; gap: 3px; max-width: 100%; }
-            .veg-symbol { width: 8px; height: 8px; border: 1px solid #008000; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 8px; }
-            .veg-symbol span { width: 4px; height: 4px; border-radius: 50%; background: #008000; display: block; }
+            }            
+            .item-name-line { display: flex; align-items: center; justify-content: center; gap: 3px; max-width: 100%; }
             </style>
             </head>
             <body>
