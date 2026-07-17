@@ -287,6 +287,7 @@
             if (item['Qty (in units)']) cleaned.Qty = item['Qty (in units)'];
             if (item['Flavor'] !== undefined) cleaned.Flavor = item['Flavor'];
             if (item['Flavour'] !== undefined) cleaned.Flavour = item['Flavour'];
+            if (item['Allergens'] !== undefined) cleaned.Allergens = item['Allergens'];
 
             // Nutrition info variations
             if (item['NUTRITIONAL INFORMATION-per 100 gms (approx)']) {
@@ -532,7 +533,10 @@
                         <span style="min-width:55px;">CORP ADDRESS</span>
                         <span style="font-size:8px; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
                     </div>
-                    <div class="large-veg-mark">V<span class="veg-small">eg</span></div>
+                    <div class="veg-allergen-row">
+                        <div class="large-veg-mark">V<span class="veg-small">eg</span></div>
+                        ${item.Allergens ? `<div class="allergen-note"><b>ALLERGEN DECLARATION:</b> ${item.Allergens}</div>` : ''}
+                    </div>
                 </div>
 
                 <div class="column2">
@@ -696,7 +700,10 @@
                         <span style="min-width:55px;">CORP ADDRESS</span>
                         <span style="font-size:8px; flex:1; text-align:right;">${item.CorpAddress || 'NA'}</span>
                     </div>
-                    <div class="large-veg-mark">V<span class="veg-small">eg</span></div>
+                    <div class="veg-allergen-row">
+                        <div class="large-veg-mark">V<span class="veg-small">eg</span></div>
+                        ${item.Allergens ? `<div class="allergen-note"><b>ALLERGEN DECLARATION:</b> ${item.Allergens}</div>` : ''}
+                    </div>
                 </div>
                 
                 <div class="column2">
@@ -883,8 +890,44 @@
                 .item-title { font-size: 9px; font-weight: 700; margin-top: 1px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; gap: 3px; }
                 .veg-symbol { width: 8px; height: 8px; border: 1px solid #008000; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 8px; }
                 .veg-symbol span { width: 4px; height: 4px; border-radius: 50%; background: #008000; display: block; }
-                .large-veg-mark { color: #008000; font-size: 28px; font-weight: 900; line-height: 1; text-align: left; font-family: Arial, sans-serif; position: absolute; left: 0.02in; bottom: 0.01in; width: 0.35in; height: 0.22in; display: flex; align-items: flex-end; justify-content: flex-start; }
-                .veg-small { font-size: 20px; font-weight: 700; vertical-align: super; margin-left: -2px; }
+                .large-veg-mark {
+                    color:#008000;
+                    font-size:28px;
+                    font-weight:900;
+                    line-height:1;
+                    font-family:Arial,sans-serif;
+                    position:static;
+                    display:inline-flex;
+                    align-items:flex-end;
+                    white-space:nowrap;
+                    flex-shrink:0;
+                }
+                .veg-allergen-row {
+                    position:absolute;
+                    left:0.02in;
+                    bottom:0.01in;
+                    display:flex;
+                    align-items:center;
+                    gap:6px;
+                    width:2.0in;
+                }
+                .veg-allergen-row .large-veg-mark { position:static; flex:0 0 auto; }
+                .allergen-note {
+                    font-size:7px;
+                    line-height:1.1;
+                    color:#000;
+                    font-weight:700;
+                    white-space:normal;
+                    flex:1;
+                    padding-top:1px;
+                }
+                .veg-small {
+                    font-size:20px;
+                    font-weight:700;
+                    margin-left:1px;
+                    margin-bottom:3px;
+                    position:static;
+                }
                 .qr-box { width: 1.2in; height: 1.2in; margin: 0 auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; }
                 .qr-box img { width: 100%; height: 100%; object-fit: contain; }
                 .exec-line { font-size: 9px; font-weight: 700; text-align: center; margin-top: 0px; }
