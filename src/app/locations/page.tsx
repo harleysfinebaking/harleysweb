@@ -69,21 +69,21 @@ export default function Locations() {
     {
       name: "Hyderabad",
       address: "Nanakramguda Rd, Hyderabad, Telangana 500032, India",
-      phone: "+91 80830 98888",
+      phone: "07965190483",
       hours: "Mon-Sun: 9:00 AM - 10:00 PM",
       image: "/photos/locations.jpg"
     },
     {
       name: "Bengaluru",
       address: "Road No. 12, Banjara Hills, Hyderabad, Telangana 500034, India",
-      phone: "+91 80830 98888",
+      phone: "07965190483",
       hours: "Mon-Sun: 8:00 AM - 11:00 PM",
       image: "/photos/locations.jpg"
     },
     {
       name: "Mumbai",
       address: "80 Feet Road, Koramangala, Bengaluru, Karnataka 560034, India",
-      phone: "+91 80830 98888",
+      phone: "07965190483",
       hours: "Mon-Sun: 7:00 AM - 12:00 AM",
       image: "/photos/locations.jpg"
     },

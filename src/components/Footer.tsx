@@ -113,10 +113,10 @@ export function Footer() {
                 care@harleys.com
               </Link>
               <Link
-                href="tel:8083098888"
+                href="tel:07965190483"
                 className="hover:text-[#d45770] transition-colors"
               >
-                +91 80830 98888
+                07965190483
               </Link>
            </div>
           </div>
