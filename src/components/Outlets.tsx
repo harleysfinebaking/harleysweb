@@ -106,7 +106,7 @@ const OutletCard = ({ outlet, fullWidth }: OutletCardProps) => {
           </a>
 
           <a
-            href="tel:8083098888"
+            href="tel:07965190483"
             className="text-xs lg:text-sm flex items-center transition-colors"
           >
             <span className="flex items-center bg-white hover:bg-[#CBEBF2] px-4 py-2 rounded-full gap-x-1">
