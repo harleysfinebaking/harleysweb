@@ -179,7 +179,7 @@ export default function RootLayout({
     ],
     "@id": "https://www.harleys.com",
     "url": "https://www.harleys.com",
-    "telephone": "+918083098888",
+    "telephone": "+9107965190483",
     "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",

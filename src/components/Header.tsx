@@ -341,13 +341,13 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 <Linkedin size={20} />
               </Link>
               <Link
-                href={"tel:8083098888"}
+                href={"tel:07965190483"}
                 className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
               >
                 <Phone size={20} />
               </Link>
               <Link
-                href={"https://wa.me/+918083098888"}
+                href={"https://wa.me/+9107965190483"}
                 target="_blank"
                 className="bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:text-[#d45770]"
               >
