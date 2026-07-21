@@ -68,6 +68,12 @@ export function Footer() {
                 Foundation
               </Link>
               <Link
+                href="/business-inquiry"
+                className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
+              >
+                Contact us
+              </Link>
+              <Link
                 href="/coming-soon"
                 className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
               >
