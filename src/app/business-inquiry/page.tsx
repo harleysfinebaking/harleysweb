@@ -28,7 +28,7 @@ export default function BusinessInquiryPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative h-[50vh] flex items-center justify-center">
+        <section className="relative h-[40vh] flex items-end justify-center">
           <div className="absolute inset-0 bg-[#CBEBF2]"></div>
           <div className="relative z-10 text-center px-4">
             <h1 className="text-4xl md:text-5xl font-semibold mb-4 text-black-800 opacity-100">
@@ -46,17 +46,17 @@ export default function BusinessInquiryPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl text-pink-400 mb-3">🎂</div>
-                <h3 className="text-xl font-semibold text-pink-800 mb-2">Customised Cakes</h3>
+                <h3 className="text-xl font-semibold text-black-800 mb-2">Customised Cakes</h3>
                 <p className="text-gray-700">Design your dream cake for any occasion</p>
               </div>
               <div>
                 <div className="text-4xl text-pink-400 mb-3">📦</div>
-                <h3 className="text-xl font-semibold text-pink-800 mb-2">Bulk Orders</h3>
+                <h3 className="text-xl font-semibold text-black-800 mb-2">Bulk Orders</h3>
                 <p className="text-gray-700">Perfect for corporate gifts and events</p>
               </div>
               <div>
                 <div className="text-4xl text-pink-400 mb-3">🎉</div>
-                <h3 className="text-xl font-semibold text-pink-800 mb-2">Special Events</h3>
+                <h3 className="text-xl font-semibold text-black-800 mb-2">Special Events</h3>
                 <p className="text-gray-700">Let us know about your special requirements</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function BusinessInquiryPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-lg font-semibold text-pink-800 mb-3">Email</h3>
+                <h3 className="text-lg font-semibold text-black-800 mb-3">Email</h3>
                 {/*<p className="text-gray-700 mb-2">
                   <strong>Business Head:</strong> businesshead@harleys.com
                 </p>*/}
@@ -83,7 +83,7 @@ export default function BusinessInquiryPage() {
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-lg font-semibold text-pink-800 mb-3">Phone</h3>
+                <h3 className="text-lg font-semibold text-black-800 mb-3">Phone</h3>
                 <p className="text-gray-700">
                   <strong>Call us:</strong> 07965190483
                 </p>

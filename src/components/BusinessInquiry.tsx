@@ -153,7 +153,7 @@ export function BusinessInquiry() {
     <section className="py-20 bg-[#FEFEFA]">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light mb-4 text-center text-blue-800 opacity-60">
+          <h2 className="text-3xl md:text-4xl font-light mb-4 text-center text-black-800 ">
             Connect With Us
           </h2>
           <p className="text-center text-gray-600 mb-12">
@@ -242,7 +242,7 @@ export function BusinessInquiry() {
             {/* Conditional Fields for Customised Cakes */}
             {connectionType === 'Customised Cakes' && (
               <>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <div className="bg-blue-100 p-4 rounded-lg border border-blue-200">
                   <h3 className="text-blue-800 font-medium mb-4">Customised Cake Details</h3>
 
                   {/* Quantity */}
@@ -348,7 +348,7 @@ export function BusinessInquiry() {
               className={`w-full font-medium py-3 px-6 rounded-lg transition duration-300 ${
                 isSubmitting || !connectionType || !isValid
                   ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                  : 'bg-blue-300 hover:bg-blue-400 text-blue-900'
+                  : 'bg-[#CBEBF2] hover:bg-blue-400 text-blue-900'
               }`}
             >
               {isSubmitting ? 'Sending...' : 'Send Inquiry'}
