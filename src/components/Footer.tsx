@@ -79,12 +79,12 @@ export function Footer() {
               >
                 Blog
               </Link>
-              <Link
+              {/* <Link
                 href="/careers"
                 className="text-[#4A4A4A] hover:text-[#d45770] transition-colors"
               >
                 Careers
-              </Link>
+              </Link> */}
             </nav>
 
             <div className="flex items-center gap-4">
