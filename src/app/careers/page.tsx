@@ -32,7 +32,7 @@ export default function CareersPage() {
       positions: 1,
       experience: "5 to 8 Yrs Experience in Recruitment",
       location: "Hyderabad",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "2",
@@ -40,7 +40,7 @@ export default function CareersPage() {
       positions: 1,
       experience: "5 to 10 Yrs Experience in Food & Beverage Purchase Management",
       location: "Hyderabad",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "3",
@@ -48,7 +48,7 @@ export default function CareersPage() {
       positions: 2,
       experience: "3 to 6 Yrs Experience in Warehouse Management",
       location: "Hyderabad, NCR",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "4",
@@ -56,7 +56,7 @@ export default function CareersPage() {
       positions: 1,
       experience: "5 to 8 Yrs Experience in Maintenance Management",
       location: "Bangalore",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "5",
@@ -64,7 +64,7 @@ export default function CareersPage() {
       positions: 3,
       experience: "3 to 6 Yrs Experience in Inventory Management",
       location: "Bangalore, Mumbai & NCR",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "6",
@@ -72,7 +72,7 @@ export default function CareersPage() {
       positions: 3,
       experience: "5 to 10 Yrs Experience in Store Management",
       location: "Hyderabad, Bangalore & Mumbai",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "7",
@@ -80,7 +80,7 @@ export default function CareersPage() {
       positions: 5,
       experience: "3 to 6 Yrs Experience in Management",
       location: "Hyderabad, Bangalore, Pune, NCR & Mumbai",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "8",
@@ -88,7 +88,7 @@ export default function CareersPage() {
       positions: 50,
       experience: "1 to 3 Yrs Experience in Food & Beverage Service",
       location: "Hyderabad, Mumbai, Bangalore, Pune & NCR",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "9",
@@ -96,7 +96,7 @@ export default function CareersPage() {
       positions: 3,
       experience: "2 to 5 Yrs Experience in Quality Control",
       location: "Hyderabad, Bangalore & Mumbai",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "10",
@@ -104,7 +104,7 @@ export default function CareersPage() {
       positions: 2,
       experience: "5 to 7 Yrs Experience in Production Management",
       location: "Hyderabad & Mumbai",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "11",
@@ -112,7 +112,7 @@ export default function CareersPage() {
       positions: 2,
       experience: "2 to 5 Yrs Experience in Production Management",
       location: "Hyderabad & Mumbai",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "12",
@@ -120,7 +120,7 @@ export default function CareersPage() {
       positions: 10,
       experience: "0 - 5 Experience in Continental & Pastry Preparation & Kitchen Operations",
       location: "Hyderabad, Bangalore, Pune, Mumbai & Delhi",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "13",
@@ -128,7 +128,7 @@ export default function CareersPage() {
       positions: 3,
       experience: "3 to 5 Yrs Experience in Continental Preparation & Kitchen Operations",
       location: "Hyderabad, Bangalore & Vijayawada",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "14",
@@ -136,7 +136,7 @@ export default function CareersPage() {
       positions: 5,
       experience: "4 to 6 Yrs Experience in Continental & Pastry Preparation & Kitchen Operations",
       location: "Hyderabad, Mumbai, Bangalore, Pune & Vijayawada",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "15",
@@ -144,7 +144,7 @@ export default function CareersPage() {
       positions: 2,
       experience: "3+ Yrs Experience in Application Analysis & CRM Sales",
       location: "Hyderabad",
-      contact: 6383372953,
+      contact: 9247523771,
     },
     {
       id: "16",
@@ -152,7 +152,7 @@ export default function CareersPage() {
       positions: 2,
       experience: "3+ Yrs Experience in Odoo Python Development",
       location: "Hyderabad",
-      contact: 6383372953,
+      contact: 9247523771,
     },
   ];
 
