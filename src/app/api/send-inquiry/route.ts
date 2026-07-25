@@ -19,32 +19,29 @@ export async function POST(request: NextRequest) {
       email,
       mobileNumber,
       connectionType,
-      quantity,
-      dateOfRequirement,
-      event,
-      referenceImage,
       requirements,
     } = formData;
 
-    // Build email content based on connection type
-    let emailContent = `
+    // Build HTML email template
+    const emailContent = `
 <!DOCTYPE html>
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; color: #333; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; }
-    .header { background-color: #f5d1d8; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
-    .content { background-color: white; padding: 20px; border-radius: 5px; }
-    .section { margin-bottom: 15px; }
-    .label { font-weight: bold; color: #4A4A4A; }
-    .value { color: #666; margin-top: 5px; }
+    body { font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #e2e8f0; border-radius: 8px; }
+    .header { background-color: #f5d1d8; color: black; padding: 15px 20px; border-radius: 6px 6px 0 0; margin-bottom: 20px; }
+    .content { background-color: white; padding: 20px; border-radius: 0 0 6px 6px; border: 1px solid #edf2f7; }
+    .section { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed #edf2f7; }
+    .section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .label { font-size: 12px; font-weight: bold; color: #718096; text-transform: uppercase; margin-bottom: 4px; }
+    .value { font-size: 14px; color: #2d3748; line-height: 1.5; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h2 style="color: #4A4A4A; margin: 0;">New Business Inquiry</h2>
+      <h2 style="margin: 0; font-size: 18px; font-weight: 600;">New Business Inquiry</h2>
     </div>
     <div class="content">
       <div class="section">
@@ -53,85 +50,39 @@ export async function POST(request: NextRequest) {
       </div>
 
       <div class="section">
-        <div class="label">Email:</div>
+        <div class="label">Email Address:</div>
         <div class="value">${email}</div>
       </div>
 
       <div class="section">
-        <div class="label">Mobile Number:</div>
+        <div class="label">Phone / Mobile Number:</div>
         <div class="value">${mobileNumber}</div>
       </div>
 
       <div class="section">
-        <div class="label">Connection Type:</div>
-        <div class="value">${connectionType}</div>
-      </div>
-    `;
-
-    // Add conditional content based on connection type
-    if (connectionType === 'Customised Cakes') {
-      emailContent += `
-      <div class="section">
-        <div class="label">Quantity of Cake:</div>
-        <div class="value">${quantity}</div>
+        <div class="label">Connected Team:</div>
+        <div class="value" style="font-weight: 600; color: #0b5c5a;">${connectionType}</div>
       </div>
 
       <div class="section">
-        <div class="label">Date of Requirement:</div>
-        <div class="value">${dateOfRequirement}</div>
+        <div class="label">Requirement Brief:</div>
+        <div class="value" style="white-space: pre-wrap;">${requirements}</div>
       </div>
-
-      <div class="section">
-        <div class="label">Event:</div>
-        <div class="value">${event}</div>
-      </div>
-
-      <div class="section">
-        <div class="label">Reference Image:</div>
-        <div class="value">Attached as separate file</div>
-      </div>
-      `;
-    } else {
-      emailContent += `
-      <div class="section">
-        <div class="label">Requirements:</div>
-        <div class="value">${requirements}</div>
-      </div>
-      `;
-    }
-
-    emailContent += `
     </div>
   </div>
 </body>
 </html>
     `;
 
-    const mailOptions: any = {
+    // Standardized routing options directly to your specified admin accounts
+    const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'techintern@harleys.com',
-      subject: `New Business Inquiry - ${connectionType}`,
+      to: 'businesshead@harleys.com',
+      cc: 'digital@harleys.com',
+      subject: `[${connectionType}] New Submission from ${fullName}`,
       html: emailContent,
       replyTo: email,
     };
-
-    // If there's a reference image, handle file attachment
-    if (connectionType === 'Customised Cakes' && referenceImage) {
-      try {
-        // The referenceImage should be a base64 string from the form
-        const base64Data = referenceImage.split(',')[1];
-        const buffer = Buffer.from(base64Data, 'base64');
-
-        mailOptions.attachments = [
-          {
-            filename: `reference-image-${Date.now()}.png`,
-            content: buffer,
-          },
-        ];
-      } catch (err) {
-        console.error('Error processing image:', err);
-      }
-    }
 
     await transporter.sendMail(mailOptions);
 

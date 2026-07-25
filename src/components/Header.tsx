@@ -222,12 +222,12 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
                 Foundation
               </Link>
               <Link
-                href="/coming-soon"
+                href="/contact-us"
                 className={`hover:text-[#d45770] transition-colors text-lg ${
                   isScrolled ? "text-gray-800" : "text-black"
                 }`}
               >
-                Blog
+                Contact Us
               </Link>
             </div>
           </nav>
