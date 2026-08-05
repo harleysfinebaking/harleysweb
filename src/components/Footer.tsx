@@ -119,10 +119,10 @@ export function Footer() {
                 care@harleys.com
               </Link>
               <Link
-                href="tel:07965190483"
+                href="tel:07965314870"
                 className="hover:text-[#d45770] transition-colors"
               >
-                07965190483
+                07965314870
               </Link>
            </div>
           </div>
