@@ -65,7 +65,7 @@ export function Header({ isScrolled }: { isScrolled: boolean }) {
     { label: "Menu", action: () => scrollToSection("menu") },
     { label: "Locations", href: "/outlets" },
     { label: "Foundation", href: "/foundation" },
-    { label: "Blog", href: "/coming-soon" },
+    { label: "Contact Us", href: "/contact-us" },
     { label: "Order Now", action: () => setIsOrderModalOpen(true) },
   ];
 
