@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
       mobileNumber,
       connectionType,
       requirements,
+      city,
     } = formData;
 
     // Build HTML email template
@@ -57,6 +58,11 @@ export async function POST(request: NextRequest) {
       <div class="section">
         <div class="label">Phone / Mobile Number:</div>
         <div class="value">${mobileNumber}</div>
+      </div>
+
+      <div class="section">
+        <div class="label">City:</div>
+        <div class="value">${city}</div>
       </div>
 
       <div class="section">

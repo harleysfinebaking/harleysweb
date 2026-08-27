@@ -9,10 +9,12 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined'
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined'
 
 const inquirySchema = z.object({
   fullName: z.string().min(2,'Required'),
   email: z.string().email('Invalid email'),
+  city: z.string().min(2,'Required'),
   mobileNumber: z.string().regex(/^[0-9]{10}$/,'Must be 10 digits'),
   requirements: z.string().min(5,'Required'),
   connectionType: z.enum(['Corporate/ Festive gifting','Customized cakes','Wedding','Other events'])
@@ -52,12 +54,14 @@ export function BusinessInquiry() {
       <div className="grid sm:grid-cols-2 gap-6">
       <div><label className="flex items-center gap-2 text-xs"><PersonOutlineOutlinedIcon className="!text-black !text-[18px]"/>Full Name *</label>
       <input {...register('fullName')} className="w-full border-b outline-none"/>{errors.fullName&&<p className="text-red-500 text-xs">{errors.fullName.message}</p>}</div>
-      <div><label className="flex items-center gap-2 text-xs"><EmailOutlinedIcon className="!text-black !text-[18px]"/>Email *</label>
-      <input {...register('email')} className="w-full border-b outline-none"/>{errors.email&&<p className="text-red-500 text-xs">{errors.email.message}</p>}</div>
-      </div>
-      <div><label className="flex items-center gap-2 text-xs"><PhoneOutlinedIcon className="!text-black !text-[18px]"/>Phone *</label>
-      <input {...register('mobileNumber')} className="w-full border-b outline-none"/>{errors.mobileNumber&&<p className="text-red-500 text-xs">{errors.mobileNumber.message}</p>}</div>
-      <div><label className="flex items-center gap-2 text-xs"><DescriptionOutlinedIcon className="!text-black !text-[18px]"/>Requirements *</label>
+       <div><label className="flex items-center gap-2 text-xs"><EmailOutlinedIcon className="!text-black !text-[18px]"/>Email *</label>
+       <input {...register('email')} className="w-full border-b outline-none"/>{errors.email&&<p className="text-red-500 text-xs">{errors.email.message}</p>}</div>
+       <div><label className="flex items-center gap-2 text-xs"><PhoneOutlinedIcon className="!text-black !text-[18px]"/>Phone *</label>
+       <input {...register('mobileNumber')} className="w-full border-b outline-none"/>{errors.mobileNumber&&<p className="text-red-500 text-xs">{errors.mobileNumber.message}</p>}</div>
+       <div><label className="flex items-center gap-2 text-xs"><PlaceOutlinedIcon className="!text-black !text-[18px]"/>City *</label>
+       <input {...register('city')} className="w-full border-b outline-none"/>{errors.city&&<p className="text-red-500 text-xs">{errors.city.message}</p>}</div>
+       </div>
+       <div><label className="flex items-center gap-2 text-xs"><DescriptionOutlinedIcon className="!text-black !text-[18px]"/>Requirements *</label>
       <textarea {...register('requirements')} className="w-full border-b outline-none"/>{errors.requirements&&<p className="text-red-500 text-xs">{errors.requirements.message}</p>}</div>
       <div><label className="flex items-center gap-2 text-s">Which team would you like to connect to?*</label></div>
       <div className="grid sm:grid-cols-2 gap-2">{['Corporate/ Festive gifting','Customized cakes','Wedding','Other events'].map(v=><label key={v} className="border p-2 rounded">
