@@ -122,7 +122,7 @@ export function Footer() {
                 href="tel:07965314870"
                 className="hover:text-[#d45770] transition-colors"
               >
-                07965314870
+                Corporate Orders/Bulk Orders : 07965314870
               </Link>
            </div>
           </div>
