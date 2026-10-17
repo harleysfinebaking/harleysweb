@@ -113,10 +113,10 @@ export function Footer() {
 
             <div className="flex flex-col items-center md:items-end text-sm text-[#4A4A4A]">
               <Link
-                href="mailto:care@harleys.in"
+                href="mailto:orders@harleys.com"
                 className="hover:text-[#d45770] transition-colors"
               >
-                care@harleys.com
+                orders@harleys.com
               </Link>
               <Link
                 href="tel:07965314870"

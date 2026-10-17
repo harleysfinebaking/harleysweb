@@ -53,7 +53,7 @@ export default function BusinessInquiryPage() {
                 </p>
                 <div className="mt-auto text-sm opacity-90">
                   <p className="mb-2">Fill up the form below and for further queries contact us at -</p>
-                  <p>Email - <a href="mailto:care@harleys.com" className="underline hover:text-pink-800 transition-colors">care@harleys.com</a></p>
+                  <p>Email - <a href="mailto:orders@harleys.com" className="underline hover:text-pink-800 transition-colors">orders@harleys.com</a></p>
                   <p>Phone - <a href="tel:07965314870" className="underline hover:text-pink-800 transition-colors">07965314870</a></p>
                 </div>
               </div>
